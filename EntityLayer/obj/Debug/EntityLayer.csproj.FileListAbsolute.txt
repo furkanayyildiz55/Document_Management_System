@@ -1,0 +1,12 @@
+C:\Users\furka\source\repos\DocumentManagementSystem\EntityLayer\bin\Debug\EntityLayer.dll.config
+C:\Users\furka\source\repos\DocumentManagementSystem\EntityLayer\bin\Debug\EntityLayer.dll
+C:\Users\furka\source\repos\DocumentManagementSystem\EntityLayer\bin\Debug\EntityLayer.pdb
+C:\Users\furka\source\repos\DocumentManagementSystem\EntityLayer\bin\Debug\EntityFramework.dll
+C:\Users\furka\source\repos\DocumentManagementSystem\EntityLayer\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\furka\source\repos\DocumentManagementSystem\EntityLayer\bin\Debug\EntityFramework.xml
+C:\Users\furka\source\repos\DocumentManagementSystem\EntityLayer\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\furka\source\repos\DocumentManagementSystem\EntityLayer\obj\Debug\EntityLayer.csproj.AssemblyReference.cache
+C:\Users\furka\source\repos\DocumentManagementSystem\EntityLayer\obj\Debug\EntityLayer.csproj.CoreCompileInputs.cache
+C:\Users\furka\source\repos\DocumentManagementSystem\EntityLayer\obj\Debug\EntityLayer.csproj.CopyComplete
+C:\Users\furka\source\repos\DocumentManagementSystem\EntityLayer\obj\Debug\EntityLayer.dll
+C:\Users\furka\source\repos\DocumentManagementSystem\EntityLayer\obj\Debug\EntityLayer.pdb

@@ -1,0 +1,15 @@
+C:\Users\furka\source\repos\DocumentManagementSystem\DataAccessLayer\bin\Debug\DataAccessLayer.dll.config
+C:\Users\furka\source\repos\DocumentManagementSystem\DataAccessLayer\bin\Debug\DataAccessLayer.dll
+C:\Users\furka\source\repos\DocumentManagementSystem\DataAccessLayer\bin\Debug\DataAccessLayer.pdb
+C:\Users\furka\source\repos\DocumentManagementSystem\DataAccessLayer\bin\Debug\EntityFramework.dll
+C:\Users\furka\source\repos\DocumentManagementSystem\DataAccessLayer\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\furka\source\repos\DocumentManagementSystem\DataAccessLayer\bin\Debug\EntityLayer.dll
+C:\Users\furka\source\repos\DocumentManagementSystem\DataAccessLayer\bin\Debug\EntityLayer.pdb
+C:\Users\furka\source\repos\DocumentManagementSystem\DataAccessLayer\bin\Debug\EntityLayer.dll.config
+C:\Users\furka\source\repos\DocumentManagementSystem\DataAccessLayer\bin\Debug\EntityFramework.xml
+C:\Users\furka\source\repos\DocumentManagementSystem\DataAccessLayer\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\furka\source\repos\DocumentManagementSystem\DataAccessLayer\obj\Debug\DataAccessLayer.csproj.AssemblyReference.cache
+C:\Users\furka\source\repos\DocumentManagementSystem\DataAccessLayer\obj\Debug\DataAccessLayer.csproj.CoreCompileInputs.cache
+C:\Users\furka\source\repos\DocumentManagementSystem\DataAccessLayer\obj\Debug\DataAccessLayer.csproj.CopyComplete
+C:\Users\furka\source\repos\DocumentManagementSystem\DataAccessLayer\obj\Debug\DataAccessLayer.dll
+C:\Users\furka\source\repos\DocumentManagementSystem\DataAccessLayer\obj\Debug\DataAccessLayer.pdb
