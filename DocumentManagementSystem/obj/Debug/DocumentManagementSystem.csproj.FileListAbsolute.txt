@@ -96,3 +96,9 @@ C:\Users\furka\source\repos\DocumentManagementSystem\DocumentManagementSystem\bi
 C:\Users\furka\source\repos\DocumentManagementSystem\DocumentManagementSystem\bin\EntityFramework.xml
 C:\Users\furka\source\repos\DocumentManagementSystem\DocumentManagementSystem\bin\EntityFramework.SqlServer.dll
 C:\Users\furka\source\repos\DocumentManagementSystem\DocumentManagementSystem\bin\EntityFramework.SqlServer.xml
+C:\Users\furka\source\repos\DocumentManagementSystem\DocumentManagementSystem\bin\FluentValidation.dll
+C:\Users\furka\source\repos\DocumentManagementSystem\DocumentManagementSystem\bin\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\furka\source\repos\DocumentManagementSystem\DocumentManagementSystem\bin\System.Threading.Tasks.Extensions.dll
+C:\Users\furka\source\repos\DocumentManagementSystem\DocumentManagementSystem\bin\FluentValidation.xml
+C:\Users\furka\source\repos\DocumentManagementSystem\DocumentManagementSystem\bin\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\furka\source\repos\DocumentManagementSystem\DocumentManagementSystem\bin\System.Threading.Tasks.Extensions.xml
