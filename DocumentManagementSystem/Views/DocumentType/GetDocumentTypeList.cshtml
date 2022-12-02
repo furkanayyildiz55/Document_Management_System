@@ -1,0 +1,32 @@
+﻿@using EntityLayer.Concrete
+@model List<DocumentType>
+
+@{
+    ViewBag.Title = "GetDocumentTypeList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>Belge Adı</th>
+        <th>Belge Yazısı</th>
+        <th>İmza Adedi</th>
+        <th>Oluşturma Zamanı</th>
+        <th>Durum</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.DocumentTypeID</td>
+            <td>@item.DocumentTypeName</td>
+            <td>@item.DocumentTypeText</td>
+            <td>@item.DocumentTypeNumSignature</td>
+            <td>@item.DocumentCreateDate</td>
+            <td>@item.DocumentTypeStatus</td>
+
+        </tr>
+    }
+</table>
+<br />
+<a class="btn btn-primary" href="/DocumentType/AddDocumentType">Yeni Dosya Türü</a>

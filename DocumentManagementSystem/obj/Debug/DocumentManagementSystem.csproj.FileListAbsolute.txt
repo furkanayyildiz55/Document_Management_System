@@ -83,3 +83,16 @@ C:\Users\furka\source\repos\DocumentManagementSystem\DocumentManagementSystem\ob
 C:\Users\furka\source\repos\DocumentManagementSystem\DocumentManagementSystem\obj\Debug\DocumentManagementSystem.csproj.CopyComplete
 C:\Users\furka\source\repos\DocumentManagementSystem\DocumentManagementSystem\obj\Debug\DocumentManagementSystem.dll
 C:\Users\furka\source\repos\DocumentManagementSystem\DocumentManagementSystem\obj\Debug\DocumentManagementSystem.pdb
+C:\Users\furka\source\repos\DocumentManagementSystem\DocumentManagementSystem\bin\BusinessLayer.dll
+C:\Users\furka\source\repos\DocumentManagementSystem\DocumentManagementSystem\bin\DataAccessLayer.dll
+C:\Users\furka\source\repos\DocumentManagementSystem\DocumentManagementSystem\bin\EntityLayer.dll
+C:\Users\furka\source\repos\DocumentManagementSystem\DocumentManagementSystem\bin\EntityFramework.dll
+C:\Users\furka\source\repos\DocumentManagementSystem\DocumentManagementSystem\bin\BusinessLayer.pdb
+C:\Users\furka\source\repos\DocumentManagementSystem\DocumentManagementSystem\bin\BusinessLayer.dll.config
+C:\Users\furka\source\repos\DocumentManagementSystem\DocumentManagementSystem\bin\DataAccessLayer.pdb
+C:\Users\furka\source\repos\DocumentManagementSystem\DocumentManagementSystem\bin\DataAccessLayer.dll.config
+C:\Users\furka\source\repos\DocumentManagementSystem\DocumentManagementSystem\bin\EntityLayer.pdb
+C:\Users\furka\source\repos\DocumentManagementSystem\DocumentManagementSystem\bin\EntityLayer.dll.config
+C:\Users\furka\source\repos\DocumentManagementSystem\DocumentManagementSystem\bin\EntityFramework.xml
+C:\Users\furka\source\repos\DocumentManagementSystem\DocumentManagementSystem\bin\EntityFramework.SqlServer.dll
+C:\Users\furka\source\repos\DocumentManagementSystem\DocumentManagementSystem\bin\EntityFramework.SqlServer.xml
