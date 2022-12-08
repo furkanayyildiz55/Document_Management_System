@@ -1,32 +1,53 @@
 ﻿@model EntityLayer.Concrete.DocumentType
 
-@{
-    ViewBag.Title = "AddDocumentType";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
-}
 
 
-<h2>Dosya Türü Ekleme Sayfası</h2>
-<br />
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Dosya </title>
+</head>
+<body>
+    @{
+        ViewBag.Title = "AddDocumentType";
+        Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    }
+    <h2>Dosya Türü Ekleme Sayfası</h2>
+    <br />
 
-@using (Html.BeginForm("AddDocumentType","DocumentType",FormMethod.Post)) 
-{
-    <div class="form-group">
-        @Html.Label("Dosya Türü Adı")
-        @Html.TextBoxFor(x => x.DocumentTypeName, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.DocumentTypeName)
-        <br />
-        @Html.Label("Dosya Türü Yazısı")
-        @Html.TextAreaFor(x => x.DocumentTypeText, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.DocumentTypeText)
-        <br />
-        @Html.Label("Dosya Türü İmza Adedi")
-        @Html.TextBoxFor(x => x.DocumentTypeNumSignature, new { @type = "number", @class = "form-control", @min = "0" })
-        @Html.ValidationMessageFor(x => x.DocumentTypeNumSignature)
-        <br />
-        <br />
-        <button class="btn btn-info">Kaydet</button>
-    </div>
+    @using (Html.BeginForm("AddDocumentType", "DocumentType", FormMethod.Post))
+    {
+        <div class="form-group">
+            @Html.Label("Dosya Türü Adı")
+            @Html.TextBoxFor(x => x.DocumentTypeName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.DocumentTypeName)
+            <br />
+            @Html.Label("Dosya Türü Yazısı")
+            @Html.TextAreaFor(x => x.DocumentTypeText, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.DocumentTypeText)
+            <br />
+            @Html.Label("Dosya Türü İmza Adedi")
+            @Html.TextBoxFor(x => x.DocumentTypeNumSignature, new { @type = "number", @class = "form-control", @min = "0" })
+            @Html.ValidationMessageFor(x => x.DocumentTypeNumSignature)
+            <br />
+            <br />
+            <button id="documentTypeAddButton" class="btn btn-info">Kaydet</button>
+        </div>
 
 
-}
+    }
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script>
+        $('#documentTypeAddButton').click(function () {
+            swal({
+                title: "İşlem Başarılı !",
+                text: "Dosya türü başarı ile oluşturuldu",
+                icon: "success",
+                button: "Tamam",
+            });
+        });
+    </script>
+
+</body>
+</html>

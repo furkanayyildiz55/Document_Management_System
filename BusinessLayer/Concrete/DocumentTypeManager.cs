@@ -41,7 +41,7 @@ namespace BusinessLayer.Concrete
 
         public DocumentType GetDocumentType(int DocumentTypeID)
         {
-            throw new NotImplementedException();
+            return _documentType.Get(x => x.DocumentTypeID == DocumentTypeID);
         }
 
     }

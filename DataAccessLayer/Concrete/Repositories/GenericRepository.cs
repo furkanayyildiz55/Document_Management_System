@@ -57,7 +57,8 @@ namespace DataAccessLayer.Concrete.Repositories
 
         public T Get(Expression<Func<T, bool>> filter)
         {
-            throw new NotImplementedException();
+            return _object.SingleOrDefault(filter); //Dizde veya listede sadece bir değer döndürek için kullanılan EF linq methodu
+
         }
 
 

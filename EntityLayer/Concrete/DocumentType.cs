@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace EntityLayer.Concrete
 {
@@ -27,6 +25,10 @@ namespace EntityLayer.Concrete
         [Required]
         public bool DocumentTypeStatus { get; set; }
 
+        [StringLength(500), Required]
+        public string DocumentTypeBacgroundImage { get; set; }
+
+        public ICollection<DocumentSignature> DocumentSignatures { get; set; }
 
 
     }

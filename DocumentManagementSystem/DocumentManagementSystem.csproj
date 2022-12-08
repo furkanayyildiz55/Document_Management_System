@@ -203,6 +203,7 @@
     <Content Include="AdminLTE-3.0.4\dist\img\boxed-bg.jpg" />
     <Content Include="AdminLTE-3.0.4\dist\img\boxed-bg.png" />
     <Content Include="AdminLTE-3.0.4\dist\img\credit\american-express.png" />
+    <Content Include="AdminLTE-3.0.4\dist\img\bozok.png" />
     <Content Include="AdminLTE-3.0.4\dist\img\credit\cirrus.png" />
     <Content Include="AdminLTE-3.0.4\dist\img\credit\mastercard.png" />
     <Content Include="AdminLTE-3.0.4\dist\img\credit\mestro.png" />

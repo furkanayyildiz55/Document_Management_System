@@ -73,5 +73,14 @@ namespace DocumentManagementSystem.Controllers
         {
             return View();
         }
+
+        [HttpGet]
+        public ActionResult StatusChange (int id)
+        {
+            var documentType = documentTypeManager.GetDocumentType(id);
+            documentType.DocumentTypeStatus = !documentType.DocumentTypeStatus;
+            documentTypeManager.DocumentTypeUpdate(documentType);
+            return RedirectToAction("GetDocumentTypeList");
+        }
     }
 }
