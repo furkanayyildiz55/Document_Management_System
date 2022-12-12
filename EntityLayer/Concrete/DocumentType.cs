@@ -30,6 +30,10 @@ namespace EntityLayer.Concrete
 
         public ICollection<DocumentSignature> DocumentSignatures { get; set; }
 
+        public ICollection<Document> Documents { get; set; }
+
+
+
 
     }
 }

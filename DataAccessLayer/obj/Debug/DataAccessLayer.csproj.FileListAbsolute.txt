@@ -13,3 +13,10 @@ C:\Users\furka\source\repos\DocumentManagementSystem\DataAccessLayer\obj\Debug\D
 C:\Users\furka\source\repos\DocumentManagementSystem\DataAccessLayer\obj\Debug\DataAccessLayer.csproj.CopyComplete
 C:\Users\furka\source\repos\DocumentManagementSystem\DataAccessLayer\obj\Debug\DataAccessLayer.dll
 C:\Users\furka\source\repos\DocumentManagementSystem\DataAccessLayer\obj\Debug\DataAccessLayer.pdb
+C:\Users\furka\source\repos\DocumentManagementSystem\DataAccessLayer\obj\Debug\DataAccessLayer.Migrations.document_table_Add.resources
+C:\Users\furka\source\repos\DocumentManagementSystem\DataAccessLayer\obj\Debug\DataAccessLayer.csproj.GenerateResource.cache
+C:\Users\furka\source\repos\DocumentManagementSystem\DataAccessLayer\obj\Debug\DataAccessLayer.Migrations.document_table_Add_ok.resources
+C:\Users\furka\source\repos\DocumentManagementSystem\DataAccessLayer\obj\Debug\DataAccessLayer.Migrations.document_table_Add_ok_güncelleme.resources
+C:\Users\furka\source\repos\DocumentManagementSystem\DataAccessLayer\obj\Debug\DataAccessLayer.Migrations.document_table_Add_ok_güncelleme_2.resources
+C:\Users\furka\source\repos\DocumentManagementSystem\DataAccessLayer\obj\Debug\DataAccessLayer.Migrations.document_table_Add_ok_güncelleme_3.resources
+C:\Users\furka\source\repos\DocumentManagementSystem\DataAccessLayer\obj\Debug\DataAccessLayer.Migrations.document_table_Add_ok_güncelleme_.resources

@@ -56,6 +56,30 @@
     <Compile Include="Concrete\Context.cs" />
     <Compile Include="Concrete\Repositories\GenericRepository.cs" />
     <Compile Include="EntityFramework\EfDocumentTypeDal.cs" />
+    <Compile Include="Migrations\202212081829062_document_table_Add.cs" />
+    <Compile Include="Migrations\202212081829062_document_table_Add.designer.cs">
+      <DependentUpon>202212081829062_document_table_Add.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202212081830564_document_table_Add_ok.cs" />
+    <Compile Include="Migrations\202212081830564_document_table_Add_ok.designer.cs">
+      <DependentUpon>202212081830564_document_table_Add_ok.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202212081837123_document_table_Add_ok_güncelleme.cs" />
+    <Compile Include="Migrations\202212081837123_document_table_Add_ok_güncelleme.designer.cs">
+      <DependentUpon>202212081837123_document_table_Add_ok_güncelleme.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202212081839476_document_table_Add_ok_güncelleme_2.cs" />
+    <Compile Include="Migrations\202212081839476_document_table_Add_ok_güncelleme_2.designer.cs">
+      <DependentUpon>202212081839476_document_table_Add_ok_güncelleme_2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202212081842525_document_table_Add_ok_güncelleme_3.cs" />
+    <Compile Include="Migrations\202212081842525_document_table_Add_ok_güncelleme_3.designer.cs">
+      <DependentUpon>202212081842525_document_table_Add_ok_güncelleme_3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202212081845312_document_table_Add_ok_güncelleme_.cs" />
+    <Compile Include="Migrations\202212081845312_document_table_Add_ok_güncelleme_.designer.cs">
+      <DependentUpon>202212081845312_document_table_Add_ok_güncelleme_.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -68,6 +92,26 @@
       <Project>{8fdad2a7-39e6-4428-b54e-495bb29ed8c8}</Project>
       <Name>EntityLayer</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202212081829062_document_table_Add.resx">
+      <DependentUpon>202212081829062_document_table_Add.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212081830564_document_table_Add_ok.resx">
+      <DependentUpon>202212081830564_document_table_Add_ok.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212081837123_document_table_Add_ok_güncelleme.resx">
+      <DependentUpon>202212081837123_document_table_Add_ok_güncelleme.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212081839476_document_table_Add_ok_güncelleme_2.resx">
+      <DependentUpon>202212081839476_document_table_Add_ok_güncelleme_2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212081842525_document_table_Add_ok_güncelleme_3.resx">
+      <DependentUpon>202212081842525_document_table_Add_ok_güncelleme_3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212081845312_document_table_Add_ok_güncelleme_.resx">
+      <DependentUpon>202212081845312_document_table_Add_ok_güncelleme_.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

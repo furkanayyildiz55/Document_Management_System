@@ -32,5 +32,8 @@ namespace EntityLayer.Concrete
         public bool AdminStatus { get; set; }
 
         public ICollection<DocumentSignature> DocumentSignatures { get; set; }
-    } 
+
+        public ICollection<Document> Documents { get; set; }
+
+    }
 }
