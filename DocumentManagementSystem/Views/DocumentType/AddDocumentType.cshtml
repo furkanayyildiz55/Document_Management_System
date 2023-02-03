@@ -17,15 +17,15 @@
     @using (Html.BeginForm("AddDocumentType", "DocumentType", FormMethod.Post))
     {
         <div class="form-group">
-            @Html.Label("Dosya Türü Adı")
+            @Html.Label("Dosya Türü Adı *")
             @Html.TextBoxFor(x => x.DocumentTypeName, new { @class = "form-control" })
             @Html.ValidationMessageFor(x => x.DocumentTypeName)
             <br />
-            @Html.Label("Dosya Türü Yazısı")
+            @Html.Label("Dosya Türü Yazısı *")
             @Html.TextAreaFor(x => x.DocumentTypeText, new { @class = "form-control" })
             @Html.ValidationMessageFor(x => x.DocumentTypeText)
             <br />
-            @Html.Label("Dosya Türü İmza Adedi")
+            @Html.Label("Dosya Türü İmza Adedi *")
             @Html.TextBoxFor(x => x.DocumentTypeNumSignature, new { @type = "number", @class = "form-control", @min = "0" })
             @Html.ValidationMessageFor(x => x.DocumentTypeNumSignature)
             <br />
@@ -40,6 +40,10 @@
     <script src="~/Scripts/jquery-3.4.1.js"></script>
     <script>
         $('#documentTypeAddButton').click(function () {
+
+               //Burada yine kontrol yapılacak
+
+
             swal({
                 title: "İşlem Başarılı !",
                 text: "Dosya türü başarı ile oluşturuldu",

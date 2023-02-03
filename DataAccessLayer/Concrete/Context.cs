@@ -15,6 +15,8 @@ namespace DataAccessLayer.Concrete
         public DbSet<Admin> Admins { get; set; }
         public DbSet<DocumentSignature> DocumentSignatures { get; set; }
         public DbSet<Document> Documents { get; set; }
+        public DbSet<Log> Logs { get; set; }
+
 
 
 

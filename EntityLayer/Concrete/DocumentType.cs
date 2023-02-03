@@ -28,10 +28,10 @@ namespace EntityLayer.Concrete
         [StringLength(500), Required]
         public string DocumentTypeBacgroundImage { get; set; }
 
-        public ICollection<DocumentSignature> DocumentSignatures { get; set; }
 
         public ICollection<Document> Documents { get; set; }
 
+        public ICollection<DocumentSignature> DocumentSignatures { get; set; }
 
 
 
