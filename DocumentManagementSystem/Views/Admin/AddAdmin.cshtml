@@ -8,8 +8,8 @@
 <h2>Admin Ekleme Sayfası</h2>
 <br />
 
-@using (Html.BeginForm("AddAmin" , "Admin" , FormMethod.Post , new {enctype="multipart/form-data"}))
-{ 
+@using (Html.BeginForm("AddAdmin", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
     <div class="form-group">
         @Html.Label("Admin Adı *")
         @Html.TextBoxFor(x => x.AdminName, new { @class = "form-control" })
@@ -27,18 +27,21 @@
         @Html.TextBoxFor(x => x.AdminJob, new { @class = "form-control" })
         @Html.ValidationMessageFor(x => x.AdminJob)
         <br />
-        @Html.Label("Admin Türü *")
-        @Html.TextBoxFor(x => x.AdminAuthorization, new { @class = "form-control" })
+        <label>Admin Yetki*</label>
+        @Html.CheckBoxFor(x => x.AdminAuthorization, new { @class = "form-control" })
         @Html.ValidationMessageFor(x => x.AdminAuthorization)
         <br />
         @Html.Label("Admin İmza (PNG)*")
-        <input type="file" , name="AdminSignature"/>
-        @Html.ValidationMessageFor(x => x.AdminSurmane)
+        <div class="editor-field">
+            <input  title="Upload a product image"
+                   type="file" name="file" />
+        </div>
+        <p>@ViewBag.FileExt</p>
+
+
+
         <br />
         <br />
         <button id="AdminAddButton" class="btn btn-info">Ekle</button>
     </div>
-    
-
 }
-

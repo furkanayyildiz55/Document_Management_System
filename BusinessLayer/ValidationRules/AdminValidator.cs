@@ -12,8 +12,8 @@ namespace BusinessLayer.ValidationRules
             RuleFor(x => x.AdminSurmane).NotEmpty().WithMessage("Lütfen bu alanı doldurunuz !");
             RuleFor(x => x.AdminJob).NotEmpty().WithMessage("Lütfen bu alanı doldurunuz !");
             RuleFor(x => x.AdminMail).NotEmpty().WithMessage("Lütfen bu alanı doldurunuz !");
-          //  RuleFor(x => x.AdminSignatureImage).NotEmpty().WithMessage("Lütfen bu alanı doldurunuz !");
-            RuleFor(x => x.AdminAuthorization).NotEmpty().WithMessage("Lütfen bu alanı doldurunuz !");
+          //RuleFor(x => x.AdminSignatureImage).NotEmpty().WithMessage("Lütfen bu alanı doldurunuz !");
+          //RuleFor(x => x.AdminAuthorization).NotEmpty().WithMessage("Lütfen bu alanı doldurunuz !");
 
         }
 
