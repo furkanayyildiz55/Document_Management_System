@@ -30,7 +30,7 @@ namespace DocumentManagementSystem.Controllers
 
 
         [HttpPost]
-        public ActionResult AddAdmin(Admin admin , HttpPostedFileBase file)
+        public ActionResult AddAdmin(Admin admin, HttpPostedFileBase file)
         {
             admin.AdminStatus = true;
 
@@ -40,8 +40,20 @@ namespace DocumentManagementSystem.Controllers
 
             if (result.IsValid)
             {
-                FileUploadControl();
-                adminManager.AdminAdd(admin);
+                if(admin.AdminAuthorization)
+                {
+                    if (FileUploadControl())
+                    {
+                        ViewBag.UploadStatus = true;
+                        FileUploadControl();
+                        adminManager.AdminAdd(admin);
+                    }
+                    {
+                        ViewBag.UploadStatus = false;
+                        //
+                    }
+                }
+
             }
             else
             {
@@ -54,72 +66,51 @@ namespace DocumentManagementSystem.Controllers
 
 
 
-            void FileUploadControl() 
-            {     
+            bool FileUploadControl()
+            {
+                // true => dosya yüklemesi tamamlandı
+                // false => dosya yüklemesi tamamlandmadı 
+                //code formar ctrl+k+d
 
-                if (admin.AdminAuthorization == true)  //Eğer admin üst düzey yetkili ise imzası da kesinlikle olacak !
+                if (file != null)
                 {
-                    if (file != null) 
+                    string FileExt = Path.GetExtension(file.FileName);
+                    int FileLength = file.ContentLength;
+                    if (FileExt == ".png")
                     {
-                        string FileExt = Path.GetExtension(file.FileName);
-                        int FileLength = file.ContentLength;
-                        if (FileExt == ".png")
+                        ViewBag.ExtensionError = false;
+                        if (FileLength <= 5242880)  //5 Mb dan küçük
                         {
-                            ViewBag.ExtensionError = false;
+                            string guid = Guid.NewGuid().ToString();
+                            string path = "/image/signature/" + guid + FileExt;
 
-                            if (FileLength <= 5242880)  //5 Mb dan küçük
-                            {
-                                ViewBag.LenghtError = false;
-                                string guid = Guid.NewGuid().ToString();
-                                string path = "/image/signature/" + guid + FileExt;
-
-                                //Sunucu kaydetme
-                                file.SaveAs(Server.MapPath("~" + path));
-                                //Veritabanı kaydetme
-                                admin.AdminSignatureImage = path;
-
-
-
-                            }
-                            else
-                            {
-                                ViewBag.LenghtError = true;
-                            }
+                            //Sunucu kaydetme
+                            file.SaveAs(Server.MapPath("~" + path));
+                            //Veritabanı kaydetme
+                            admin.AdminSignatureImage = path;
+                            return true;
 
                         }
                         else
                         {
-                            ViewBag.ExtensionError = true;
+                            ViewBag.UploadtError = "Dosya Boyutu 5 Mb dan küçük olmalı !";
+                            return false;
                         }
 
                     }
-                } 
-            
+                    else
+                    {
+                        ViewBag.UploadError = "Lütfen PNG biçiminde resim yükleyin !";
+                        return false;
+                    }
+                }
+                else
+                {
+                    ViewBag.UploadError = "Üst düzey yetkililer imza yüklemek zorundadır !";
+                    return false;
+
+                }
             }
-
-
-
-
-
-            /*
-            if(Request.Files.Count > 0)
-            {
-                string fileName = Path.GetFileName(Request.Files[0].FileName);
-                string uzanti = Path.GetExtension(Request.Files[0].FileName);
-                string guid = Guid.NewGuid().ToString();
-                //string path = "~/Image/signature/" + fileName + uzanti;
-                string path = $"/Image/signature/{fileName}_{guid}{uzanti}" ;
-                
-                //servera kaydetme
-                Request.Files[0].SaveAs(Server.MapPath("~"+path));
-
-                //Veritabanına ekleme 
-                admin.AdminSignatureImage = path;
-            }
-            */
-
-
-
         }
 
 

@@ -29,14 +29,30 @@
         <br />
         <label>Admin Yetki*</label>
         @Html.CheckBoxFor(x => x.AdminAuthorization, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.AdminAuthorization)
         <br />
         @Html.Label("Admin İmza (PNG)*")
         <div class="editor-field">
-            <input  title="Upload a product image"
+            <input title="Upload a product image"
                    type="file" name="file" />
         </div>
-        <p>@ViewBag.FileExt</p>
+
+        @{ if (ViewBag.UploadStatus != null)
+            {
+                if (ViewBag.UploadStatus)
+                {
+                    <p>İmza yüklemesi tamamlandı.</p>
+                }
+                else
+                {
+                    <p>@ViewBag.UploadError</p>
+
+                }
+            }
+            else
+            {
+            }
+
+        }
 
 
 
