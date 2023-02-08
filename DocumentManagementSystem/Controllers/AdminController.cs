@@ -21,6 +21,8 @@ namespace DocumentManagementSystem.Controllers
         {
             return View();
         }
+        
+        #region AddAdmin
 
         [HttpGet]
         public ActionResult AddAdmin()
@@ -38,39 +40,53 @@ namespace DocumentManagementSystem.Controllers
             ValidationResult result = adminValidator.Validate(admin);
 
 
-            if (result.IsValid)
+            try
             {
-                if(admin.AdminAuthorization)
+                if (result.IsValid) //form validasyonu sağlanıyorsa
                 {
-                    if (FileUploadControl())
+                    if (admin.AdminAuthorization)  //true ise kesinlikle görsel yüklemesi olacak
                     {
-                        ViewBag.UploadStatus = true;
-                        FileUploadControl();
+                        if (FileUploadControl())
+                        {
+                            adminManager.AdminAdd(admin);
+                            ViewBag.RecordStatus = true;
+                        }
+                        else  // görsel yüklemesi olmadan kayıt yapılabilecek
+                        {
+                            ViewBag.RecordStatus = false;
+                        }
+                    }
+                    else  //false durumunda görsel yüklemesi olmasada kayıt edilebilecek
+                    {
                         adminManager.AdminAdd(admin);
+                        ViewBag.RecordStatus = true;
                     }
-                    {
-                        ViewBag.UploadStatus = false;
-                        //
-                    }
-                }
 
-            }
-            else
-            {
-                foreach (var item in result.Errors)
+                }
+                else //validasyon sağlanmıyor ise
                 {
-                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                    foreach (var item in result.Errors)
+                    {
+                        ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                    }
                 }
+                return View();
             }
-            return View();
-
-
+            catch (Exception e)
+            {
+                ViewBag.RecordStatus = false;
+                ViewBag.UploadError = "Bilinmeyen hata : "+e.Message;
+                return View();
+            }
 
             bool FileUploadControl()
             {
                 // true => dosya yüklemesi tamamlandı
                 // false => dosya yüklemesi tamamlandmadı 
                 //code formar ctrl+k+d
+
+                ViewBag.UploadError = "UPLOAD ERROR ";
+
 
                 if (file != null)
                 {
@@ -93,7 +109,7 @@ namespace DocumentManagementSystem.Controllers
                         }
                         else
                         {
-                            ViewBag.UploadtError = "Dosya Boyutu 5 Mb dan küçük olmalı !";
+                            ViewBag.UploadError = "Dosya Boyutu 5 Mb dan küçük olmalı !";
                             return false;
                         }
 
@@ -111,6 +127,12 @@ namespace DocumentManagementSystem.Controllers
 
                 }
             }
+
+
+            #endregion
+
+
+
         }
 
 

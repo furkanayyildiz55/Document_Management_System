@@ -36,7 +36,7 @@
                    type="file" name="file" />
         </div>
 
-        @{ if (ViewBag.UploadStatus != null)
+        @{ if (ViewBag.RecordStatus != null)
             {
                 if (ViewBag.UploadStatus)
                 {
@@ -50,6 +50,8 @@
             }
             else
             {
+                <p>@ViewBag.UploadError</p>
+
             }
 
         }
