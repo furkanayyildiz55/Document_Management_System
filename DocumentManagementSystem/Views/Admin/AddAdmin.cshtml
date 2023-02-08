@@ -5,61 +5,109 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Admin Ekleme Sayfası</h2>
-<br />
+<nav aria-label="breadcrumb ">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Admin İşlemleri</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Admin Ekleme</li>
+    </ol>
+</nav>
 
-@using (Html.BeginForm("AddAdmin", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-    <div class="form-group">
-        @Html.Label("Admin Adı *")
-        @Html.TextBoxFor(x => x.AdminName, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.AdminName)
-        <br />
-        @Html.Label("Admin Soyadı *")
-        @Html.TextBoxFor(x => x.AdminSurmane, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.AdminSurmane)
-        <br />
-        @Html.Label("Admin Mail *")
-        @Html.TextBoxFor(x => x.AdminMail, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.AdminMail)
-        <br />
-        @Html.Label("Admin İş *")
-        @Html.TextBoxFor(x => x.AdminJob, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.AdminJob)
-        <br />
-        <label>Admin Yetki*</label>
-        @Html.CheckBoxFor(x => x.AdminAuthorization, new { @class = "form-control" })
-        <br />
-        @Html.Label("Admin İmza (PNG)*")
-        <div class="editor-field">
-            <input title="Upload a product image"
-                   type="file" name="file" />
-        </div>
 
-        @{ if (ViewBag.RecordStatus != null)
-            {
-                if (ViewBag.UploadStatus)
-                {
-                    <p>İmza yüklemesi tamamlandı.</p>
+<div class="card bg-light">
+    <div class="card-body">
+        @using (Html.BeginForm("AddAdmin", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div class="form-group">
+                @Html.Label("Admin Adı *")
+                @Html.TextBoxFor(x => x.AdminName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.AdminName)
+                <br />
+                @Html.Label("Admin Soyadı *")
+                @Html.TextBoxFor(x => x.AdminSurmane, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.AdminSurmane)
+                <br />
+                @Html.Label("Admin Mail *")
+                @Html.TextBoxFor(x => x.AdminMail, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.AdminMail)
+                <br />
+                @Html.Label("Admin İş *")
+                @Html.TextBoxFor(x => x.AdminJob, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.AdminJob)
+                <br />
+                <label>Admin Yetki*</label>
+                @Html.CheckBoxFor(x => x.AdminAuthorization, new { @class = "form-control" })
+                <br />
+                @Html.Label("Admin İmza (PNG)*")
+                <div class="editor-field">
+                    <input title="Upload a product image"
+                           type="file" name="file" />
+                </div>
+
+                @{ if (ViewBag.RecordStatus != null)
+                    {
+                        if (ViewBag.RecordStatus)
+                        {
+                            //<p></p>
+                        }
+                        else
+                        {
+                            <p>@ViewBag.UploadError</p>
+                        }
+                    }
+                    else
+                    {
+                        <p>@ViewBag.UploadError</p>
+                    }
                 }
-                else
-                {
-                    <p>@ViewBag.UploadError</p>
 
-                }
-            }
-            else
-            {
-                <p>@ViewBag.UploadError</p>
-
-            }
+                <br />
+                <br />
+                <button id="AdminAddButton" class="btn btn-primary">Ekle</button>
+            </div>
 
         }
 
-
-
-        <br />
-        <br />
-        <button id="AdminAddButton" class="btn btn-info">Ekle</button>
     </div>
+</div>
+
+<br />
+
+@{
+
+    if (ViewBag.RecordStatus != null)
+    {
+        if (ViewBag.RecordStatus)
+        {
+            <script>
+                const swalWithBootstrapButtons = Swal.mixin({
+                    customClass: {
+                        confirmButton: 'btn btn-success',
+                        cancelButton: 'btn btn-primary'
+                    },
+                    buttonsStyling: false
+                })
+
+                swalWithBootstrapButtons.fire({
+                    title: 'Başarılı?',
+                    text: "Yeni Admin Oluşturuldu!",
+                    icon: 'success',
+                    showCancelButton: true,
+                    confirmButtonText: 'Tamam',
+                    cancelButtonText: 'Admin Listeleme Sayfasına Git',
+                    reverseButtons: true
+                }).then((result) => {
+                    if (result.isConfirmed) {
+
+                    } else if (result.dismiss === Swal.DismissReason.cancel) {
+                        window.location.href = "@Url.Action("AddDocumentType", "DocumentType")";
+                    }
+                })
+            </script>
+        }
+        else
+        {
+
+        }
+    }
+
 }
