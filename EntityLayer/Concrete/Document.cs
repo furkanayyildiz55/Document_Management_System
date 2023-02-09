@@ -9,16 +9,12 @@ namespace EntityLayer.Concrete
         [Key]
         public int DocumentID { get; set; }
 
-        [StringLength(250),Required]
         public string DocumentPdfUrl { get; set; }
 
-        [StringLength(50), Required]
         public string DocumentVerificationCode { get; set; }
 
-        [Required]
         public DateTime  DocumentCreateDate { get; set; }
 
-        [Required]
         public bool DocumentStatus { get; set; }
 
         public int DocumentTypeID { get; set; }

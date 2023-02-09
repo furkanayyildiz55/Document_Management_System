@@ -8,10 +8,8 @@ namespace EntityLayer.Concrete
         [Key]
         public int DocumentSignatureID { get; set; }
 
-        [StringLength(50), Required]
         public string DocumentSignatureAlign { get; set; }
 
-        [Required]
         public bool DocumentSignatureStatus { get; set; }
 
         
