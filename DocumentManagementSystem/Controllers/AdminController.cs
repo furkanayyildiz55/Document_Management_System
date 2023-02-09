@@ -14,8 +14,6 @@ namespace DocumentManagementSystem.Controllers
     {
         AdminManager adminManager = new AdminManager(new EfAdminDal());
 
-
-
         // GET: Admin
         public ActionResult Index()
         {
@@ -34,11 +32,8 @@ namespace DocumentManagementSystem.Controllers
         [HttpPost]
         public ActionResult AddAdmin(Admin admin, HttpPostedFileBase file)
         {
-            admin.AdminStatus = true;
-
             AdminValidator adminValidator = new AdminValidator();
             ValidationResult result = adminValidator.Validate(admin);
-
 
             try
             {
@@ -48,6 +43,7 @@ namespace DocumentManagementSystem.Controllers
                     {
                         if (FileUploadControl())
                         {
+                            admin.AdminStatus = true;
                             adminManager.AdminAdd(admin);
                             ViewBag.RecordStatus = true;
                         }

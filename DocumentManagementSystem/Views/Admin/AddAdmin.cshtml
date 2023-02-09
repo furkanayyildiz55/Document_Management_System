@@ -5,80 +5,118 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
+<!--
 <nav aria-label="breadcrumb ">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="#">Admin İşlemleri</a></li>
         <li class="breadcrumb-item active" aria-current="page">Admin Ekleme</li>
     </ol>
 </nav>
+-->
+
+<div class="card text-bg-light ">
+    <div class="card-header">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Admin İşlemleri</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Admin Ekleme</li>
+        </ol>
+    </div>
+</div>
 
 
 <div class="card bg-light">
     <div class="card-body">
+
+
         @using (Html.BeginForm("AddAdmin", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
-            <div class="form-group">
-                @Html.Label("Admin Adı *")
-                @Html.TextBoxFor(x => x.AdminName, new { @class = "form-control" })
-                @Html.ValidationMessageFor(x => x.AdminName)
-                <br />
-                @Html.Label("Admin Soyadı *")
-                @Html.TextBoxFor(x => x.AdminSurmane, new { @class = "form-control" })
-                @Html.ValidationMessageFor(x => x.AdminSurmane)
-                <br />
-                @Html.Label("Admin Mail *")
-                @Html.TextBoxFor(x => x.AdminMail, new { @class = "form-control" })
-                @Html.ValidationMessageFor(x => x.AdminMail)
-                <br />
-                @Html.Label("Admin İş *")
-                @Html.TextBoxFor(x => x.AdminJob, new { @class = "form-control" })
-                @Html.ValidationMessageFor(x => x.AdminJob)
-                <br />
-                <label>Admin Yetki*</label>
-                @Html.CheckBoxFor(x => x.AdminAuthorization, new { @class = "form-control" })
-                <br />
-                @Html.Label("Admin İmza (PNG)*")
-                <div class="editor-field">
-                    <input title="Upload a product image"
-                           type="file" name="file" />
+            <div class="row">
+                <!--SOL TARAF-->
+                <div class="col col-lg-6">
+                    <div class="form-group">
+                        @Html.Label("Admin Adı *")
+                        @Html.TextBoxFor(x => x.AdminName, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.AdminName)
+                        <br />
+                        @Html.Label("Admin Soyadı *")
+                        @Html.TextBoxFor(x => x.AdminSurmane, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.AdminSurmane)
+                        <br />
+                        @Html.Label("Admin Mail *")
+                        @Html.TextBoxFor(x => x.AdminMail, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.AdminMail)
+                        <br />
+                        @Html.Label("Admin İş *")
+                        @Html.TextBoxFor(x => x.AdminJob, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.AdminJob)
+                        <br />
+                    </div>
                 </div>
 
-                @{ if (ViewBag.RecordStatus != null)
-                    {
-                        if (ViewBag.RecordStatus)
+                <!--SAĞ TARAF-->
+                <div class="col col-lg-6">
+                    <label>Admin Yetki Türü *</label>
+
+                    <div class="form-check">
+                        @Html.RadioButtonFor(x => x.AdminAuthorization, true, new { @class = " form-check-input" })
+                        <label class="form-check-label" for="gridRadios2">
+                            Üst Düzey Yetkili
+                        </label>
+                    </div>
+
+
+                    <div class="form-check">
+                        @Html.RadioButtonFor(x => x.AdminAuthorization, false, new { @class = "form-check-input", @checked = "checked" })
+                        <label class="form-check-label" for="gridRadios2">
+                            Normal Yetkili
+                        </label>
+                    </div>
+
+                    <br />
+                    @Html.Label("Admin İmza (PNG)*")
+                    <div class="input-group">
+                        <input type="file" name="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                    </div>
+
+                    @{ if (ViewBag.RecordStatus != null)
                         {
-                            //<p></p>
+                            if (ViewBag.RecordStatus)
+                            {
+                                //<p></p>
+                            }
+                            else
+                            {
+                                <p>@ViewBag.UploadError</p>
+                            }
                         }
                         else
                         {
                             <p>@ViewBag.UploadError</p>
                         }
                     }
-                    else
-                    {
-                        <p>@ViewBag.UploadError</p>
-                    }
-                }
 
-                <br />
-                <br />
-                <button id="AdminAddButton" class="btn btn-primary">Ekle</button>
+                    <br />
+                    <button id="AdminAddButton" class="btn btn-primary">Ekle</button>
+                </div>
+
             </div>
 
-        }
+
+
+    }
 
     </div>
-</div>
+    </div>
 
-<br />
+    <br />
 
-@{
+    @{
 
-    if (ViewBag.RecordStatus != null)
-    {
-        if (ViewBag.RecordStatus)
+        if (ViewBag.RecordStatus != null)
         {
-            <script>
+            if (ViewBag.RecordStatus)
+            {
+                <script>
                 const swalWithBootstrapButtons = Swal.mixin({
                     customClass: {
                         confirmButton: 'btn btn-success',
@@ -102,12 +140,12 @@
                         window.location.href = "@Url.Action("AddDocumentType", "DocumentType")";
                     }
                 })
-            </script>
-        }
-        else
-        {
+                </script>
+            }
+            else
+            {
 
+            }
         }
+
     }
-
-}
