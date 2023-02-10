@@ -15,10 +15,29 @@ namespace DocumentManagementSystem.Controllers
         AdminManager adminManager = new AdminManager(new EfAdminDal());
 
         // GET: Admin
-        public ActionResult Index()
+        //[Authorize]  //kullanıcı girişi olmadan girilemeyeceği anlmını taşır
+
+        public ActionResult AdminList()
         {
-            return View();
+            var adminList = adminManager.GetList();
+            return View(adminList);
         }
+
+        public ActionResult ChangeAdminStatus(int id)
+        {
+            if(id < 0)
+            {
+                return RedirectToAction("AdminList");
+            }
+            else
+            {
+                Admin admin = adminManager.GetAdmin(id);
+                adminManager.AdminDelete(admin);
+                return RedirectToAction("AdminList");
+            }
+        }
+
+
         
         #region AddAdmin
 
@@ -35,6 +54,8 @@ namespace DocumentManagementSystem.Controllers
             AdminValidator adminValidator = new AdminValidator();
             ValidationResult result = adminValidator.Validate(admin);
 
+            admin.AdminStatus = true;
+
             try
             {
                 if (result.IsValid) //form validasyonu sağlanıyorsa
@@ -43,7 +64,6 @@ namespace DocumentManagementSystem.Controllers
                     {
                         if (FileUploadControl())
                         {
-                            admin.AdminStatus = true;
                             adminManager.AdminAdd(admin);
                             ViewBag.RecordStatus = true;
                         }
@@ -71,7 +91,7 @@ namespace DocumentManagementSystem.Controllers
             catch (Exception e)
             {
                 ViewBag.RecordStatus = false;
-                ViewBag.UploadError = "Bilinmeyen hata : "+e.Message;
+                ViewBag.UploadError = "Bilinmeyen hata, lütfen hatayı yetkililere bildiriniz ! : "+e.Message;
                 return View();
             }
 
@@ -125,11 +145,125 @@ namespace DocumentManagementSystem.Controllers
             }
 
 
-            #endregion
-
-
-
         }
+        #endregion
+
+
+        #region AdminUpdate
+
+        [HttpGet]
+        public ActionResult AdminUpdate(int? id)
+        {
+
+            if (id != null && id >= 0)
+            {
+                var adminValue = adminManager.GetAdmin((int)id);
+                return View(adminValue);
+            }
+            else
+            {
+                return RedirectToAction("AdminList");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult AdminUpdate(Admin admin, HttpPostedFileBase file)
+        {
+            AdminValidator adminValidator = new AdminValidator();
+            ValidationResult result = adminValidator.Validate(admin);
+
+            try
+            {
+                if (result.IsValid) //form validasyonu sağlanıyorsa
+                {
+                    if (admin.AdminAuthorization)  //true ise kesinlikle görsel yüklemesi olacak
+                    {
+                        if (FileUploadControl())
+                        {
+                            adminManager.AdminUpdate(admin);
+                            ViewBag.RecordStatus = true;
+                        }
+                        else  // görsel yüklemesi olmadan kayıt yapılabilecek
+                        {
+                            ViewBag.RecordStatus = false;
+                        }
+                    }
+                    else  //false durumunda görsel yüklemesi olmasada kayıt edilebilecek
+                    {
+                        adminManager.AdminUpdate(admin);
+                        ViewBag.RecordStatus = true;
+                    }
+
+                }
+                else //validasyon sağlanmıyor ise
+                {
+                    foreach (var item in result.Errors)
+                    {
+                        ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                    }
+                }
+                return View();
+            }
+            catch (Exception e)
+            {
+                ViewBag.RecordStatus = false;
+                ViewBag.UploadError = "Bilinmeyen hata, lütfen hatayı yetkililere bildiriniz ! : " + e.Message;
+                return View();
+            }
+
+            bool FileUploadControl()
+            {
+                // true => dosya yüklemesi tamamlandı
+                // false => dosya yüklemesi tamamlandmadı 
+                //code formar ctrl+k+d
+
+                ViewBag.UploadError = "UPLOAD ERROR ";
+
+
+                if (file != null)
+                {
+                    string FileExt = Path.GetExtension(file.FileName);
+                    int FileLength = file.ContentLength;
+                    if (FileExt == ".png")
+                    {
+                        ViewBag.ExtensionError = false;
+                        if (FileLength <= 5242880)  //5 Mb dan küçük
+                        {
+                            string guid = Guid.NewGuid().ToString();
+                            string path = "/image/signature/" + guid + FileExt;
+
+                            //Sunucu kaydetme
+                            file.SaveAs(Server.MapPath("~" + path));
+                            //Veritabanı kaydetme
+                            admin.AdminSignatureImage = path;
+                            return true;
+
+                        }
+                        else
+                        {
+                            ViewBag.UploadError = "Dosya Boyutu 5 Mb dan küçük olmalı !";
+                            return false;
+                        }
+
+                    }
+                    else
+                    {
+                        ViewBag.UploadError = "Lütfen PNG biçiminde resim yükleyin !";
+                        return false;
+                    }
+                }
+                else
+                {
+                    ViewBag.UploadError = "Üst düzey yetkililer imza yüklemek zorundadır !";
+                    return false;
+
+                }
+            }
+        }
+
+        #endregion
+
+
 
 
     }

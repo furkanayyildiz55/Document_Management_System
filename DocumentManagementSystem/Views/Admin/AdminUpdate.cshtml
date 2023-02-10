@@ -1,30 +1,30 @@
 ﻿@model EntityLayer.Concrete.Admin
 
 @{
-    ViewBag.Title = "AddAdmin";
+    ViewBag.Title = "AdminUpdate";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-
 
 <div class="card text-bg-light ">
     <div class="card-header">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="#">Admin İşlemleri</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Admin Ekleme</li>
+            <li class="breadcrumb-item active" aria-current="page">Admin Güncelleme</li>
         </ol>
     </div>
 </div>
 
-
 <div class="card bg-light">
     <div class="card-body">
-
-        @using (Html.BeginForm("AddAdmin", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        @using (Html.BeginForm("AdminUpdate", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             <div class="row">
                 <!--SOL TARAF-->
                 <div class="col col-lg-6">
                     <div class="form-group">
+                        @Html.HiddenFor(x => x.AdminID)   @*form içinde AdminID bilgisi olmadan güncelleme yapılamıyor, buraya gizli olarak ekledik*@
+
+                        <br />
                         @Html.Label("Admin Adı *")
                         @Html.TextBoxFor(x => x.AdminName, new { @class = "form-control" })
                         @Html.ValidationMessageFor(x => x.AdminName)
@@ -46,22 +46,47 @@
 
                 <!--SAĞ TARAF-->
                 <div class="col col-lg-6">
+
+                    <!--ADMİN YETKİ BAŞLANGIÇ-->
                     <label>Admin Yetki Türü *</label>
 
                     <div class="form-check">
-                        @Html.RadioButtonFor(x => x.AdminAuthorization, true, new { @class = " form-check-input" })
-                        <label class="form-check-label" for="gridRadios2">
+                        @(Html.RadioButtonFor(x => x.AdminAuthorization, true, new { @class = " form-check-input" }))
+                        <label class="form-check-label">
                             Üst Düzey Yetkili
                         </label>
                     </div>
 
-
                     <div class="form-check">
-                        @Html.RadioButtonFor(x => x.AdminAuthorization, false, new { @class = "form-check-input" , @checked = "checked" })
-                        <label class="form-check-label" for="gridRadios2">
+                        @(Html.RadioButtonFor(x => x.AdminAuthorization, false, new { @class = "form-check-input" }))
+                        <label class="form-check-label" >
                             Normal Yetkili
                         </label>
                     </div>
+                    <!--ADMİN YETKİ BİTİŞ-->
+
+                    <br />
+
+                    <!--ADMİN DURUM BAŞLANGIÇ-->
+                    <label>Admin Durum *</label>
+
+                    <div class="form-check">
+                        @Html.RadioButtonFor(x => x.AdminStatus, true, new { @class = " form-check-input" })
+                        <label class="form-check-label" >
+                            Aktif
+                        </label>
+                    </div>
+
+                    <div class="form-check">
+                        @Html.RadioButtonFor(x => x.AdminStatus, false, new { @class = "form-check-input"})
+                        <label class="form-check-label" >
+                            Pasif
+                        </label>
+                    </div>
+                    <!--ADMİN DURUM BİTİŞ-->
+
+                    <br />
+
 
                     <br />
                     @Html.Label("Admin İmza (PNG)*")
@@ -84,18 +109,25 @@
                         {
                             <p>@ViewBag.UploadError</p>
                         }
+
+
                     }
+
                     <br />
-                    <button id="AdminAddButton" class="btn btn-primary">Yeni Admin Oluştur</button>
+                    <button id="AdminAddButton" class="btn btn-primary">Admin Bilgilerini Güncelle</button>
                 </div>
+
             </div>
         }
+
     </div>
 </div>
 
 <br />
 
+
 @{
+
     if (ViewBag.RecordStatus != null)
     {
         if (ViewBag.RecordStatus)
@@ -110,8 +142,8 @@
                 })
 
                 swalWithBootstrapButtons.fire({
-                    title: 'Başarılı',
-                    text: "Yeni Admin Oluşturuldu!",
+                    title: 'Başarılı?',
+                    text: "Admin Bilgileri Güncellendi!",
                     icon: 'success',
                     showCancelButton: true,
                     confirmButtonText: 'Tamam',
@@ -128,33 +160,7 @@
         }
         else
         {
-            /*
-            <script>
-                const swalWithBootstrapButtons = Swal.mixin({
-                    customClass: {
-                        confirmButton: 'btn btn-success',
-                        cancelButton: 'btn btn-primary'
-                    },
-                    buttonsStyling: false
-                })
 
-                swalWithBootstrapButtons.fire({
-                    title: 'Başarısız!',
-                    text: "Yeni Admin Oluşturulamadı!",
-                    icon: 'eroor',
-                    showCancelButton: true,
-                    confirmButtonText: 'Tamam',
-                    cancelButtonText: 'Admin Listeleme Sayfasına Git',
-                    reverseButtons: true
-                }).then((result) => {
-                    if (result.isConfirmed) {
-
-                    } else if (result.dismiss === Swal.DismissReason.cancel) {
-                        window.location.href = "@Url.Action("AdminList", "Admin")";
-                    }
-                })
-            </script>
-            */
         }
     }
 

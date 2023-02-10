@@ -1,6 +1,7 @@
 ﻿using BusinessLayer.Abstract;
 using DataAccessLayer.Abstract;
 using EntityLayer.Concrete;
+using System;
 using System.Collections.Generic;
 
 namespace BusinessLayer.Concrete
@@ -40,5 +41,6 @@ namespace BusinessLayer.Concrete
         {
             return _admin.Get(x => x.AdminID == AdminID);
         }
+
     }
 }

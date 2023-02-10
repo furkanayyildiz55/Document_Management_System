@@ -34,12 +34,15 @@ namespace DataAccessLayer.Concrete.Repositories
 
         public void Add(T p)
         {
-            _object.Add(p);
+            var addedEntity = context.Entry(p);
+            addedEntity.State = EntityState.Added;
             context.SaveChanges();
         }
 
         public void Update(T p)
         {
+            var updatedEntity = context.Entry(p);
+            updatedEntity.State = EntityState.Modified;
             context.SaveChanges();
         }
 
@@ -59,6 +62,9 @@ namespace DataAccessLayer.Concrete.Repositories
             return _object.SingleOrDefault(filter); //Dizde veya listede sadece bir değer döndürek için kullanılan EF linq methodu
 
         }
+
+
+        
 
 
 
