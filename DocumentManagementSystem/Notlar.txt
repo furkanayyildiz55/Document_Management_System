@@ -1,0 +1,3 @@
+﻿
+1-FORM İŞLEMİNDEN SONRA SAYFA TEMİZLENECEK 
+https://stackoverflow.com/questions/13874165/how-do-i-clear-all-the-data-in-an-asp-net-page-after-form-submition

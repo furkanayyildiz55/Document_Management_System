@@ -1,0 +1,135 @@
+﻿@model EntityLayer.Concrete.Student
+
+@{
+    ViewBag.Title = "StudentAdd";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card text-bg-light ">
+    <div class="card-header">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Admin İşlemleri</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Admin Ekleme</li>
+        </ol>
+    </div>
+</div>
+
+<div class="card bg-light">
+    <div class="card-body">
+
+        @using (Html.BeginForm("StudentAdd", "Student", FormMethod.Post))
+        {
+            <div class="row">
+                <!--SOL TARAF-->
+                <div class="col col-lg-6">
+                    <div class="form-group">
+                        @Html.Label("Öğrenci Adı *")
+                        @Html.TextBoxFor(x => x.StudentName, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.StudentName)
+                        <br />
+                        @Html.Label("Öğrenci Soyadı *")
+                        @Html.TextBoxFor(x => x.StudentSurname, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.StudentSurname)
+                        <br />
+                        @Html.Label("Öğrenci No *")
+                        @Html.TextBoxFor(x => x.StudentNo, new { @class = "form-control", type = "number" })
+                        @Html.ValidationMessageFor(x => x.StudentNo)
+                        <br />
+                        @Html.Label("Öğrenci Mail *")
+                        @Html.TextBoxFor(x => x.StudentMail, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.StudentMail)
+                        <br />
+                        @Html.Label("Öğrenci Bölümü *")
+                        @Html.TextBoxFor(x => x.StudentProgram, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.StudentProgram)
+                        <br />
+                    </div>
+                </div>
+
+                <div class="col col-lg-6">
+
+                    @{ if (ViewBag.RecordStatus != null && ViewBag.RecordStatus==false)
+                        {
+                            if (ViewBag.RecordStatus)
+                            {
+                                //<p></p>
+                            }
+                            else
+                            {
+                                <p>@ViewBag.ErrorMessage</p>
+                            }
+                        }
+                    }
+                </div>
+                <br />
+                <button id="AdminAddButton" class="btn btn-primary">Yeni Öğrenci Oluştur</button>
+            </div>
+        }
+    </div>
+</div>
+
+
+@{
+    if (ViewBag.RecordStatus != null)
+    {
+        if (ViewBag.RecordStatus)
+        {
+            <script>
+                const swalWithBootstrapButtons = Swal.mixin({
+                    customClass: {
+                        confirmButton: 'btn btn-success',
+                        cancelButton: 'btn btn-primary'
+                    },
+                    buttonsStyling: false
+                })
+
+                swalWithBootstrapButtons.fire({
+                    title: 'Başarılı',
+                    text: "Yeni Admin Oluşturuldu!",
+                    icon: 'success',
+                    showCancelButton: true,
+                    confirmButtonText: 'Tamam',
+                    cancelButtonText: 'Öğrenci Listeleme Sayfasına Git',
+                    reverseButtons: true
+                }).then((result) => {
+                    if (result.isConfirmed) {
+
+                    } else if (result.dismiss === Swal.DismissReason.cancel) {
+                        window.location.href = "@Url.Action("StudentList", "Student")";
+                    }
+                })
+            </script>
+        }
+        else
+        {
+            /*
+            <script>
+                const swalWithBootstrapButtons = Swal.mixin({
+                    customClass: {
+                        confirmButton: 'btn btn-success',
+                        cancelButton: 'btn btn-primary'
+                    },
+                    buttonsStyling: false
+                })
+
+                swalWithBootstrapButtons.fire({
+                    title: 'Başarısız!',
+                    text: "Yeni Admin Oluşturulamadı!",
+                    icon: 'eroor',
+                    showCancelButton: true,
+                    confirmButtonText: 'Tamam',
+                    cancelButtonText: 'Admin Listeleme Sayfasına Git',
+                    reverseButtons: true
+                }).then((result) => {
+                    if (result.isConfirmed) {
+
+                    } else if (result.dismiss === Swal.DismissReason.cancel) {
+                        window.location.href = "@Url.Action("AdminList", "Admin")";
+                    }
+                })
+            </script>
+            */
+        }
+    }
+
+}

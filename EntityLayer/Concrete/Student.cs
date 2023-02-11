@@ -7,11 +7,17 @@ namespace EntityLayer.Concrete
     public class Student
     {
         [Key]
-        public int StudentNo { get; set; }
+        public int StudentID { get; set; }
 
         public string StudentName { get; set; }
 
         public string StudentSurname { get; set; }
+
+        public bool StudentUniversityRegistered { get; set; }
+
+        public string StudentNo { get; set; }
+
+
 
         public string StudentProgram{ get; set; }
 
