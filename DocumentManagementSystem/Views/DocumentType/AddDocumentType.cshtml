@@ -1,56 +1,125 @@
 ﻿@model EntityLayer.Concrete.DocumentType
 
 
+@{
+    ViewBag.Title = "AddAdmin";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <title>Dosya </title>
-</head>
-<body>
-    @{
-        ViewBag.Title = "AddDocumentType";
-        Layout = "~/Views/Shared/_AdminLayout.cshtml";
-    }
-    <h2>Dosya Türü Ekleme Sayfası</h2>
-    <br />
 
-    @using (Html.BeginForm("AddDocumentType", "DocumentType", FormMethod.Post))
+<div class="card text-bg-light ">
+    <div class="card-header">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Belge Türü İşlemleri</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Belge Türü Ekleme</li>
+        </ol>
+    </div>
+</div>
+
+
+<div class="card bg-light">
+    <div class="card-body">
+
+        @using (Html.BeginForm("AddDocumentType", "DocumentType", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div class="row">
+                <!--SOL TARAF-->
+                <div class="col col-lg-6">
+                    <div class="form-group">
+                        @Html.Label("Belge Türü Adı *")
+                        @Html.TextBoxFor(x => x.DocumentTypeName, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.DocumentTypeName)
+                        <br />
+                        @Html.Label("Belge Türü Yazısı *")
+                        @Html.TextAreaFor(x => x.DocumentTypeText, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.DocumentTypeText)
+                        <br />
+                        @Html.Label("Belge Türü İmza Adedi *")
+                        @Html.TextBoxFor(x => x.DocumentTypeNumSignature, new { @class = "form-control", type = "number" })
+                        @Html.ValidationMessageFor(x => x.DocumentTypeNumSignature)
+                        <br />
+                    </div>
+                </div>
+
+                <!--SAĞ TARAF-->
+                <div class="col col-lg-6">
+                    <label>Belge Türü Aktiflik *</label>
+                    <div class="form-check">
+                        @Html.RadioButtonFor(x => x.DocumentTypeStatus, true, new { @class = " form-check-input", @checked = "checked" })
+                        <label class="form-check-label" for="gridRadios2">
+                            Aktif-Kullanılabilir
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        @Html.RadioButtonFor(x => x.DocumentTypeStatus, false, new { @class = "form-check-input" })
+                        <label class="form-check-label" for="gridRadios2">
+                            Pasif-Kullanılamaz
+                        </label>
+                    </div>
+
+                    <br />
+                    @Html.Label("Belge Türü Arka Plan Görüntüsü (PNG-JPG)*")
+                    <div class="input-group">
+                        <input type="file" name="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                    </div>
+
+                    @{ if (ViewBag.RecordStatus != null)
+                        {
+                            if (ViewBag.RecordStatus)
+                            {
+                                //<p></p>
+                            }
+                            else
+                            {
+                                <p>@ViewBag.UploadError</p>
+                            }
+                        }
+                        else
+                        {
+                            <p>@ViewBag.UploadError</p>
+                        }
+                    }
+                    <br />
+                    <button id="AdminAddButton" class="btn btn-primary">Yeni Belge Türü Oluştur</button>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+@{
+    if (ViewBag.RecordStatus != null)
     {
-        <div class="form-group">
-            @Html.Label("Dosya Türü Adı *")
-            @Html.TextBoxFor(x => x.DocumentTypeName, new { @class = "form-control" })
-            @Html.ValidationMessageFor(x => x.DocumentTypeName)
-            <br />
-            @Html.Label("Dosya Türü Yazısı *")
-            @Html.TextAreaFor(x => x.DocumentTypeText, new { @class = "form-control" })
-            @Html.ValidationMessageFor(x => x.DocumentTypeText)
-            <br />
-            @Html.Label("Dosya Türü İmza Adedi *")
-            @Html.TextBoxFor(x => x.DocumentTypeNumSignature, new { @type = "number", @class = "form-control", @min = "0" })
-            @Html.ValidationMessageFor(x => x.DocumentTypeNumSignature)
-            <br />
-            <br />
-            <button id="documentTypeAddButton" class="btn btn-info">Kaydet</button>
-        </div>
+        if (ViewBag.RecordStatus)
+        {
+            <script>
+                const swalWithBootstrapButtons = Swal.mixin({
+                    customClass: {
+                        confirmButton: 'btn btn-success',
+                        cancelButton: 'btn btn-primary'
+                    },
+                    buttonsStyling: false
+                })
 
+                swalWithBootstrapButtons.fire({
+                    title: 'Başarılı',
+                    text: "Yeni Belge Türü Oluşturuldu!",
+                    icon: 'success',
+                    showCancelButton: true,
+                    confirmButtonText: 'Tamam',
+                    cancelButtonText: 'Belge Türü Listeleme Sayfasına Git',
+                    reverseButtons: true
+                }).then((result) => {
+                    if (result.isConfirmed) {
+
+                    } else if (result.dismiss === Swal.DismissReason.cancel) {
+                        window.location.href = "@Url.Action("DocumentTypeList", "DocumentType")";
+                    }
+                })
+            </script>
+        }
 
     }
 
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script>
-        $('#documentTypeAddButton').click(function () {
-
-               //Burada yine kontrol yapılacak
-
-
-            swal({
-                title: "İşlem Başarılı !",
-                text: "Dosya türü başarı ile oluşturuldu",
-                icon: "success",
-                button: "Tamam",
-            });
-        });
-    </script>
-
-</body>
-</html>
+}

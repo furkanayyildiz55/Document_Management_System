@@ -33,7 +33,7 @@ namespace DocumentManagementSystem.Controllers
         [HttpPost]
         public ActionResult StudentAdd(Student student)
         {
-            StudentValidator studentValidator = new StudentValidator();
+            StudentValidator studentValidator = new StudentValidator(student);
             ValidationResult result = studentValidator.Validate(student);
 
             try

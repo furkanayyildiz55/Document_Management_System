@@ -47,15 +47,12 @@
                 <!--SAĞ TARAF-->
                 <div class="col col-lg-6">
                     <label>Admin Yetki Türü *</label>
-
                     <div class="form-check">
                         @Html.RadioButtonFor(x => x.AdminAuthorization, true, new { @class = " form-check-input" })
                         <label class="form-check-label" for="gridRadios2">
                             Üst Düzey Yetkili
                         </label>
                     </div>
-
-
                     <div class="form-check">
                         @Html.RadioButtonFor(x => x.AdminAuthorization, false, new { @class = "form-check-input" , @checked = "checked" })
                         <label class="form-check-label" for="gridRadios2">

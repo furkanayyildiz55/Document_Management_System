@@ -2410,8 +2410,6 @@
     <Content Include="Views\DocumentType\Index.cshtml" />
     <Content Include="Views\DocumentType\AddDocumentType.cshtml" />
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
-    <Content Include="Views\DocumentType\GetDocumentTypeList.cshtml" />
-    <Content Include="Views\DocumentType\EditDocumentType.cshtml" />
     <Content Include="Views\Admin\AddAdmin.cshtml" />
     <Content Include="Views\Shared\_SidebarsLayout.cshtml" />
     <Content Include="Views\Admin\AdminList.cshtml" />
@@ -2421,6 +2419,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="image\documentTypeImage\" />
     <Folder Include="image\signature\" />
     <Folder Include="Models\" />
   </ItemGroup>

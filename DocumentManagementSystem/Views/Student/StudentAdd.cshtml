@@ -31,24 +31,45 @@
                         @Html.TextBoxFor(x => x.StudentSurname, new { @class = "form-control" })
                         @Html.ValidationMessageFor(x => x.StudentSurname)
                         <br />
-                        @Html.Label("Öğrenci No *")
-                        @Html.TextBoxFor(x => x.StudentNo, new { @class = "form-control", type = "number" })
-                        @Html.ValidationMessageFor(x => x.StudentNo)
-                        <br />
                         @Html.Label("Öğrenci Mail *")
                         @Html.TextBoxFor(x => x.StudentMail, new { @class = "form-control" })
                         @Html.ValidationMessageFor(x => x.StudentMail)
-                        <br />
-                        @Html.Label("Öğrenci Bölümü *")
-                        @Html.TextBoxFor(x => x.StudentProgram, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(x => x.StudentProgram)
-                        <br />
+
                     </div>
                 </div>
 
                 <div class="col col-lg-6">
 
-                    @{ if (ViewBag.RecordStatus != null && ViewBag.RecordStatus==false)
+                    <label>Üniversite Kayıt Durumu *</label>
+                    <span title="Üniversiteye kayıtlı olan öğrencilerin öğrenci numarası, okuduğu bölümü ve ogr.bozok.edu.tr uzantılı mail adreslerini girmeleri gerekmektedir"><i  class="fa-solid fa-circle-info text-primary"></i></span>
+
+                    <div class="form-check">
+                        @Html.RadioButtonFor(x => x.StudentUniversityRegistered, true, new { @class = " form-check-input", @checked = "checked" })
+                        <label class="form-check-label" for="gridRadios2">
+                            Kayıt Var
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        @Html.RadioButtonFor(x => x.StudentUniversityRegistered, false, new { @class = "form-check-input" })
+                        <label class="form-check-label" for="gridRadios2">
+                            Kayıt Yok
+                        </label>
+                    </div>
+                    @Html.ValidationMessageFor(x => x.StudentUniversityRegistered)
+
+
+                    <br />
+                    @Html.Label("Öğrenci No *")
+                    @Html.TextBoxFor(x => x.StudentNo, new { @class = "form-control", type = "number" })
+                    @Html.ValidationMessageFor(x => x.StudentNo)
+                    <br />
+                    @Html.Label("Öğrenci Bölümü *")
+                    @Html.TextBoxFor(x => x.StudentProgram, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.StudentProgram)
+                    <br />
+
+
+                    @{ if (ViewBag.RecordStatus != null && ViewBag.RecordStatus == false)
                         {
                             if (ViewBag.RecordStatus)
                             {
@@ -85,7 +106,7 @@
 
                 swalWithBootstrapButtons.fire({
                     title: 'Başarılı',
-                    text: "Yeni Admin Oluşturuldu!",
+                    text: "Yeni Öğrenci Oluşturuldu!",
                     icon: 'success',
                     showCancelButton: true,
                     confirmButtonText: 'Tamam',
