@@ -2416,6 +2416,7 @@
     <Content Include="Views\Admin\AdminUpdate.cshtml" />
     <Content Include="Views\Student\StudentAdd.cshtml" />
     <Content Include="Views\Student\StudentList.cshtml" />
+    <Content Include="Views\DocumentType\UpdateDocumentType.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -137,9 +137,17 @@ namespace DocumentManagementSystem.Controllers
         #region UpdateDocumentType
 
         [HttpGet]
-        public ActionResult UpdateDocumentType()
+        public ActionResult UpdateDocumentType(int? id)
         {
-            return View();
+            if (id != null && id >= 0)
+            {
+                var documentValue = documentTypeManager.GetDocumentType((int)id);
+                return View(documentValue);
+            }
+            else
+            {
+                return RedirectToAction("AdminList");
+            }
         }
 
 
@@ -150,6 +158,8 @@ namespace DocumentManagementSystem.Controllers
         }
 
         #endregion
+
+
 
         [HttpGet]
         public ActionResult StatusChange(int id)
