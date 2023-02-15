@@ -14,12 +14,14 @@ namespace DocumentManagementSystem.Controllers
     {
         StudentManager studentManager = new StudentManager(new EfStudentDal());
 
-        // GET: Student
+        #region StudentList
         public ActionResult StudentList()
         {
             var studentList = studentManager.GetList();
             return View(studentList);
         }
+        #endregion
+
 
         #region StudentAdd
 
@@ -60,5 +62,9 @@ namespace DocumentManagementSystem.Controllers
         }
 
         #endregion
+
+
+
+
     }
 }

@@ -7,7 +7,7 @@ namespace EntityLayer.Concrete
 {
     public class DocumentType
     {
-        [Key,Required]
+        [Key]
         public int DocumentTypeID { get; set; }
 
         public string DocumentTypeName { get; set; }
@@ -16,7 +16,9 @@ namespace EntityLayer.Concrete
 
         public int DocumentTypeNumSignature { get; set; }
 
-        public DateTime DocumentCreateDate { get; set; }
+
+        //TODO : Type düzenlemesi yap
+        public DateTime DocumentTypeCreateDate { get; set; }
 
         public bool DocumentTypeStatus { get; set; }
 

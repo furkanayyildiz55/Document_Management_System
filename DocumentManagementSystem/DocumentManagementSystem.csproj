@@ -2407,7 +2407,6 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\DocumentType\Index.cshtml" />
     <Content Include="Views\DocumentType\AddDocumentType.cshtml" />
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Views\Admin\AddAdmin.cshtml" />
@@ -2416,6 +2415,7 @@
     <Content Include="Views\Admin\AdminUpdate.cshtml" />
     <Content Include="Views\Student\StudentAdd.cshtml" />
     <Content Include="Views\Student\StudentList.cshtml" />
+    <Content Include="Views\DocumentType\DocumentTypeList.cshtml" />
     <Content Include="Views\DocumentType\UpdateDocumentType.cshtml" />
   </ItemGroup>
   <ItemGroup>

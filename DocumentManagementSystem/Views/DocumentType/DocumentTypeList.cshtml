@@ -1,0 +1,60 @@
+﻿@using EntityLayer.Concrete
+@model List<DocumentType>
+
+@{
+    ViewBag.Title = "AdminList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card text-bg-light ">
+    <div class="card-header">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Belge Türü İşlemleri</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Belge Türü Listesi</li>
+        </ol>
+    </div>
+</div>
+
+<div class="card bg-light">
+    <div class="card-body">
+
+        <table class="table table-bordered">
+            <tr>
+                <th>#</th>
+                <th>Tür Adı</th>
+                <th>Tür Açıklaması</th>
+                <th>Aktiflik</th>
+                <th>İmza Sayısı</th>
+                <th>Arkaplan Görüntüsü</th>
+                <th>Güncelle</th>
+                <th>Belge Oluştur</th>
+
+
+
+            </tr>
+            @foreach (var documentType in Model)
+            {
+
+                string DocumentTypeBacgroundImage = documentType.DocumentTypeBacgroundImage != null ? documentType.DocumentTypeBacgroundImage : "/image/site/none.png";
+
+                <tr>
+                    <th>@documentType.DocumentTypeID</th>
+                    <th>@documentType.DocumentTypeName</th>
+                    <td>@documentType.DocumentTypeText</td>
+                    <td>@(documentType.DocumentTypeStatus ? "Aktif" : "Pasif")</td>
+                    <td>@documentType.DocumentTypeNumSignature</td>
+                    <td>
+                        <a href="@DocumentTypeBacgroundImage">
+                            <img src="@DocumentTypeBacgroundImage" height="50" width="50" alt="Admin İmza">
+                        </a>
+                    </td>
+                    <td style="text-align:center"><a href="/DocumentType/UpdateDocumentType/@documentType.DocumentTypeID" class="btn btn-warning">Güncelle</a></td>
+                    <td style="text-align:center"><a href="#" class="btn btn-primary">Belge Oluştur</a></td>
+                </tr>
+            }
+        </table>
+
+
+    </div>
+</div>
+
