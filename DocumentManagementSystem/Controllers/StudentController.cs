@@ -64,7 +64,10 @@ namespace DocumentManagementSystem.Controllers
         #endregion
 
 
-
+        public ActionResult deneme()
+        {
+            return View();
+        }
 
     }
 }

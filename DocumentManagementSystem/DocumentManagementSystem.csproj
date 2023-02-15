@@ -2417,6 +2417,7 @@
     <Content Include="Views\Student\StudentList.cshtml" />
     <Content Include="Views\DocumentType\DocumentTypeList.cshtml" />
     <Content Include="Views\DocumentType\UpdateDocumentType.cshtml" />
+    <Content Include="Views\Student\deneme.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
