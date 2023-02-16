@@ -187,7 +187,7 @@
                         </li>
                         <!--BELGE İŞLEMLER AÇILIR MENÜ -->
                         <!--ÖĞRENCİ İŞLEMLER AÇILIR MENÜ -->
-                        <li class="nav-item has-treeview">
+                        <li class="nav-item has-treeview ">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-copy"></i>
                                 <p>
@@ -197,19 +197,19 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="pages/layout/top-nav.html" class="nav-link">
+                                    <a href="@Url.Action("StudentAdd", "Student")" class="nav-link ">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Öğrenci Oluştur</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+                                    <a href="@Url.Action("StudentList", "Student")" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Öğrenci Listele</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="pages/layout/boxed.html" class="nav-link">
+                                    <a href="#" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Öğrenci Güncelle</p>
                                     </a>
@@ -229,19 +229,19 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="pages/layout/top-nav.html" class="nav-link">
+                                    <a href="@Url.Action("AddAdmin", "Admin")" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Admin Oluştur</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+                                    <a href="@Url.Action("AdminList", "Admin")" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Admin Listele</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="pages/layout/boxed.html" class="nav-link">
+                                    <a href="@Url.Action("AdminUpdate", "Admin")" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Admin Güncelle</p>
                                     </a>
@@ -261,19 +261,19 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="pages/layout/top-nav.html" class="nav-link">
+                                    <a href="@Url.Action("AddDocumentType", "DocumentType")" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Belge Türü Oluştur</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+                                    <a href="@Url.Action("DocumentTypeList", "DocumentType")" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Belge Türü Listele</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="pages/layout/boxed.html" class="nav-link">
+                                    <a href="@Url.Action("UpdateDocumentType", "DocumentType")" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Belge Türü Güncelle</p>
                                     </a>
@@ -283,12 +283,12 @@
                         </li>
                         <!--BELGE TÜRÜ İŞLEMLER AÇILIR MENÜ -->
                         <!--BAŞLIKLI BÖLÜM-->
-                        <li class="nav-header">LOG KAYITLARI</li>
+                        <li class="nav-header">Ekstra İşlemler</li>
                         <li class="nav-item">
                             <a href="pages/calendar.html" class="nav-link">
                                 <i class="nav-icon far fa-calendar-alt"></i>
                                 <p>
-                                    Calendar
+                                    Log Kayıtları
                                     <span class="badge badge-info right">2</span>
                                 </p>
                             </a>
