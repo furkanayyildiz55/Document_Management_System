@@ -61,14 +61,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IAdminService.cs" />
+    <Compile Include="Abstract\IDocumentService.cs" />
     <Compile Include="Abstract\IDocumentTypeService.cs" />
     <Compile Include="Abstract\IStudentService.cs" />
     <Compile Include="Concrete\AdminManager.cs" />
+    <Compile Include="Concrete\DocumentManager.cs" />
     <Compile Include="Concrete\DocumentTypeManager.cs" />
     <Compile Include="Concrete\StudentManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ValidationRules\AdminValidator.cs" />
     <Compile Include="ValidationRules\DocumentTypeValidator.cs" />
+    <Compile Include="ValidationRules\DocumentValidator.cs" />
     <Compile Include="ValidationRules\StudentValidator.cs" />
   </ItemGroup>
   <ItemGroup>

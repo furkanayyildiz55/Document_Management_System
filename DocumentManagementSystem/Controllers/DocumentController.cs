@@ -1,4 +1,6 @@
-﻿using EntityLayer.Concrete;
+﻿using BusinessLayer.Concrete;
+using DataAccessLayer.EntityFramework;
+using EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +11,17 @@ namespace DocumentManagementSystem.Controllers
 {
     public class DocumentController : Controller
     {
+
+        DocumentManager documentManager = new DocumentManager(new EfDocumentDal());
+
+
         // GET: Document
         public ActionResult Index()
         {
             return View();
         }
+
+        #region AddDocument
 
         [HttpGet]
         public ActionResult AddDocument()
@@ -28,5 +36,7 @@ namespace DocumentManagementSystem.Controllers
 
             return View();
         }
+
+        #endregion
     }
 }
