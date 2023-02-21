@@ -152,6 +152,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\DocumentController.cs" />
     <Compile Include="Controllers\DocumentTypeController.cs" />
+    <Compile Include="Controllers\DocumentVerifyController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Global.asax.cs">
@@ -2427,6 +2428,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="image\documentTypeImage\" />
     <Folder Include="image\signature\" />
+    <Folder Include="Views\DocumentVerify\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
