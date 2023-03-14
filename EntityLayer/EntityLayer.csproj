@@ -54,6 +54,7 @@
     <Compile Include="Concrete\Admin.cs" />
     <Compile Include="Concrete\Document.cs" />
     <Compile Include="Concrete\DocumentSignature.cs" />
+    <Compile Include="Concrete\DocumentTypePageModel.cs" />
     <Compile Include="Concrete\Log.cs" />
     <Compile Include="Concrete\Student.cs" />
     <Compile Include="Concrete\DocumentType.cs" />

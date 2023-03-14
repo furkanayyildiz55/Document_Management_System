@@ -7,13 +7,18 @@ using System;
 using System.IO;
 using System.Web;
 using System.Web.Mvc;
+using System.Linq;
+using System.Collections.Generic;
+using DocumentManagementSystem.Models;
 
 namespace DocumentManagementSystem.Controllers
 {
     public class DocumentTypeController : Controller
     {
         DocumentTypeManager documentTypeManager = new DocumentTypeManager(new EfDocumentTypeDal());
-        
+        AdminManager adminManager = new AdminManager(new EfAdminDal());
+
+
         #region DocumentTypeList
 
         public ActionResult DocumentTypeList()
@@ -30,18 +35,43 @@ namespace DocumentManagementSystem.Controllers
         [HttpGet]
         public ActionResult AddDocumentType()
         {
-            return View();
+            List<SelectListItem> valueAdmin = (from x in adminManager.GetList()
+                                               select new SelectListItem
+                                               {
+                                                   Text = $"{x.AdminName} {x.AdminSurmane} - {x.AdminJob}" ,
+                                                   Value = x.AdminID.ToString()
+                                               }).ToList();
+            //ViewBag.valueAdmin = valueAdmin;
+            DocumentTypeModel documentTypeModel = new DocumentTypeModel();
+            documentTypeModel.selectAdminItems = valueAdmin;
+
+            return View(documentTypeModel);
         }
 
 
         [HttpPost]
-        public ActionResult AddDocumentType(DocumentType documentType, HttpPostedFileBase file)
+        public ActionResult AddDocumentType(DocumentTypeModel documentTypeModel, HttpPostedFileBase file)
         {
-            documentType.DocumentTypeCreateDate = DateTime.Parse(DateTime.Now.ToShortDateString());
+            List<SelectListItem> valueAdmin = (from x in adminManager.GetList()
+                                               select new SelectListItem
+                                               {
+                                                   Text = $"{x.AdminName} {x.AdminSurmane} - {x.AdminJob}",
+                                                   Value = x.AdminID.ToString()
+                                               }).ToList();
+            documentTypeModel.selectAdminItems = valueAdmin;
 
+
+            documentTypeModel.documentType.DocumentTypeCreateDate = DateTime.Parse(DateTime.Now.ToShortDateString());
 
             DocumentTypeValidator documentTypeValidator = new DocumentTypeValidator();
-            ValidationResult result = documentTypeValidator.Validate(documentType);
+            ValidationResult result = documentTypeValidator.Validate(documentTypeModel.documentType);
+
+
+
+            if (documentTypeModel.selectAdminItems == null)
+            {
+
+            }
 
             try
             {
@@ -49,7 +79,7 @@ namespace DocumentManagementSystem.Controllers
                 {
                     if (FileUploadControl())
                     {
-                        documentTypeManager.DocumentTypeAdd(documentType);
+                        documentTypeManager.DocumentTypeAdd(documentTypeModel.documentType);
                         ViewBag.RecordStatus = true;
                     }
                     else
@@ -64,12 +94,12 @@ namespace DocumentManagementSystem.Controllers
                         ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
                     }
                 }
-                return View();
+                return View(documentTypeModel);
             }
             catch (Exception e)
             {
                 ViewBag.ErrorMessage = "Bilinmeyen hata, lütfen hatayı yetkililere bildiriniz ! : " + e.Message;
-                return View();
+                return View(documentTypeModel);
             }
 
 
@@ -98,7 +128,7 @@ namespace DocumentManagementSystem.Controllers
                             //Sunucu kaydetme
                             file.SaveAs(Server.MapPath("~" + path));
                             //Veritabanı kaydetme
-                            documentType.DocumentTypeBacgroundImage= path;
+                            documentTypeModel.documentType.DocumentTypeBacgroundImage= path;
                             return true;
 
                         }

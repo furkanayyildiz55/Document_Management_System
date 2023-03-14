@@ -7,7 +7,10 @@ namespace BusinessLayer.ValidationRules
     public class DocumentTypeValidator  : AbstractValidator<DocumentType>
     {
         public DocumentTypeValidator()
+
         {
+
+            
             RuleFor(x => x.DocumentTypeName).NotEmpty().WithMessage("Belge Türü İsimi Boş Geçilemez")
                                      .Length(5, 30).WithMessage("Belge türü isimi en az 5, en fazla 30 karakter olmalıdır");
 
@@ -21,7 +24,7 @@ namespace BusinessLayer.ValidationRules
 
              RuleFor(x => x.DocumentTypeNumSignature.ToString()).Matches("^[0-9]*$").WithMessage("Sadece Sayısal İfade Giriniz");
 
-
+            
 
         }
     }

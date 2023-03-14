@@ -1,4 +1,4 @@
-﻿@model EntityLayer.Concrete.DocumentType
+﻿@model DocumentManagementSystem.Models.DocumentTypeModel
 
 
 @{
@@ -16,31 +16,40 @@
                 <div class="col col-lg-6">
                     <div class="form-group">
                         @Html.Label("Belge Türü Adı *")
-                        @Html.TextBoxFor(x => x.DocumentTypeName, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(x => x.DocumentTypeName)
+                        @Html.TextBoxFor(Model => Model.documentType.DocumentTypeName , new { @class = "form-control" })
+                        @Html.ValidationMessageFor(Model => Model.documentType.DocumentTypeName )
                         <br />
                         @Html.Label("Belge Türü Yazısı *")
-                        @Html.TextAreaFor(x => x.DocumentTypeText, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(x => x.DocumentTypeText)
+                        @Html.TextAreaFor(Model => Model.documentType.DocumentTypeText, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(Model => Model.documentType.DocumentTypeText)
                         <br />
                         @Html.Label("Belge Türü İmza Adedi *")
-                        @Html.TextBoxFor(x => x.DocumentTypeNumSignature, new { @class = "form-control", type = "number" })
-                        @Html.ValidationMessageFor(x => x.DocumentTypeNumSignature)
+                        @Html.TextBoxFor(Model => Model.documentType.DocumentTypeNumSignature, new { @class = "form-control", type = "number" })
+                        @Html.ValidationMessageFor(Model => Model.documentType.DocumentTypeNumSignature)
                         <br />
+                        @Html.Label("Belge Türü İmza Adedi *")
+                        <span title="Alternatif açıklama varsayılan belge açıklamasını yok sayar. Alternatif açıklama istemiyorsanız boş bırakın!"><i class="fa fa-info-circle text-primary"></i></span>
+                        @Html.DropDownListFor(m => m.AdminIds, Model.selectAdminItems, new { @class = "form-control", id = "sec" ,multiple="multiple" })
+
+
                     </div>
                 </div>
+
+                <script>
+                    $("#sec").chosen();
+                </script>
 
                 <!--SAĞ TARAF-->
                 <div class="col col-lg-6">
                     <label>Belge Türü Aktiflik *</label>
                     <div class="form-check">
-                        @Html.RadioButtonFor(x => x.DocumentTypeStatus, true, new { @class = " form-check-input", @checked = "checked" })
+                        @Html.RadioButtonFor(Model => Model.documentType.DocumentTypeStatus, true, new { @class = " form-check-input", @checked = "checked" })
                         <label class="form-check-label" for="gridRadios2">
                             Aktif-Kullanılabilir
                         </label>
                     </div>
                     <div class="form-check">
-                        @Html.RadioButtonFor(x => x.DocumentTypeStatus, false, new { @class = "form-check-input" })
+                        @Html.RadioButtonFor(Model => Model.documentType.DocumentTypeStatus, false, new { @class = "form-check-input" })
                         <label class="form-check-label" for="gridRadios2">
                             Pasif-Kullanılamaz
                         </label>
