@@ -15,8 +15,8 @@
                 <!--SOL TARAF-->
                 <div class="col col-lg-6">
                     <div class="form-group">
-                        @Html.Label("Belge Türü İsimi *")
-                        @Html.TextBoxFor(x => x.DocumentTypeID, new { @class = "form-control" })
+                        @Html.Label("Belge Türü *")
+                        @Html.DropDownListFor(x=>x.DocumentTypeID , (List<SelectListItem>) ViewBag.valueDocumentType , new {@class ="form-control"})
                         @Html.ValidationMessageFor(x => x.DocumentTypeID)
                         <br />
                         @Html.Label("Öğrenci No *")
@@ -25,7 +25,6 @@
                         <br />
                         @Html.Label("Alternatif Açıklama ")
                         <span title="Alternatif açıklama varsayılan belge açıklamasını yok sayar. Alternatif açıklama istemiyorsanız boş bırakın!"><i class="fa fa-info-circle text-primary"></i></span>
-
                         @Html.TextBoxFor(x => x.AdminID, new { @class = "form-control" })
                         @Html.ValidationMessageFor(x => x.AdminID)
 

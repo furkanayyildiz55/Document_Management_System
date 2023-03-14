@@ -13,6 +13,8 @@ namespace DocumentManagementSystem.Controllers
     {
 
         DocumentManager documentManager = new DocumentManager(new EfDocumentDal());
+        DocumentTypeManager documentTypeManager = new DocumentTypeManager(new EfDocumentTypeDal());
+
 
 
         // GET: Document
@@ -26,6 +28,14 @@ namespace DocumentManagementSystem.Controllers
         [HttpGet]
         public ActionResult AddDocument()
         {
+            List<SelectListItem> valueDocumentType = (from x in documentTypeManager.GetList()
+                                                      select new SelectListItem
+                                                      {
+                                                          Text = x.DocumentTypeName,
+                                                          Value = x.DocumentTypeID.ToString()
+                                                      }).ToList() ;
+
+            ViewBag.valueDocumentType = valueDocumentType;
 
 
             return View();
@@ -34,6 +44,9 @@ namespace DocumentManagementSystem.Controllers
         [HttpPost]
         public ActionResult AddDocument(Document document )
         {
+
+
+
 
             return View();
         }
