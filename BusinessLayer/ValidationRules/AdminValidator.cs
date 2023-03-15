@@ -8,7 +8,7 @@ namespace BusinessLayer.ValidationRules
     {
         public AdminValidator()
         {
-            /*
+            
 
             RuleFor(x => x.AdminName).NotEmpty().WithMessage("İsim Boş Geçilemez")
                                      .Length(5, 30).WithMessage("Ad en az 5, en fazla 30 karakter olmalıdır");
@@ -25,7 +25,7 @@ namespace BusinessLayer.ValidationRules
                                     .Length(5, 30).WithMessage("İş en az 5 en fazla 30 karakter olmalıdır");
 
 
-            */
+            
 
 
 

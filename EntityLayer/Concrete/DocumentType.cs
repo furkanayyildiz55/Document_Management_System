@@ -16,14 +16,11 @@ namespace EntityLayer.Concrete
 
         public int DocumentTypeNumSignature { get; set; }
 
-
-        //TODO : Type düzenlemesi yap
         public DateTime DocumentTypeCreateDate { get; set; }
 
         public bool DocumentTypeStatus { get; set; }
 
         public string DocumentTypeBacgroundImage { get; set; }
-
 
         public ICollection<Document> Documents { get; set; }
 

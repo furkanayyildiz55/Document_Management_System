@@ -30,8 +30,7 @@ namespace DocumentManagementSystem.Controllers
         #endregion
 
         #region AddDocumentType
-
-        //Sadece sayafayı yükler
+ 
         [HttpGet]
         public ActionResult AddDocumentType()
         {
@@ -58,6 +57,7 @@ namespace DocumentManagementSystem.Controllers
                                                    Text = $"{x.AdminName} {x.AdminSurmane} - {x.AdminJob}",
                                                    Value = x.AdminID.ToString()
                                                }).ToList();
+            
             documentTypeModel.selectAdminItems = valueAdmin;
 
 
