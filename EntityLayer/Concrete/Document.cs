@@ -26,6 +26,9 @@ namespace EntityLayer.Concrete
         public int AdminID { get; set; }
         public virtual Admin Admin { get; set; }
 
+        public ICollection<DocumentSignature> DocumentSignatures { get; set; }
+
+
 
 
 

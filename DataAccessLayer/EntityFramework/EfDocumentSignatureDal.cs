@@ -4,7 +4,7 @@ using EntityLayer.Concrete;
 
 namespace DataAccessLayer.EntityFramework
 {
-    public class EfDocumentSignatureDal : GenericRepository<DocumentSignature>, IDocumentSignatureDal
+    public class EfDocumentSignatureDal : GenericRepository<DocumentTypeSignature>, IDocumentSignatureDal
     {
     }
 }

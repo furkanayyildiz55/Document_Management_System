@@ -3,7 +3,7 @@
 
 namespace DataAccessLayer.Abstract
 {
-    public interface IDocumentSignatureDal : IRepository<DocumentSignature>
+    public interface IDocumentSignatureDal : IRepository<DocumentTypeSignature>
     {
     }
 }

@@ -24,7 +24,9 @@ namespace EntityLayer.Concrete
 
         public ICollection<Document> Documents { get; set; }
 
-        public ICollection<DocumentSignature> DocumentSignatures { get; set; }
+        public ICollection<DocumentTypeSignature> DocumentTypeSignatures { get; set; }
+
+
 
 
 
