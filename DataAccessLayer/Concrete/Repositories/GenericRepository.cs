@@ -1,4 +1,5 @@
 ﻿using DataAccessLayer.Abstract;
+using EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -36,8 +37,15 @@ namespace DataAccessLayer.Concrete.Repositories
         {
             var addedEntity = context.Entry(p);
             addedEntity.State = EntityState.Added;
-            context.SaveChanges();
+
+            context.SaveChanges(); 
+            var id = p;
+
         }
+
+
+
+
 
         public void Update(T p)
         {
@@ -57,14 +65,17 @@ namespace DataAccessLayer.Concrete.Repositories
             return _object.Where(filter).ToList();
         }
 
-        public T Get(Expression<Func<T, bool>> filter)
+        public T Get(Expression<Func<T, bool>> filter)  //TODO:  bu  performan kaybı yaşatıyormuş  <Func<T, bool>> filter bu tarz bişey varmış dene !
         {
             return _object.SingleOrDefault(filter); //Dizde veya listede sadece bir değer döndürek için kullanılan EF linq methodu
 
         }
 
 
-        
+
+
+
+
 
 
 

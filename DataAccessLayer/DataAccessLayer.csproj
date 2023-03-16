@@ -55,6 +55,7 @@
     <Compile Include="Abstract\IDocumentDal.cs" />
     <Compile Include="Abstract\IDocumentSignatureDal.cs" />
     <Compile Include="Abstract\IDocumentTypeDal.cs" />
+    <Compile Include="Abstract\IDocumentTypeSignatureDal.cs" />
     <Compile Include="Abstract\IRepository.cs" />
     <Compile Include="Abstract\IStudentDal.cs" />
     <Compile Include="Concrete\Context.cs" />
@@ -63,6 +64,7 @@
     <Compile Include="EntityFramework\EfDocumentDal.cs" />
     <Compile Include="EntityFramework\EfDocumentSignatureDal.cs" />
     <Compile Include="EntityFramework\EfDocumentTypeDal.cs" />
+    <Compile Include="EntityFramework\EfDocumentTypeSignatureDal.cs" />
     <Compile Include="EntityFramework\EfStudentDal.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

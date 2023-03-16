@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using System.Linq;
 using System.Collections.Generic;
 using DocumentManagementSystem.Models;
+using DataAccessLayer.Concrete.Repositories;
 
 namespace DocumentManagementSystem.Controllers
 {
@@ -17,6 +18,7 @@ namespace DocumentManagementSystem.Controllers
     {
         DocumentTypeManager documentTypeManager = new DocumentTypeManager(new EfDocumentTypeDal());
         AdminManager adminManager = new AdminManager(new EfAdminDal());
+        DocumentTypeSignatureManager DocumentTypeSignatureManager = new DocumentTypeSignatureManager(new EfDocumentTypeSignatureDal());
 
 
         #region DocumentTypeList
@@ -31,19 +33,22 @@ namespace DocumentManagementSystem.Controllers
 
         #region AddDocumentType
  
+        private List<SelectListItem> selectListItems()
+        {
+            return (from x in adminManager.GetListTopLevelAdmin( )
+                    select new SelectListItem
+                    {
+                        Text = $"{x.AdminName} {x.AdminSurmane} - {x.AdminJob}",
+                        Value = x.AdminID.ToString()
+                    }).ToList();
+        }
+
+
         [HttpGet]
         public ActionResult AddDocumentType()
         {
-            List<SelectListItem> valueAdmin = (from x in adminManager.GetList()
-                                               select new SelectListItem
-                                               {
-                                                   Text = $"{x.AdminName} {x.AdminSurmane} - {x.AdminJob}" ,
-                                                   Value = x.AdminID.ToString()
-                                               }).ToList();
-            //ViewBag.valueAdmin = valueAdmin;
             DocumentTypeModel documentTypeModel = new DocumentTypeModel();
-            documentTypeModel.selectAdminItems = valueAdmin;
-
+            documentTypeModel.selectAdminItems = selectListItems();
             return View(documentTypeModel);
         }
 
@@ -51,35 +56,40 @@ namespace DocumentManagementSystem.Controllers
         [HttpPost]
         public ActionResult AddDocumentType(DocumentTypeModel documentTypeModel, HttpPostedFileBase file)
         {
-            List<SelectListItem> valueAdmin = (from x in adminManager.GetList()
-                                               select new SelectListItem
-                                               {
-                                                   Text = $"{x.AdminName} {x.AdminSurmane} - {x.AdminJob}",
-                                                   Value = x.AdminID.ToString()
-                                               }).ToList();
-            
-            documentTypeModel.selectAdminItems = valueAdmin;
-
-
+            documentTypeModel.selectAdminItems = selectListItems();
             documentTypeModel.documentType.DocumentTypeCreateDate = DateTime.Parse(DateTime.Now.ToShortDateString());
+            if (documentTypeModel.AdminIds!= null)
+            {
+                documentTypeModel.documentType.DocumentTypeNumSignature = documentTypeModel.AdminIds.Length;
+            }
 
             DocumentTypeValidator documentTypeValidator = new DocumentTypeValidator();
             ValidationResult result = documentTypeValidator.Validate(documentTypeModel.documentType);
 
 
 
-            if (documentTypeModel.selectAdminItems == null)
-            {
-
-            }
-
             try
             {
                 if (result.IsValid)
                 {
+
                     if (FileUploadControl())
                     {
                         documentTypeManager.DocumentTypeAdd(documentTypeModel.documentType);
+                        
+                        
+                        foreach (var id in documentTypeModel.AdminIds)
+                        {
+                            DocumentTypeSignature documentTypeSignature = new DocumentTypeSignature();
+                            documentTypeSignature.AdminID = id;
+                            documentTypeSignature.DocumentSignatureAlign = (id + 1).ToString();
+                            
+
+
+                        }
+
+
+
                         ViewBag.RecordStatus = true;
                     }
                     else

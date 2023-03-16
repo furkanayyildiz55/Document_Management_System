@@ -17,17 +17,5 @@ namespace DataAccessLayer.Concrete
         public DbSet<Document> Documents { get; set; }
         public DbSet<Log> Logs { get; set; }
         public DbSet<DocumentSignature> DocumentSignatures { get; set; }
-
-
-        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        //{
-        //    modelBuilder.Entity<DocumentSignature>()
-        //        .HasRequired(c => c.DocumentTypeID)
-        //        .WithMany()
-        //        .WillCascadeOnDelete(false);
-        //}
-
-
-
     }
 }

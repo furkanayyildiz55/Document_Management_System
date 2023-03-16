@@ -63,10 +63,12 @@
     <Compile Include="Abstract\IAdminService.cs" />
     <Compile Include="Abstract\IDocumentService.cs" />
     <Compile Include="Abstract\IDocumentTypeService.cs" />
+    <Compile Include="Abstract\IDocumentTypeSignatureService.cs" />
     <Compile Include="Abstract\IStudentService.cs" />
     <Compile Include="Concrete\AdminManager.cs" />
     <Compile Include="Concrete\DocumentManager.cs" />
     <Compile Include="Concrete\DocumentTypeManager.cs" />
+    <Compile Include="Concrete\DocumentTypeSignatureManager.cs" />
     <Compile Include="Concrete\StudentManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ValidationRules\AdminValidator.cs" />
