@@ -16,9 +16,9 @@ namespace BusinessLayer.Concrete
             _documentType = documentType;
         }
 
-        public void DocumentTypeAdd(DocumentType documentType)
+        public int DocumentTypeAdd(DocumentType documentType)
         {
-            _documentType.Add(documentType);
+           return _documentType.Add(documentType);
         }
 
         public void DocumentTypeDelete(DocumentType documentType)

@@ -7,7 +7,7 @@ namespace BusinessLayer.Abstract
     public interface IDocumentTypeService
     {
         List<DocumentType> GetList();
-        void DocumentTypeAdd(DocumentType documentType);
+        int DocumentTypeAdd(DocumentType documentType);
         void DocumentTypeDelete(DocumentType documentType);
         void DocumentTypeUpdate(DocumentType documentType);
         DocumentType GetDocumentType(int DocumentTypeID);

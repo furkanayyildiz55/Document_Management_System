@@ -33,14 +33,21 @@ namespace DataAccessLayer.Concrete.Repositories
             context.SaveChanges();
         }
 
-        public void Add(T p)
+        public int Add(T p)
         {
             var addedEntity = context.Entry(p);
             addedEntity.State = EntityState.Added;
 
-            context.SaveChanges(); 
-            var id = p;
+            context.SaveChanges();
 
+            var type = typeof(T);
+            if(type == typeof(DocumentType))
+            {
+                DocumentType documentType = (DocumentType)Convert.ChangeType( p , typeof(DocumentType) );
+                return documentType.DocumentTypeID;
+            }
+            return -1;
+            
         }
 
 

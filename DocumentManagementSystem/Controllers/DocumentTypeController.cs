@@ -75,17 +75,18 @@ namespace DocumentManagementSystem.Controllers
 
                     if (FileUploadControl())
                     {
-                        documentTypeManager.DocumentTypeAdd(documentTypeModel.documentType);
+                       int RegisterDocumentTypeId= documentTypeManager.DocumentTypeAdd(documentTypeModel.documentType);
                         
                         
-                        foreach (var id in documentTypeModel.AdminIds)
+                        foreach (var Adminid in documentTypeModel.AdminIds)
                         {
+                            int align = 1;
                             DocumentTypeSignature documentTypeSignature = new DocumentTypeSignature();
-                            documentTypeSignature.AdminID = id;
-                            documentTypeSignature.DocumentSignatureAlign = (id + 1).ToString();
-                            
-
-
+                            documentTypeSignature.AdminID = Adminid;
+                            documentTypeSignature.DocumentSignatureAlign = align.ToString();
+                            documentTypeSignature.DocumentTypeID = RegisterDocumentTypeId;
+                            DocumentTypeSignatureManager.DocumentTypeSignatureAdd(documentTypeSignature);
+                            align++;
                         }
 
 
