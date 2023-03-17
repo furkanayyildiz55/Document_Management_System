@@ -22,7 +22,7 @@ namespace EntityLayer.Concrete
         public int DocumentTypeID { get; set; }
         public virtual DocumentType DocumentType { get; set; }
 
-        public int StudentNo { get; set; }
+        public int StudentID { get; set; }
         public virtual Student Student { get; set; }
 
         public int AdminID { get; set; }

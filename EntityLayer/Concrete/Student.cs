@@ -20,8 +20,6 @@ namespace EntityLayer.Concrete
 
         public string StudentMail { get; set; }
 
-        //Ünv. Kayıtlı İse
-
         public bool StudentUniversityRegistered { get; set; }
 
         public string StudentNo { get; set; }
