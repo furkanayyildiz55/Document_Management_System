@@ -46,6 +46,11 @@ namespace DataAccessLayer.Concrete.Repositories
                 DocumentType documentType = (DocumentType)Convert.ChangeType( p , typeof(DocumentType) );
                 return documentType.DocumentTypeID;
             }
+            else if (type == typeof(Document))
+            {
+                Document document = (Document)Convert.ChangeType( p , typeof(Document) );
+                return document.DocumentTypeID;
+            }
             return -1;
             
         }

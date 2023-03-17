@@ -13,6 +13,8 @@ namespace EntityLayer.Concrete
 
         public string DocumentVerificationCode { get; set; }
 
+        public string DocumentAlternativeText { get; set; }
+
         public DateTime  DocumentCreateDate { get; set; }
 
         public bool DocumentStatus { get; set; }

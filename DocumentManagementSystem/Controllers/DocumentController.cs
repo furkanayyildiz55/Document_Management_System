@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
+using DocumentManagementSystem.Models;
 using EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
@@ -14,36 +15,47 @@ namespace DocumentManagementSystem.Controllers
 
         DocumentManager documentManager = new DocumentManager(new EfDocumentDal());
         DocumentTypeManager documentTypeManager = new DocumentTypeManager(new EfDocumentTypeDal());
+        DocumentTypeSignatureManager DocumentTypeSignatureManager = new DocumentTypeSignatureManager(new EfDocumentTypeSignatureDal());
 
-
-
-        // GET: Document
-        public ActionResult Index()
-        {
-            return View();
-        }
 
         #region AddDocument
+        private List<SelectListItem> getDocumentTypeValue()
+        {
+            return (from x in documentTypeManager.GetListActiveDocument()
+                    select new SelectListItem
+                    {
+                        Text = x.DocumentTypeName,
+                        Value = x.DocumentTypeID.ToString()
+                    }).ToList();
+        }
 
         [HttpGet]
         public ActionResult AddDocument()
         {
-            List<SelectListItem> valueDocumentType = (from x in documentTypeManager.GetList()
-                                                      select new SelectListItem
-                                                      {
-                                                          Text = x.DocumentTypeName,
-                                                          Value = x.DocumentTypeID.ToString()
-                                                      }).ToList() ;
+            DocumentModel documentModel = new DocumentModel(); 
+            documentModel.selectDocumentTypeItems= getDocumentTypeValue();
+            return View(documentModel);
+        }
 
-            ViewBag.valueDocumentType = valueDocumentType;
-
-
-            return View();
+        private string GenerateVerificationCode()
+        {
+            string uniqueCode = Guid.NewGuid().ToString().ToUpper().Replace("-", "").Replace("0", "Z").Replace("O", "M");
+            string part1 = uniqueCode.Substring(0, 4);
+            string part2 = uniqueCode.Substring(10, 4);
+            string part3 = uniqueCode.Substring(20, 4);
+            return  part1 + part2 + part3;
         }
 
         [HttpPost]
-        public ActionResult AddDocument(Document document )
+        public ActionResult AddDocument(DocumentModel documentModel )
         {
+            documentModel.document.DocumentCreateDate= DateTime.Parse(DateTime.Now.ToShortDateString());
+            documentModel.document.DocumentStatus = false;
+            documentModel.document.DocumentPdfUrl = "";
+            documentModel.document.DocumentVerificationCode = GenerateVerificationCode();
+
+
+
 
 
 

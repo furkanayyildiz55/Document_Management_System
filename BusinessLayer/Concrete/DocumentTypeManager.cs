@@ -41,5 +41,9 @@ namespace BusinessLayer.Concrete
             return _documentType.Get(x => x.DocumentTypeID == DocumentTypeID);
         }
 
+        public List<DocumentType> GetListActiveDocument()
+        {
+            return _documentType.List(x => x.DocumentTypeStatus == true);
+        }
     }
 }

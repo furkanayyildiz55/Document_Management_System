@@ -31,7 +31,7 @@
                             <br />
                             @Html.Label("Belge Türü İmza/İmzalar *")
                             <span title="Belgeye eklenecek imza/imzaları seçiniz. İmzalar seçim sırasına göre soldan sağa sıralanacaktır !"><i class="fa fa-info-circle text-primary"></i></span>
-                            @Html.DropDownListFor(x => x.AdminIds, Model.selectAdminItems, new { @class = "form-control", id = "sec", multiple = "multiple", placeholder = "İmza seçiniz..." })
+                            @Html.DropDownListFor(x => x.AdminIds, Model.selectAdminItems, new { @class = "form-control", id = "sec", multiple = "multiple" })
                             @Html.ValidationMessage("DocumentTypeNumSignature")
 
 
