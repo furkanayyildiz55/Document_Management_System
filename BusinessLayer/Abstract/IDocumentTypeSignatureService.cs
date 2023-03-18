@@ -10,7 +10,7 @@ namespace BusinessLayer.Abstract
         void DocumentTypeSignatureDelete(DocumentTypeSignature documentTypeSignature);
         void DocumentTypeSignatureUpdate(DocumentTypeSignature documentTypeSignature);
         DocumentTypeSignature GetDocumentTypeSignature(int documentTypeSignature);
-        List<DocumentTypeSignature> GetListToDocumentType(int documentTypeID);
+        List<DocumentTypeSignature> GetListToDocumentTypeSignature(int documentTypeID);
 
     }
 }

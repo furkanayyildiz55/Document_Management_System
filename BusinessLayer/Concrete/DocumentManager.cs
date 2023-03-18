@@ -16,9 +16,9 @@ namespace BusinessLayer.Concrete
         }
 
 
-        public void DocumentAdd(Document document)
+        public int DocumentAdd(Document document)
         {
-            _document.Add(document);
+           return _document.Add(document);
         }
 
         public void DocumentDelete(Document document)

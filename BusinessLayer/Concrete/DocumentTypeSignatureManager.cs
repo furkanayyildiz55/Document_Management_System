@@ -33,10 +33,10 @@ namespace BusinessLayer.Concrete
 
         public DocumentTypeSignature GetDocumentTypeSignature(int documentTypeSignatureID)
         {
-            return _documentTypeSignature.Get(x => x.DocumentSignatureID == documentTypeSignatureID);
+            return _documentTypeSignature.Get(x => x.DocumentTypeSignatureID == documentTypeSignatureID);
         }
 
-        public List<DocumentTypeSignature> GetListToDocumentType(int documentTypeID  )
+        public List<DocumentTypeSignature> GetListToDocumentTypeSignature(int documentTypeID  )
         {
             return _documentTypeSignature.List(x => x.DocumentTypeID == documentTypeID);
         }

@@ -22,7 +22,12 @@ namespace BusinessLayer.Concrete
 
         public Student GetStudent(int studentID)
         {
-           return  _student.Get(x => x.StudentID== studentID);
+           return  _student.Get(x => x.StudentID == studentID);
+        }
+
+        public Student GetStudentWihtNumber(string studentNo)
+        {
+            return _student.Get(x => x.StudentNo == studentNo);
         }
 
         public void StudentAdd(Student student)
@@ -39,5 +44,7 @@ namespace BusinessLayer.Concrete
         {
             _student.Update(student);
         }
+
+        
     }
 }

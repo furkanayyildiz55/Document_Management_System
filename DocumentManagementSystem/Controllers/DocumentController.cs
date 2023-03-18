@@ -16,7 +16,8 @@ namespace DocumentManagementSystem.Controllers
         DocumentManager documentManager = new DocumentManager(new EfDocumentDal());
         DocumentTypeManager documentTypeManager = new DocumentTypeManager(new EfDocumentTypeDal());
         DocumentTypeSignatureManager DocumentTypeSignatureManager = new DocumentTypeSignatureManager(new EfDocumentTypeSignatureDal());
-
+        DocumentSignatureManager DocumentSignatureManager = new DocumentSignatureManager(new EfDocumentSignatureDal());
+        StudentManager StudentManager = new StudentManager(new EfStudentDal());
 
         #region AddDocument
         private List<SelectListItem> getDocumentTypeValue()
@@ -49,12 +50,30 @@ namespace DocumentManagementSystem.Controllers
         [HttpPost]
         public ActionResult AddDocument(DocumentModel documentModel )
         {
+            //TODO : Authorization sisteminde geçince id sistem tarafından atansın!
+            documentModel.document.AdminID = 1;
             documentModel.document.DocumentCreateDate= DateTime.Parse(DateTime.Now.ToShortDateString());
             documentModel.document.DocumentStatus = false;
             documentModel.document.DocumentPdfUrl = "";
             documentModel.document.DocumentVerificationCode = GenerateVerificationCode();
+            /*
+            Student student = StudentManager.GetStudentWihtNumber(documentModel.document.StudentID.ToString());
+            documentModel.document.StudentID = student.StudentID;
+            */
+            documentModel.document.StudentID = 1;
+            int documetnID = documentManager.DocumentAdd(documentModel.document);
+            
+             
 
-
+            List<DocumentTypeSignature> signatureList = DocumentTypeSignatureManager.GetListToDocumentTypeSignature(documentModel.document.DocumentTypeID);
+            foreach (DocumentTypeSignature signature in signatureList)
+            {
+                DocumentSignature documentSignature = new DocumentSignature();
+                documentSignature.DocumentSignatureStatus = false;
+                documentSignature.DocumentTypeSignatureID = signature.DocumentTypeSignatureID;
+                documentSignature.DocumentID = documetnID;
+                DocumentSignatureManager.DocumentSignatureAdd(documentSignature);
+            }
 
 
 

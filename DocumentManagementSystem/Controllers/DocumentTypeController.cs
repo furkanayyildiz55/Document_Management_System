@@ -83,7 +83,7 @@ namespace DocumentManagementSystem.Controllers
                             int align = 1;
                             DocumentTypeSignature documentTypeSignature = new DocumentTypeSignature();
                             documentTypeSignature.AdminID = Adminid;
-                            documentTypeSignature.DocumentSignatureAlign = align.ToString();
+                            documentTypeSignature.DocumentTypeSignatureAlign = align.ToString();
                             documentTypeSignature.DocumentTypeID = RegisterDocumentTypeId;
                             DocumentTypeSignatureManager.DocumentTypeSignatureAdd(documentTypeSignature);
                             align++;

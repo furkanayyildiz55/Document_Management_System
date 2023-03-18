@@ -11,7 +11,7 @@ namespace BusinessLayer.Abstract
     {
 
         List<Document> GetList();
-        void DocumentAdd(Document document);
+        int DocumentAdd(Document document);
         void DocumentDelete(Document document);
         void DocumentUpdate(Document document);
         Document GetDocument(int document);

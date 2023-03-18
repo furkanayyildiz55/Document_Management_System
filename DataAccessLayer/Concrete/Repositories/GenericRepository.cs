@@ -49,15 +49,11 @@ namespace DataAccessLayer.Concrete.Repositories
             else if (type == typeof(Document))
             {
                 Document document = (Document)Convert.ChangeType( p , typeof(Document) );
-                return document.DocumentTypeID;
+                return document.DocumentID;
             }
             return -1;
             
         }
-
-
-
-
 
         public void Update(T p)
         {
@@ -80,7 +76,6 @@ namespace DataAccessLayer.Concrete.Repositories
         public T Get(Expression<Func<T, bool>> filter)  //TODO:  bu  performan kaybı yaşatıyormuş  <Func<T, bool>> filter bu tarz bişey varmış dene !
         {
             return _object.SingleOrDefault(filter); //Dizde veya listede sadece bir değer döndürek için kullanılan EF linq methodu
-
         }
 
 
