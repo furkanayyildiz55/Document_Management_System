@@ -72,6 +72,8 @@
     <Compile Include="Concrete\DocumentTypeManager.cs" />
     <Compile Include="Concrete\DocumentTypeSignatureManager.cs" />
     <Compile Include="Concrete\StudentManager.cs" />
+    <Compile Include="Models\DocumentModel.cs" />
+    <Compile Include="Models\DocumentTypeModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ValidationRules\AdminValidator.cs" />
     <Compile Include="ValidationRules\DocumentTypeValidator.cs" />

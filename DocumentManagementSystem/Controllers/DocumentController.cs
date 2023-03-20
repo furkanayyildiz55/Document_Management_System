@@ -5,8 +5,8 @@ using EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+
 
 namespace DocumentManagementSystem.Controllers
 {
@@ -33,8 +33,8 @@ namespace DocumentManagementSystem.Controllers
         [HttpGet]
         public ActionResult AddDocument()
         {
-            DocumentModel documentModel = new DocumentModel(); 
-            documentModel.selectDocumentTypeItems= getDocumentTypeValue();
+            DocumentModel documentModel = new DocumentModel();
+            documentModel.selectDocumentTypeItems = getDocumentTypeValue();
             return View(documentModel);
         }
 
@@ -44,28 +44,35 @@ namespace DocumentManagementSystem.Controllers
             string part1 = uniqueCode.Substring(0, 4);
             string part2 = uniqueCode.Substring(10, 4);
             string part3 = uniqueCode.Substring(20, 4);
-            return  part1 + part2 + part3;
+            return part1 + part2 + part3;
         }
 
         [HttpPost]
-        public ActionResult AddDocument(DocumentModel documentModel )
+        public ActionResult AddDocument(DocumentModel documentModel)
         {
             //TODO : Authorization sisteminde geçince id sistem tarafından atansın!
             documentModel.document.AdminID = 1;
-            documentModel.document.DocumentCreateDate= DateTime.Parse(DateTime.Now.ToShortDateString());
+            documentModel.document.DocumentCreateDate = DateTime.Parse(DateTime.Now.ToString());
             documentModel.document.DocumentStatus = false;
             documentModel.document.DocumentPdfUrl = "";
             documentModel.document.DocumentVerificationCode = GenerateVerificationCode();
-            /*
-            Student student = StudentManager.GetStudentWihtNumber(documentModel.document.StudentID.ToString());
-            documentModel.document.StudentID = student.StudentID;
-            */
-            documentModel.document.StudentID = 1;
-            int documetnID = documentManager.DocumentAdd(documentModel.document);
-            
-             
 
+            //öğrenci verileri çekiliyor
+            var student = StudentManager.GetStudentWihtNumber(documentModel.studentNo);
+            if (student != null)
+            {
+                ViewBag.RecordStatus = false;
+                ViewBag.ErrorMessage = "Öğrenci bilgisi bulunamadı";
+            }
+            documentModel.document.StudentID = student.StudentID;
+
+            //belge ekleniyor ve idsi çekiliyor
+            int documetnID = documentManager.DocumentAdd(documentModel.document);
+
+            //belge türü verileri çekiliyor
             List<DocumentTypeSignature> signatureList = DocumentTypeSignatureManager.GetListToDocumentTypeSignature(documentModel.document.DocumentTypeID);
+
+            //belgeye imza ekleme işlemleri yapılıyor
             foreach (DocumentTypeSignature signature in signatureList)
             {
                 DocumentSignature documentSignature = new DocumentSignature();
@@ -75,11 +82,8 @@ namespace DocumentManagementSystem.Controllers
                 DocumentSignatureManager.DocumentSignatureAdd(documentSignature);
             }
 
-
-
-
-
-            return View();
+            documentModel.selectDocumentTypeItems = getDocumentTypeValue();
+            return View(documentModel);
         }
 
         #endregion

@@ -8,5 +8,6 @@ namespace DocumentManagementSystem.Models
     {
         public List<SelectListItem> selectDocumentTypeItems { get; set; }
         public Document document { get; set; }
+        public string studentNo { get; set; }
     }
 }
