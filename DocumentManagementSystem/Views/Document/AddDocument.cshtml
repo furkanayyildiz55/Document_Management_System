@@ -16,47 +16,98 @@
                 <div class="col col-lg-6">
                     <div class="form-group">
                         @Html.Label("Belge Türü *")
-                        @Html.DropDownListFor(x => x.document.DocumentTypeID, Model.selectDocumentTypeItems, new { @class = "form-control", id = "sec"})
+                        @Html.DropDownListFor(x => x.document.DocumentTypeID, Model.selectDocumentTypeItems, new { @class = "form-control", id = "sec" })
                         @Html.ValidationMessage("DocumentTypeID")
                         <br />
                         @Html.Label("Öğrenci No *")
-                        @Html.TextBoxFor(x => x.studentNo, new { @class = "form-control" })
+                        @Html.TextBoxFor(x => x.studentNo, new { @class = "form-control", })
                         @Html.ValidationMessage("StudentNo")
                         <br />
                         @Html.Label("Alternatif Açıklama ")
                         <span title="Alternatif açıklama varsayılan belge açıklamasını yok sayar. Alternatif açıklama istemiyorsanız boş bırakın!"><i class="fa fa-info-circle text-primary"></i></span>
                         @Html.TextBoxFor(x => x.document.DocumentAlternativeText, new { @class = "form-control" })
                         @Html.ValidationMessage("DocumentAlternativeText")
-
                     </div>
+
+                    <button id="AdminAddButton" class="btn btn-primary">Belge Oluştur</button>
+                    <br />
+                    @Html.ValidationMessage("PageError")
                 </div>
-
-                <script>
-                        $("#sec").chosen({
-                            'no_results_text': 'Aranan belge türü bulunamadı!',
-                            'placeholder_text_single': "Belge Türü Seçiniz...",
-                        });
-                </script>
-
-                <div class="col col-lg-6">
-
-
-                    @{ if (ViewBag.RecordStatus != null && ViewBag.RecordStatus == false)
-                        {
-                            if (ViewBag.RecordStatus)
-                            {
-                                //<p></p>
-                            }
-                            else
-                            {
-                                <p>@ViewBag.ErrorMessage</p>
-                            }
-                        }
-                    }
-                </div>
-                <br />
-                <button id="AdminAddButton" class="btn btn-primary">Yeni Öğrenci Oluştur</button>
             </div>
         }
     </div>
 </div>
+
+
+
+<script>
+    $("#sec").chosen({
+        'no_results_text': 'Aranan belge türü bulunamadı!',
+        'placeholder_text_single': "Belge Türü Seçiniz...",
+    });
+</script>
+
+@{
+    if (ViewBag.RecordStatus != null)
+    {
+        if (ViewBag.RecordStatus)
+        {
+            <script>
+                const swalWithBootstrapButtons = Swal.mixin({
+                    customClass: {
+                        confirmButton: 'btn btn-success',
+                        cancelButton: 'btn btn-primary'
+                    },
+                    buttonsStyling: false
+                })
+
+                swalWithBootstrapButtons.fire({
+                    title: 'Başarılı',
+                    text: "Belge Oluşturuldu!",
+                    icon: 'success',
+                    showCancelButton: true,
+                    confirmButtonText: 'Tamam',
+                    cancelButtonText: 'Son oluşturulan belgeri listele',
+                    reverseButtons: true
+                }).then((result) => {
+                    if (result.isConfirmed) {
+
+                    } else if (result.dismiss === Swal.DismissReason.cancel) {
+                        window.location.href = "@Url.Action("AdminList", "Admin")";
+                    }
+                })
+            </script>
+        }
+        else
+        {
+            /*
+            <script>
+                const swalWithBootstrapButtons = Swal.mixin({
+                    customClass: {
+                        confirmButton: 'btn btn-success',
+                        cancelButton: 'btn btn-primary'
+                    },
+                    buttonsStyling: false
+                })
+
+                swalWithBootstrapButtons.fire({
+                    title: 'Başarısız!',
+                    text: "Yeni Admin Oluşturulamadı!",
+                    icon: 'eroor',
+                    showCancelButton: true,
+                    confirmButtonText: 'Tamam',
+                    cancelButtonText: 'Admin Listeleme Sayfasına Git',
+                    reverseButtons: true
+                }).then((result) => {
+                    if (result.isConfirmed) {
+
+                    } else if (result.dismiss === Swal.DismissReason.cancel) {
+                        window.location.href = "@Url.Action("AdminList", "Admin")";
+                    }
+                })
+            </script>
+            */
+        }
+    }
+
+}
