@@ -9,6 +9,7 @@ namespace DocumentManagementSystem.Models
     public class DocumentCreateModel
     {
         //TODO: jS işlemleri için kullanlacak model
+        //TODO: Raporlama arayüzleri denenecek
         string StudentFullName { get; set; }
         string StudentNoMail { get; set; }
         string StudentProgram { get; set; }
