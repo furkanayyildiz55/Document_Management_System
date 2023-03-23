@@ -10,26 +10,26 @@ namespace DocumentManagementSystem.Models
     {
         //TODO: jS işlemleri için kullanlacak model
         //TODO: Raporlama arayüzleri denenecek
-        string StudentFullName { get; set; }
-        string StudentNoMail { get; set; }
-        string StudentProgram { get; set; }
+        public string StudentFullName { get; set; }
+        public string StudentNoMail { get; set; }
+        public string StudentProgram { get; set; }
 
-        string DocumentName { get; set; }
-        string DocumentText { get; set; }
-        string DocumentVerificationCode { get; set; }
-        string DocumentCreateDate  { get; set; }
-        string DocumentBacgrounImage { get; set; }
-        List<DocumentCreateSignature> documentCreateSignatures { get; set; }
+        public string DocumentName { get; set; }
+        public string DocumentText { get; set; }
+        public string DocumentVerificationCode { get; set; }
+        public string DocumentCreateDate  { get; set; }
+        public string DocumentBacgrounImage { get; set; }
+        public List<DocumentCreateSignature> documentCreateSignatures = new List<DocumentCreateSignature>();
 
     }
 
     public class DocumentCreateSignature
     {
-        string AdminFullName { get; set; }
-        string AdminJob { get; set; }
-        string AdminSignatureImage { get; set; }
-        bool SignatureStatus { get; set; }
-        string SignatureAlign { get; set; }
+        public string AdminFullName { get; set; }
+        public string AdminJob { get; set; }
+        public string AdminSignatureImage { get; set; }
+        public bool SignatureStatus { get; set; }
+        public string SignatureAlign { get; set; }
     }
 
     

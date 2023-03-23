@@ -20,6 +20,7 @@ namespace DocumentManagementSystem.Controllers
         DocumentTypeSignatureManager DocumentTypeSignatureManager = new DocumentTypeSignatureManager(new EfDocumentTypeSignatureDal());
         DocumentSignatureManager DocumentSignatureManager = new DocumentSignatureManager(new EfDocumentSignatureDal());
         StudentManager StudentManager = new StudentManager(new EfStudentDal());
+        AdminManager AdminManager = new AdminManager(new EfAdminDal());
 
         #region AddDocument
         private List<SelectListItem> getDocumentTypeValue()
@@ -133,6 +134,60 @@ namespace DocumentManagementSystem.Controllers
             documentModel.selectDocumentTypeItems = getDocumentTypeValue();
             return View(documentModel);
         }
+
+        #endregion
+
+
+        #region CreateDocument
+
+        [HttpGet]
+        public ActionResult CreateDocument (int DocumentID)
+        {
+            DocumentID = 23;
+            Document document = documentManager.GetDocument(DocumentID);
+
+            Student student = StudentManager.GetStudent(document.StudentID);
+            DocumentType documentType = documentTypeManager.GetDocumentType(document.DocumentTypeID);
+            DocumentTypeSignature documentTypeSignature = DocumentTypeSignatureManager.GetDocumentTypeSignature(documentType.DocumentTypeID);
+            List<DocumentSignature> documentSignatureList = DocumentSignatureManager.GetList(document.DocumentID);
+
+            DocumentCreateModel documentCreateModel = new DocumentCreateModel();
+            documentCreateModel.StudentFullName = $"{student.StudentName} {student.StudentSurname}";
+            documentCreateModel.StudentNoMail = student.StudentNo != null ? student.StudentNo.ToString() : student.StudentMail;
+            documentCreateModel.StudentProgram = student.StudentProgram;
+
+            documentCreateModel.DocumentName = documentType.DocumentTypeName;
+            documentCreateModel.DocumentText = document.DocumentAlternativeText != null ? document.DocumentAlternativeText : documentType.DocumentTypeText;
+            documentCreateModel.DocumentVerificationCode = document.DocumentVerificationCode;
+            documentCreateModel.DocumentCreateDate = document.DocumentCreateDate.ToShortDateString();
+            documentCreateModel.DocumentBacgrounImage = documentType.DocumentTypeBacgroundImage;
+
+            foreach (var documentSignature in documentSignatureList)
+            {
+                DocumentCreateSignature documentCreateSignature = new DocumentCreateSignature();
+
+                DocumentTypeSignature documentTypeSignature1 = DocumentTypeSignatureManager.GetDocumentTypeSignature(documentTypeSignature.DocumentTypeSignatureID);
+                Admin admin = AdminManager.GetAdmin((int)documentTypeSignature1.AdminID);
+
+                documentCreateSignature.AdminFullName = $"{admin.AdminName} {admin.AdminSurmane}";
+                documentCreateSignature.AdminJob = admin.AdminJob;
+                documentCreateSignature.AdminSignatureImage = admin.AdminSignatureImage;
+                documentCreateSignature.SignatureStatus = documentSignature.DocumentSignatureStatus;
+                documentCreateSignature.SignatureAlign = documentCreateSignature.SignatureAlign !=null ? documentCreateSignature.SignatureAlign : "";
+                
+                documentCreateModel.documentCreateSignatures.Add(documentCreateSignature);
+            }
+
+            return View(documentCreateModel);
+        }
+
+        [HttpPost]
+        public ActionResult CreateDocument()
+        {
+            //PDF KAYDEDİLECEK
+            return View();
+        }
+
 
         #endregion
     }
