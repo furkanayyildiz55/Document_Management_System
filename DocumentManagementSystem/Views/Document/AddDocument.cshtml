@@ -17,16 +17,16 @@
                     <div class="form-group">
                         @Html.Label("Belge Türü *")
                         @Html.DropDownListFor(x => x.document.DocumentTypeID, Model.selectDocumentTypeItems, new { @class = "form-control", id = "sec" })
-                        @Html.ValidationMessage("DocumentTypeID")
+                        @Html.ValidationMessage("DocumentTypeID" , new { @class = "text-danger" })
                         <br />
                         @Html.Label("Öğrenci No *")
                         @Html.TextBoxFor(x => x.studentNo, new { @class = "form-control", })
-                        @Html.ValidationMessage("StudentNo")
+                        @Html.ValidationMessage("StudentNo" , new { @class = "text-danger" })
                         <br />
                         @Html.Label("Alternatif Açıklama ")
                         <span title="Alternatif açıklama varsayılan belge açıklamasını yok sayar. Alternatif açıklama istemiyorsanız boş bırakın!"><i class="fa fa-info-circle text-primary"></i></span>
                         @Html.TextBoxFor(x => x.document.DocumentAlternativeText, new { @class = "form-control" })
-                        @Html.ValidationMessage("DocumentAlternativeText")
+                        @Html.ValidationMessage("DocumentAlternativeText" , new { @class = "text-danger" })
                     </div>
 
                     <button id="AdminAddButton" class="btn btn-primary">Belge Oluştur</button>

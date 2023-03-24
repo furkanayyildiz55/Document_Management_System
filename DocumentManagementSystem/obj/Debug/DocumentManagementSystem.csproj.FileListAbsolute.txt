@@ -206,3 +206,4 @@ C:\Users\furka\Source\Repos\Document_Management_System\DocumentManagementSystem\
 C:\Users\furka\Source\Repos\Document_Management_System\DocumentManagementSystem\obj\Debug\DocumentManagementSystem.csproj.CopyComplete
 C:\Users\furka\Source\Repos\Document_Management_System\DocumentManagementSystem\obj\Debug\DocumentManagementSystem.dll
 C:\Users\furka\Source\Repos\Document_Management_System\DocumentManagementSystem\obj\Debug\DocumentManagementSystem.pdb
+C:\Users\furka\source\repos\Document_Management_System\DocumentManagementSystem\bin\Rotativa.dll

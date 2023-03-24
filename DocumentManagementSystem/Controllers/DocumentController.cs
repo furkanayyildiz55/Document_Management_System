@@ -4,8 +4,11 @@ using DataAccessLayer.EntityFramework;
 using DocumentManagementSystem.Models;
 using EntityLayer.Concrete;
 using FluentValidation.Results;
+using Rotativa;
+using Rotativa.Options;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -141,9 +144,9 @@ namespace DocumentManagementSystem.Controllers
         #region CreateDocument
 
         [HttpGet]
-        public ActionResult CreateDocument (int DocumentID)
+        public ActionResult CreateDocument ()
         {
-            DocumentID = 23;
+            int DocumentID = 23;
             Document document = documentManager.GetDocument(DocumentID);
 
             Student student = StudentManager.GetStudent(document.StudentID);
@@ -177,17 +180,44 @@ namespace DocumentManagementSystem.Controllers
                 
                 documentCreateModel.documentCreateSignatures.Add(documentCreateSignature);
             }
+            ViewBag.data = documentCreateModel;
+
+            
 
             return View(documentCreateModel);
         }
 
         [HttpPost]
-        public ActionResult CreateDocument()
+        public ActionResult CreateDocument(Document d)
         {
             //PDF KAYDEDİLECEK
             return View();
         }
 
+
+
+        public ActionResult GeneratePDF(string VerificationCode)
+        {
+            var report =  new ActionAsPdf("CreateDocument")
+            {
+                FileName = Server.MapPath("~/Content/Relato.pdf" ),
+                PageOrientation = Rotativa.Options.Orientation.Landscape,
+                PageSize = Rotativa.Options.Size.A4,
+                PageMargins = new Margins(0, 0, 0, 0),
+            };
+
+            string fileName =  VerificationCode+"Test.pdf";
+            string fullPath =  Server.MapPath("~/image/" + fileName);
+
+            if (!System.IO.File.Exists(fullPath))
+            {
+                var byteArray = report.BuildPdf(ControllerContext);
+                var fileStream = new FileStream(fullPath, FileMode.Create, FileAccess.Write);
+                fileStream.Write(byteArray, 0, byteArray.Length);
+                fileStream.Close();
+            }
+            return report;
+        }
 
         #endregion
     }

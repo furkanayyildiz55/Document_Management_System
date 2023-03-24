@@ -1,8 +1,25 @@
-﻿
+﻿@model DocumentManagementSystem.Models.DocumentCreateModel
+
 @{
     ViewBag.Title = "CreateDocument";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    Layout = "";
 }
 
-<h2>CreateDocument</h2>
 
+<img src=" @Model.DocumentBacgrounImage " alt="alternatetext">
+
+
+<script type="text/javascript">
+
+    MyFunction();
+
+    function MyFunction() {
+        var json = @(Html.Raw(Json.Encode(Model)));
+        console.log(json["StudentFullName"] + " JSON ÇALISIYOR ")
+
+
+        console.log(json);
+        console.log(json.StudentFullName);
+        console.log(json.documentCreateSignatures[0].AdminFullName) 
+    }
+</script>
