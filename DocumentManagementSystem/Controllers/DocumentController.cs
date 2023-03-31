@@ -12,7 +12,6 @@ using System.IO;
 using System.Linq;
 using System.Web.Mvc;
 
-
 namespace DocumentManagementSystem.Controllers
 {
     public class DocumentController : Controller
@@ -141,12 +140,52 @@ namespace DocumentManagementSystem.Controllers
         #endregion
 
 
-        #region CreateDocument
+        #region CreateandVievDocument
 
-        [HttpGet]
-        public ActionResult CreateDocument ()
+        public ActionResult CreateDocument (  )
         {
-            int DocumentID = 23;
+            int DocumentID=24;
+            DocumentCreateModel documentCreateModel = DocumentCreateModelGetData(DocumentID);
+            return View(documentCreateModel);
+        }
+
+        
+        public ActionResult GeneratePDF()
+        {
+            //TODO: buradaki documentID ye sahip document varmı kontrol edilecek, bu kontrol DocumentCreateModelGetData içinde yapılacak dönüş değeri null olursa belge yok sayılacak
+            //bütün imzalar tamamlanmadan pdf oluşturulamaz
+            int DocumentID = 24;
+            DocumentCreateModel documentCreateModel = DocumentCreateModelGetData(DocumentID);
+
+            var report =  new ViewAsPdf("CreateDocument" , documentCreateModel )
+            {
+                //FileName = Server.MapPath("~/Content/DENEME.pdf" ),
+                PageOrientation = Rotativa.Options.Orientation.Landscape,
+                PageSize = Rotativa.Options.Size.A4,
+                PageMargins = new Margins(0, 0, 0, 0),
+            };
+
+            string fileName =  $"{documentCreateModel.StudentFullName} {documentCreateModel.DocumentName} {documentCreateModel.DocumentVerificationCode}.pdf";
+            string fullPath =  Server.MapPath("~/DocumentsPDF/" + fileName);
+
+
+            var byteArray = report.BuildPdf(ControllerContext);
+            var fileStream = new FileStream(fullPath, FileMode.Create, FileAccess.Write);
+            fileStream.Write(byteArray, 0, byteArray.Length);
+            fileStream.Close();
+
+            //if (!System.IO.File.Exists(fullPath))
+            //{
+            //}
+
+            ViewBag.PDF = "/DocumentsPDF/" + fileName ;
+            return View();
+        }
+
+        private DocumentCreateModel DocumentCreateModelGetData(int DocumentID)
+        {
+            //belge varmı kontrolü ve try catch
+
             Document document = documentManager.GetDocument(DocumentID);
 
             Student student = StudentManager.GetStudent(document.StudentID);
@@ -176,49 +215,13 @@ namespace DocumentManagementSystem.Controllers
                 documentCreateSignature.AdminJob = admin.AdminJob;
                 documentCreateSignature.AdminSignatureImage = admin.AdminSignatureImage;
                 documentCreateSignature.SignatureStatus = documentSignature.DocumentSignatureStatus;
-                documentCreateSignature.SignatureAlign = documentCreateSignature.SignatureAlign !=null ? documentCreateSignature.SignatureAlign : "";
-                
+                documentCreateSignature.SignatureAlign = documentCreateSignature.SignatureAlign != null ? documentCreateSignature.SignatureAlign : "";
+
                 documentCreateModel.documentCreateSignatures.Add(documentCreateSignature);
             }
-            ViewBag.data = documentCreateModel;
-
-            
-
-            return View(documentCreateModel);
+            return documentCreateModel;
         }
 
-        [HttpPost]
-        public ActionResult CreateDocument(Document d)
-        {
-            //PDF KAYDEDİLECEK
-            //TODO : 
-            return View();
-        }
-
-
-
-        public ActionResult GeneratePDF(string VerificationCode)
-        {
-            var report =  new ActionAsPdf("CreateDocument")
-            {
-                FileName = Server.MapPath("~/Content/Relato.pdf" ),
-                PageOrientation = Rotativa.Options.Orientation.Landscape,
-                PageSize = Rotativa.Options.Size.A4,
-                PageMargins = new Margins(0, 0, 0, 0),
-            };
-
-            string fileName =  VerificationCode+"Test.pdf";
-            string fullPath =  Server.MapPath("~/image/" + fileName);
-
-            if (!System.IO.File.Exists(fullPath))
-            {
-                var byteArray = report.BuildPdf(ControllerContext);
-                var fileStream = new FileStream(fullPath, FileMode.Create, FileAccess.Write);
-                fileStream.Write(byteArray, 0, byteArray.Length);
-                fileStream.Close();
-            }
-            return report;
-        }
 
         #endregion
     }
