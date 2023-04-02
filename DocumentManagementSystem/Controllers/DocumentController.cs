@@ -144,6 +144,7 @@ namespace DocumentManagementSystem.Controllers
 
         public ActionResult CreateDocument (  )
         {
+            //TODO :  ID gözükmeyecek şekilde sayfa çalıştırılacak
             int DocumentID=24;
             DocumentCreateModel documentCreateModel = DocumentCreateModelGetData(DocumentID);
             return View(documentCreateModel);
