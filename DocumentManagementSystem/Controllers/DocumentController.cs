@@ -24,7 +24,32 @@ namespace DocumentManagementSystem.Controllers
         StudentManager StudentManager = new StudentManager(new EfStudentDal());
         AdminManager AdminManager = new AdminManager(new EfAdminDal());
 
+
+
+        #region DocumentTypeList
+
+        [HttpGet]
+        public ActionResult DocumentList()
+        {
+            DocumentListModel documentListModel = new DocumentListModel();
+            documentListModel.DocumentList= documentManager.GetList();
+            return View(documentListModel);
+
+        }
+
+
+        [HttpPost]
+        public ActionResult DocumentList(DocumentListModel documentListModel)
+        {
+            documentListModel.DocumentList = documentManager.GetList(documentListModel.StudentNo);
+            return View(documentListModel);
+        }
+
+        #endregion
+
         #region AddDocument
+
+        #region Methods
         private List<SelectListItem> getDocumentTypeValue()
         {
             return (from x in documentTypeManager.GetListActiveDocument()
@@ -42,6 +67,7 @@ namespace DocumentManagementSystem.Controllers
             string part3 = uniqueCode.Substring(20, 4);
             return part1 + part2 + part3;
         }
+        #endregion
 
         [HttpGet]
         public ActionResult AddDocument()
@@ -117,22 +143,12 @@ namespace DocumentManagementSystem.Controllers
                     }
                 }
                 return View(documentModel); ;
-
             }
             catch (Exception e)
             {
                 ViewBag.RecordStatus = false;
                 ModelState.AddModelError("PageError", $"Bilinmeyen hata gerçekleşti: {e.Message} ");
             }
-
-
-
-
-
-
-
-
-
             documentModel.selectDocumentTypeItems = getDocumentTypeValue();
             return View(documentModel);
         }
@@ -142,23 +158,45 @@ namespace DocumentManagementSystem.Controllers
 
         #region CreateandVievDocument
 
-        public ActionResult CreateDocument (  )
+        [HttpGet]
+        public ActionResult VievHTMLDocument (int? id)
         {
-            //TODO :  ID gözükmeyecek şekilde sayfa çalıştırılacak
-            int DocumentID=24;
-            DocumentCreateModel documentCreateModel = DocumentCreateModelGetData(DocumentID);
-            return View(documentCreateModel);
-        }
+            //TODO :  ID gözükmeyecek şekilde sayfa çalıştırılacak  
 
-        
+            if (id != null && id >= 0)
+            {
+                DocumentCreateModel documentCreateModel = DocumentCreateModelGetData((int)id);
+                return View(documentCreateModel);
+            }
+            else
+            {
+                return View();
+            }
+        }
+   
         public ActionResult GeneratePDF()
         {
-            //TODO: buradaki documentID ye sahip document varmı kontrol edilecek, bu kontrol DocumentCreateModelGetData içinde yapılacak dönüş değeri null olursa belge yok sayılacak
-            //bütün imzalar tamamlanmadan pdf oluşturulamaz
             int DocumentID = 24;
             DocumentCreateModel documentCreateModel = DocumentCreateModelGetData(DocumentID);
 
-            var report =  new ViewAsPdf("CreateDocument" , documentCreateModel )
+            if (documentCreateModel != null)
+            {
+                foreach (var item in documentCreateModel.documentCreateSignatures)
+                {
+                    if (item.SignatureStatus == false)
+                    {
+                       // return RedirectToAction("AddDocument", "Document");
+                    }
+                }
+            }
+            else
+            {
+                return RedirectToAction("AddDocument", "Document");
+
+            }
+
+
+            var report =  new ViewAsPdf("VievHTMLDocument", documentCreateModel )
             {
                 //FileName = Server.MapPath("~/Content/DENEME.pdf" ),
                 PageOrientation = Rotativa.Options.Orientation.Landscape,
@@ -185,9 +223,15 @@ namespace DocumentManagementSystem.Controllers
 
         private DocumentCreateModel DocumentCreateModelGetData(int DocumentID)
         {
-            //belge varmı kontrolü ve try catch
-
+            
             Document document = documentManager.GetDocument(DocumentID);
+
+            if(document == null)
+            {
+                return null;
+            }
+
+           // var item = document.Student;
 
             Student student = StudentManager.GetStudent(document.StudentID);
             DocumentType documentType = documentTypeManager.GetDocumentType(document.DocumentTypeID);
@@ -225,5 +269,10 @@ namespace DocumentManagementSystem.Controllers
 
 
         #endregion
+
+
+
+
+
     }
 }

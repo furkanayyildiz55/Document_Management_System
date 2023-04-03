@@ -34,12 +34,29 @@ namespace BusinessLayer.Concrete
         public Document GetDocument(int documentID)
         {
             return _document.Get(x => x.DocumentID == documentID);
-
         }
+
 
         public List<Document> GetList()
         {
            return _document.List();
         }
+
+        /// <summary>
+        /// /////İNTERFACEYE GEÇİR
+        /// </summary>
+        /// <param name="StudentNo"></param>
+        /// <returns></returns>
+        public Document GetDocumentWithStudentNo(int StudentNo)
+        {
+            return _document.Get(x => x.Student.StudentNo == StudentNo.ToString());
+        }
+
+        public List<Document> GetList(string StudentNo)
+        {
+            return _document.List(x => x.Student.StudentNo == StudentNo);
+        }
+
+
     }
 }

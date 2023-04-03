@@ -18,6 +18,7 @@ namespace DocumentManagementSystem
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Document", action = "AddDocument", id = UrlParameter.Optional }
             );
+
         }
     }
 }

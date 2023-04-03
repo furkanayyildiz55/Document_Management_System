@@ -162,6 +162,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\DocumentCreateModel.cs" />
+    <Compile Include="Models\DocumentListModel.cs" />
     <Compile Include="Models\DocumentModel.cs" />
     <Compile Include="Models\DocumentTypeModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -2437,8 +2438,9 @@
     <Content Include="Views\DocumentType\UpdateDocumentType.cshtml" />
     <Content Include="Views\Student\deneme.cshtml" />
     <Content Include="Views\Document\AddDocument.cshtml" />
-    <Content Include="Views\Document\CreateDocument.cshtml" />
+    <Content Include="Views\Document\VievHTMLDocument.cshtml" />
     <Content Include="Views\Document\GeneratePDF.cshtml" />
+    <Content Include="Views\Document\DocumentList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
