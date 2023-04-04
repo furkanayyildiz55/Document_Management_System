@@ -1,0 +1,42 @@
+﻿@model EntityLayer.Concrete.Document
+
+
+@{
+    ViewBag.Title = "Belge Doğrulama";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card bg-light">
+    <div class="card-body">
+        @using (Html.BeginForm("DocumentVerification", "Document", FormMethod.Post))
+        {
+            <div class="row">
+                <!--SOL TARAF-->
+                <div class="col col-lg-6">
+                    <div class="form-group">
+                        <span title="Sorgulamak istediğiniz belgede bulunan belge kodunu boşluksuz şekilde giriniz !"><i class="fa fa-info-circle text-primary"></i></span>
+                        @Html.Label("Belge Kodu")
+                        @Html.TextBoxFor(x => x.DocumentVerificationCode, new { @class = "form-control" })
+                        @Html.ValidationMessage("DocumentVerificationCode", new { @class = "text-danger" })
+                    </div>
+                    <button id="AdminAddButton" class="btn btn-primary">Belge Sorgula</button>
+                    <br />
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<br />
+<div class="card bg-light">
+    <div class="card-body">
+       
+            <div class="row">
+                <!--SOL TARAF-->
+                <div class="col col-lg-6">
+                               
+                   
+                </div>
+                </div>
+            </div>
+        
+    </div>

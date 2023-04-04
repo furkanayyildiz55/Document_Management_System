@@ -155,7 +155,6 @@ namespace DocumentManagementSystem.Controllers
 
         #endregion
 
-
         #region CreateandVievDocument
 
         [HttpGet]
@@ -270,8 +269,36 @@ namespace DocumentManagementSystem.Controllers
 
         #endregion
 
+        #region DocumentVerification
 
+        [HttpGet]
+        public ActionResult DocumentVerification()
+        {
+            return View();
+        }
 
+        [HttpPost]
+        public ActionResult DocumentVerification(Document document)
+        {
+            DocumentVerificationValidator documentVerificationValidator = new DocumentVerificationValidator();
+            ValidationResult result= documentVerificationValidator.Validate(document);
+
+            if (result.IsValid)
+            {
+                document = documentManager.GetDocumentWithVerificationCode(document.DocumentVerificationCode);
+            }
+            else
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+            }
+
+            return View(document);
+        }
+
+        #endregion
 
 
     }

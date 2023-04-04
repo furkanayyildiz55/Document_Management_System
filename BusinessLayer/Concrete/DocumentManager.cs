@@ -52,6 +52,11 @@ namespace BusinessLayer.Concrete
             return _document.Get(x => x.Student.StudentNo == StudentNo.ToString());
         }
 
+        public Document GetDocumentWithVerificationCode(string VerificationCode)
+        {
+            return _document.Get(x => x.DocumentVerificationCode == VerificationCode);
+        }
+
         public List<Document> GetList(string StudentNo)
         {
             return _document.List(x => x.Student.StudentNo == StudentNo);

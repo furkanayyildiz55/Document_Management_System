@@ -76,6 +76,7 @@
     <Compile Include="ValidationRules\AdminValidator.cs" />
     <Compile Include="ValidationRules\DocumentTypeValidator.cs" />
     <Compile Include="ValidationRules\DocumentValidator.cs" />
+    <Compile Include="ValidationRules\DocumentVerificationValidator.cs" />
     <Compile Include="ValidationRules\StudentValidator.cs" />
   </ItemGroup>
   <ItemGroup>
