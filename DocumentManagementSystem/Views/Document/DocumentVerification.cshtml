@@ -1,4 +1,4 @@
-﻿@model EntityLayer.Concrete.Document
+﻿@model DocumentManagementSystem.Models.DocumentVerificationModel
 
 
 @{
@@ -16,7 +16,7 @@
                     <div class="form-group">
                         <span title="Sorgulamak istediğiniz belgede bulunan belge kodunu boşluksuz şekilde giriniz !"><i class="fa fa-info-circle text-primary"></i></span>
                         @Html.Label("Belge Kodu")
-                        @Html.TextBoxFor(x => x.DocumentVerificationCode, new { @class = "form-control" })
+                        @Html.TextBoxFor(x=> x.VerificationCode, new { @class = "form-control" })
                         @Html.ValidationMessage("DocumentVerificationCode", new { @class = "text-danger" })
                     </div>
                     <button id="AdminAddButton" class="btn btn-primary">Belge Sorgula</button>
@@ -29,14 +29,44 @@
 <br />
 <div class="card bg-light">
     <div class="card-body">
-       
+
+        @if (Model.document == null)
+        {
+           if (Model.isPostMethod == true)
+            {
+                <h4 class="text-danger">Böyle bir belge yok!</h4>
+            }
+        }
+        else
+        {
             <div class="row">
                 <!--SOL TARAF-->
                 <div class="col col-lg-6">
-                               
-                   
+                    <h4 class="text-primary">Öğrenci Bilgileri</h4>
+                    <p>@Model.document.Student.StudentName @Model.document.Student.StudentSurname </p>
+                    <p>@(Model.document.Student.StudentNo==null ? "Üniversite kaydı yok" : Model.document.Student.StudentNo )   </p>
+                    <p>@Model.document.Student.StudentMail</p>
+                    <p>@Model.document.Student.StudentProgram</p>
                 </div>
+                <div class="col col-lg-6">
+                    <h4 class="text-primary">Belge Bilgileri</h4>
+                    <p>@Model.document.DocumentType.DocumentTypeName</p>
+                    <p>@Model.document.DocumentType.DocumentTypeText</p>
+                    @if (Model.document.DocumentStatus == true)
+                    {
+                        <p class="text-success">İmzalanmış</p>
+                    }
+                    else
+                    {
+                        <p class="text-danger">İmzalanmamış</p>
+                    }
                 </div>
             </div>
+        }
+
+
+
+
+    </div>
         
     </div>

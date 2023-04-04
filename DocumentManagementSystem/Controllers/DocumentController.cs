@@ -274,18 +274,24 @@ namespace DocumentManagementSystem.Controllers
         [HttpGet]
         public ActionResult DocumentVerification()
         {
-            return View();
+            DocumentVerificationModel documentVerificationModel = new DocumentVerificationModel();
+            documentVerificationModel.isPostMethod = false;
+            return View(documentVerificationModel);
         }
 
         [HttpPost]
-        public ActionResult DocumentVerification(Document document)
+        public ActionResult DocumentVerification(DocumentVerificationModel documentVerificationModel)
         {
             DocumentVerificationValidator documentVerificationValidator = new DocumentVerificationValidator();
-            ValidationResult result= documentVerificationValidator.Validate(document);
+            Document ValidationDocument = new Document();
+            ValidationDocument.DocumentVerificationCode = documentVerificationModel.VerificationCode;
+            ValidationResult result= documentVerificationValidator.Validate(ValidationDocument);
 
             if (result.IsValid)
             {
-                document = documentManager.GetDocumentWithVerificationCode(document.DocumentVerificationCode);
+               documentVerificationModel.document  = documentManager.GetDocumentWithVerificationCode(documentVerificationModel.VerificationCode);
+               documentVerificationModel.isPostMethod = true;
+
             }
             else
             {
@@ -295,7 +301,7 @@ namespace DocumentManagementSystem.Controllers
                 }
             }
 
-            return View(document);
+            return View(documentVerificationModel);
         }
 
         #endregion
