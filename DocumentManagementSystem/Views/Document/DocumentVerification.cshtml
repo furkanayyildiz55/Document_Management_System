@@ -60,6 +60,12 @@
                     {
                         <p class="text-danger">İmzalanmamış</p>
                     }
+                    <a target="_blank" href="/Document/VievHTMLDocument/@Model.document.DocumentID" class="btn btn-outline-secondary">Görüntüle</a>
+
+                    @if (Model.document.DocumentStatus == false)
+                    {
+                        <a target="_blank" href="/Document/GeneratePDF/@Model.document.DocumentID" class="btn btn-outline-secondary">PDF Al</a>
+                    }
                 </div>
             </div>
         }

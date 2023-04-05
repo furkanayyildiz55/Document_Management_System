@@ -60,6 +60,7 @@
     <Compile Include="Abstract\IStudentDal.cs" />
     <Compile Include="Concrete\Context.cs" />
     <Compile Include="Concrete\Repositories\GenericRepository.cs" />
+    <Compile Include="Concrete\Repositories\Repository.cs" />
     <Compile Include="EntityFramework\EfAdminDal.cs" />
     <Compile Include="EntityFramework\EfDocumentDal.cs" />
     <Compile Include="EntityFramework\EfDocumentSignatureDal.cs" />

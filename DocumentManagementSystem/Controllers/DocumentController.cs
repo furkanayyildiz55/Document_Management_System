@@ -24,7 +24,42 @@ namespace DocumentManagementSystem.Controllers
         StudentManager StudentManager = new StudentManager(new EfStudentDal());
         AdminManager AdminManager = new AdminManager(new EfAdminDal());
 
+        #region DocumentSign
 
+        [HttpGet]
+        public ActionResult DocumentSign()
+        {
+            //DataAccessLayer.Concrete.Repositories.Repository repository = new DataAccessLayer.Concrete.Repositories.Repository();
+            //repository.DocumentSignaturesWithAdminID(4);
+
+            int AdminID = 1;
+
+            List<DocumentTypeSignature> documentTypeSignatureList = DocumentTypeSignatureManager.GetListToDocumentTypeSignatureWithAdminID(AdminID);
+
+            List<DocumentSignature> documentSignaatureList = new List<DocumentSignature>();
+
+            foreach (var item in documentTypeSignatureList)
+            {
+                List<DocumentSignature> documentSignatures = DocumentSignatureManager.GetListWithDocumentTypeSignatureID(item.DocumentTypeSignatureID);
+                foreach (var item2 in documentSignatures)
+                {
+                    if(item2.Document.DocumentStatus == false)
+                    {
+                        documentSignaatureList.Add(item2);
+                    }
+                }
+            }
+
+            return View(documentSignaatureList);
+        }
+
+        [HttpPost]
+        public ActionResult DocumentSign(int a)
+        {
+            return View();
+        }
+
+        #endregion
 
         #region DocumentTypeList
 

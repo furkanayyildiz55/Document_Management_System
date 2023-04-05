@@ -1,0 +1,44 @@
+﻿@model DocumentManagementSystem.Models.DocumentSignModel
+
+
+@{
+    ViewBag.Title = "Belge İmzalama";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card bg-light">
+    <div class="card-body">
+        <div class="row">
+            <div class="col col-lg-6">
+                <h4>İmzalanacak Belgeler</h4>
+
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Belge Sahibi</th>
+                        <th>No/Mail</th>
+                        <th>Belge Türü</th>
+                        <th>Belge Durumu</th>
+                        <th>Oluşturma Tarihi</th>
+                        <th>Görüntüle</th>
+                        <th>PDF Oluştur</th>
+
+                    </tr>
+                    @*@foreach (var signatureItem in Model.documentSignatures)
+                    {
+                        <tr>
+                            <td>@signatureItem.  @documentItem.Student.StudentSurname</td>
+                            <td>@(documentItem.Student.StudentNo==null ? documentItem.Student.StudentMail : documentItem.Student.StudentNo  )</td>
+                            <td>@documentItem.DocumentType.DocumentTypeName</td>
+                            <td>@(documentItem.DocumentStatus ? "İmzalı" : "İmzasız")</td>
+                            <td>@documentItem.DocumentCreateDate.ToString("g")</td>
+                            <td style="text-align:center"><a href="/Document/VievHTMLDocument/@documentItem.DocumentID" class="btn btn-primary">Görüntüle</a></td>
+                            <td style="text-align:center"><a href="/Document/GeneratePDF/@documentItem.DocumentID" class="btn btn-primary">PDF Oluştur</a></td>
+                        </tr>
+                    }*@
+                </table>
+
+
+            </div>
+        </div>
+    </div>
+</div>

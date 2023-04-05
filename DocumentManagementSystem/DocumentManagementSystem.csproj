@@ -164,6 +164,7 @@
     <Compile Include="Models\DocumentCreateModel.cs" />
     <Compile Include="Models\DocumentListModel.cs" />
     <Compile Include="Models\DocumentModel.cs" />
+    <Compile Include="Models\DocumentSignModel.cs" />
     <Compile Include="Models\DocumentTypeModel.cs" />
     <Compile Include="Models\DocumentVerificationModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -2443,6 +2444,7 @@
     <Content Include="Views\Document\GeneratePDF.cshtml" />
     <Content Include="Views\Document\DocumentList.cshtml" />
     <Content Include="Views\Document\DocumentVerification.cshtml" />
+    <Content Include="Views\Document\DocumentSign.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
