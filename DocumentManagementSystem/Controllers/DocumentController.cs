@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Concrete;
 using BusinessLayer.ValidationRules;
+using DataAccessLayer.Concrete.Repositories;
 using DataAccessLayer.EntityFramework;
 using DocumentManagementSystem.Models;
 using EntityLayer.Concrete;
@@ -29,6 +30,10 @@ namespace DocumentManagementSystem.Controllers
         [HttpGet]
         public ActionResult DocumentSign()
         {
+
+            Repository repo = new Repository();
+            repo.DocumentSignaturesWithAdminID(1);
+
             //DataAccessLayer.Concrete.Repositories.Repository repository = new DataAccessLayer.Concrete.Repositories.Repository();
             //repository.DocumentSignaturesWithAdminID(4);
 
