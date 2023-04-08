@@ -32,30 +32,9 @@ namespace DocumentManagementSystem.Controllers
         {
 
             Repository repo = new Repository();
-            repo.DocumentSignaturesWithAdminID(1);
-
-            //DataAccessLayer.Concrete.Repositories.Repository repository = new DataAccessLayer.Concrete.Repositories.Repository();
-            //repository.DocumentSignaturesWithAdminID(4);
-
-            int AdminID = 1;
-
-            List<DocumentTypeSignature> documentTypeSignatureList = DocumentTypeSignatureManager.GetListToDocumentTypeSignatureWithAdminID(AdminID);
-
-            List<DocumentSignature> documentSignaatureList = new List<DocumentSignature>();
-
-            foreach (var item in documentTypeSignatureList)
-            {
-                List<DocumentSignature> documentSignatures = DocumentSignatureManager.GetListWithDocumentTypeSignatureID(item.DocumentTypeSignatureID);
-                foreach (var item2 in documentSignatures)
-                {
-                    if(item2.Document.DocumentStatus == false)
-                    {
-                        documentSignaatureList.Add(item2);
-                    }
-                }
-            }
-
-            return View(documentSignaatureList);
+            var list = repo.DocumentSignaturesWithAdminID(1);
+            ViewBag.DocumentSignatureList = list;
+            return View();
         }
 
         [HttpPost]

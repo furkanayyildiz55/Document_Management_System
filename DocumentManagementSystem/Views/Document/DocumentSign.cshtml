@@ -1,4 +1,4 @@
-﻿@model DocumentManagementSystem.Models.DocumentSignModel
+﻿
 
 
 @{
@@ -23,18 +23,18 @@
                         <th>PDF Oluştur</th>
 
                     </tr>
-                    @*@foreach (var signatureItem in Model.documentSignatures)
+                    @foreach (var signatureItem in ViewBag.DocumentSignatureList)
                     {
                         <tr>
-                            <td>@signatureItem.  @documentItem.Student.StudentSurname</td>
-                            <td>@(documentItem.Student.StudentNo==null ? documentItem.Student.StudentMail : documentItem.Student.StudentNo  )</td>
+                            <td>@(signatureItem.DocumentName)</td>
+                            @*<td>@(documentItem.Student.StudentNo==null ? documentItem.Student.StudentMail : documentItem.Student.StudentNo  )</td>
                             <td>@documentItem.DocumentType.DocumentTypeName</td>
                             <td>@(documentItem.DocumentStatus ? "İmzalı" : "İmzasız")</td>
                             <td>@documentItem.DocumentCreateDate.ToString("g")</td>
                             <td style="text-align:center"><a href="/Document/VievHTMLDocument/@documentItem.DocumentID" class="btn btn-primary">Görüntüle</a></td>
-                            <td style="text-align:center"><a href="/Document/GeneratePDF/@documentItem.DocumentID" class="btn btn-primary">PDF Oluştur</a></td>
+                            <td style="text-align:center"><a href="/Document/GeneratePDF/@documentItem.DocumentID" class="btn btn-primary">PDF Oluştur</a></td>*@
                         </tr>
-                    }*@
+                    }
                 </table>
 
 

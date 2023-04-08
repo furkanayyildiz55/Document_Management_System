@@ -27,7 +27,7 @@ namespace DataAccessLayer.Concrete.Repositories
         //    }
 
 
-        public void DocumentSignaturesWithAdminID(int AdminID)
+        public object DocumentSignaturesWithAdminID(int AdminID)
         {
             using (var context = new Context())
             {
@@ -57,6 +57,7 @@ namespace DataAccessLayer.Concrete.Repositories
 
 
                 var list = result.ToList(); 
+                return list;
             }
 
         }
