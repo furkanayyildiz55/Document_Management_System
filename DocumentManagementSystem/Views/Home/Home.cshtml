@@ -15,7 +15,7 @@
     <meta name="author" content="">
 
     <title>BOZOK BYS</title>
-
+    <link rel="icon" href="~/image/site/BozokIcon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
     <link href="~/Content/pricing.css" rel="stylesheet" />
@@ -33,9 +33,9 @@
         </h5>
 
         <nav class="my-2 my-md-0 mr-md-3 ">
-            <a class="p-2 text-dark  " href="#">Belge Doğrulama</a>
+            <a class="p-2 text-dark  " href="@Url.Action("Home" , "Home")">Belge Doğrulama</a>
         </nav>
-        <a class="btn btn-outline-primary" href="#">Giriş Yap</a>
+        <a class="btn btn-outline-primary" href="@Url.Action("SignIn" , "Home")">Giriş Yap</a>
     </div>
     <!--Navbar-->
     <!--Body-->
@@ -46,62 +46,101 @@
     <!--Form İşlemleri-->
     <div class="d-flex align-items-center justify-content-center ">
         <div class="form-label-group ">
-            @using (Html.BeginForm())
+            @using (Html.BeginForm("Home", "Home", FormMethod.Post, new { onsubmit = "return codeValidate();" }))
             {
 
-                @Html.TextBoxFor(x => x.VerificationCode, new { id = "myInput" , oninput = "convertToUpperCase()", placeholder = "Belge Kodunu Giriniz", @class = "form-control" })
-                <br />
-                <button class="btn  btn-primary btn-block" type="submit">Sorgula</button>
+                @Html.TextBoxFor(x => x.VerificationCode, new { id = "myInput", oninput = "convertToUpperCase()", placeholder = "Belge Kodunu Giriniz", @class = "form-control" })
+
+                <p class="text-danger m" id="validationError"></p>
+
+                <button class="btn mt-3 btn-primary btn-block" onclick="codeValidate()">Sorgula</button>
 
             }
         </div>
     </div>
     <!--Form İşlemleri-->
     <!--Sorgulama Sonucu-->
-    <!--Olumsuz-->
-    <div class="container pt-4">
-        <div class="row">
-            <div class="col-md-6 offset-md-3">
-                <div class="alert alert-danger text-center">
-                    <h5>Böyle bir belge bulunamadı ! <i class="bi bi-x-lg"></i></h5>
+
+
+    @if (Model.isPostMethod)  //true ise post edilmiş demektir
+    { 
+        if (Model.document != null)
+        {
+            if (!Model.document.DocumentStatus) //false
+            {
+                <!--Olumsuz-->
+                <div class="container pt-4">
+                    <div class="row">
+                        <div class="col-md-6 offset-md-3">
+                            <div class="alert alert-danger text-center">
+                                <h5>Böyle bir belge bulunamadı ! <i class="bi bi-x-lg"></i></h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Olumsuz-->
+
+            }
+            else //true
+            {
+                <!--Olumlu-->
+                <div class="container pt-4">
+                    <div class="row">
+                        <div class="col-md-6 offset-md-3">
+                            <div class="alert alert-success text-center">
+                                <h5>Doğrulanmış Belge <i class="bi bi-check2-all "></i></h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container col-md-10 offset-md-3">
+                    <div class="col-md-10 row ">
+                        <div class="col-md-5">
+                            <ul class="list-group list-group-flush text-center">
+                                <li class="list-group-item font-weight-bold">Belge Adı :</li>
+                                <li class="list-group-item font-weight-bold">Belge Sahibi :</li>
+                                <li class="list-group-item font-weight-bold">Veriliş Tarihi :</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-5">
+                            <ul class="list-group list-group-flush text-center ">
+                                <li class="list-group-item ">@Model.document.DocumentType.DocumentTypeName</li>
+                                <li class="list-group-item">@Model.document.Student.StudentName @Model.document.Student.StudentSurname</li>
+                                <li class="list-group-item">@Model.document.DocumentCreateDate.ToString("g")</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--Olumlu-->
+            }
+
+
+        }
+        else //null
+        {
+            <!--Olumsuz-->
+            <div class="container pt-4">
+                <div class="row">
+                    <div class="col-md-6 offset-md-3">
+                        <div class="alert alert-danger text-center">
+                            <h5>Böyle bir belge bulunamadı ! <i class="bi bi-x-lg"></i></h5>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <!--Olumsuz-->
-    <!--Olumlu-->
-    <div class="container pt-4">
-        <div class="row">
-            <div class="col-md-6 offset-md-3">
-                <div class="alert alert-success text-center">
-                    <h5>Doğrulanmış Belge <i class="bi bi-check2-all "></i></h5>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container col-md-10 offset-md-3">
-        <div class="col-md-10 row ">
-            <div class="col-md-5">
-                <ul class="list-group list-group-flush text-center">
-                    <li class="list-group-item font-weight-bold">Belge Adı :</li>
-                    <li class="list-group-item font-weight-bold">Belge Sahibi :</li>
-                    <li class="list-group-item font-weight-bold">Veriliş Tarihi :</li>
-                </ul>
-            </div>
-            <div class="col-md-5">
-                <ul class="list-group list-group-flush text-center ">
-                    <li class="list-group-item ">Başarı Belgesi</li>
-                    <li class="list-group-item">Fu**** Ay*****</li>
-                    <li class="list-group-item">07/04/2000</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <!--Olumlu-->
+            <!--Olumsuz-->
+
+        }
+     }
+
+
+
+
+
     <!--Sorgulama Sonucu-->
     <!--Body-->
     <!--Footer-->
-    <div class="container">
+    <div class="container pt-md-5">
         <footer class="pt-4 my-md-5 pt-md-5 border-top">
             <div class="row">
                 <div class="col-12 col-md">
@@ -111,8 +150,8 @@
                 <div class="col-6 col-md">
                     <h5>Hızlı Linkler</h5>
                     <ul class="list-unstyled text-small">
-                        <li><a class="text-muted" href="#">Belge Doğrulama</a></li>
-                        <li><a class="text-muted" href="#">Giriş Yap</a></li>
+                        <li><a class="text-muted" href="@Url.Action("Home" , "Home")">Belge Doğrulama</a></li>
+                        <li><a class="text-muted" href="@Url.Action("SignIn" , "Home")">Giriş Yap</a></li>
                     </ul>
                 </div>
                 <div class="col-6 col-md">
@@ -143,8 +182,29 @@
             input.value = input.value.toUpperCase(); // Metni büyük harfe çevir
 
             //TODO : her 4 karakterde bir - eklesin
-
         }
+
+        function codeValidate() {
+            var code = document.getElementById("myInput").value;
+            var validationError = document.getElementById("validationError");
+            var validationMessage = ""
+            var returnVelue = true;
+
+
+            if (code.length <= 0) {
+                validationMessage = "Lütfen belge kodunu giriniz !";
+                returnVelue = false;
+            }
+            else if (code.length < 12 || code.length > 12) {
+                validationMessage = "Belge kodu 12 karakterdir !";
+                returnVelue = false;
+            }
+            validationError.textContent = validationMessage;
+            return returnVelue;
+        }
+
+
+
     </script>
 </body>
 </html>

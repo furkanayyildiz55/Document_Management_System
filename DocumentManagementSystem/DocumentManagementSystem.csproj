@@ -2038,6 +2038,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="image\site\BozokIcon.ico" />
     <Content Include="image\site\BozokIcon.png" />
     <Content Include="image\site\imza3.png" />
     <Content Include="image\site\none.png" />
