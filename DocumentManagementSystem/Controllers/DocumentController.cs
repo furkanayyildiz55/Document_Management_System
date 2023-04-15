@@ -30,17 +30,28 @@ namespace DocumentManagementSystem.Controllers
         [HttpGet]
         public ActionResult DocumentSign()
         {
+            //TODO : Admin bilgisi oturum açıldıktan sonra gelecek sistem üzerinden çekilecek oturum açan admin bilgisi çekilecek 
 
             Repository repo = new Repository();
-            var list = repo.DocumentSignaturesWithAdminID(1);
-            ViewBag.DocumentSignatureList = list;
-            return View();
+            DocumentSignModel documentSignModel = new DocumentSignModel();
+            documentSignModel.SignedDocumentList = repo.DocumentSignaturesWithAdminID(1);
+            return View( documentSignModel);
         }
 
         [HttpPost]
-        public ActionResult DocumentSign(int a)
+        public ActionResult DocumentSign(DocumentSignModel documentSignModel)
         {
-            return View();
+            string ID = documentSignModel.DocumentSignatureID;
+
+            DocumentSignature documentSignature = DocumentSignatureManager.GetDocumentSignature(int.Parse(documentSignModel.DocumentSignatureID));
+            documentSignature.DocumentSignatureStatus = true;
+            DocumentSignatureManager.DocumentSignatureUpdate(documentSignature);
+
+            Repository repo = new Repository();
+            documentSignModel.SignedDocumentList = repo.DocumentSignaturesWithAdminID(1);
+            documentSignModel.DocumentSignatureID = null;
+
+            return RedirectToAction("DocumentSign", "Document");
         }
 
         #endregion

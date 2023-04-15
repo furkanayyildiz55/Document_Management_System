@@ -1,14 +1,15 @@
-﻿using EntityLayer.Concrete;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using static DataAccessLayer.Concrete.Repositories.Repository;
 
 namespace DocumentManagementSystem.Models
 {
     public class DocumentSignModel
     {
-        List<DocumentSignature> documentSignatures { get; set; }
-        int id { get; set; }
+        //Class Repositoryden alındı
+        public List<SignedDocument> SignedDocumentList { get; set; }
+        public string DocumentSignatureID { get; set; }
     }
+
+
 }

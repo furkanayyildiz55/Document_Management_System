@@ -1,4 +1,4 @@
-﻿
+﻿@model DocumentManagementSystem.Models.DocumentSignModel
 
 
 @{
@@ -9,30 +9,31 @@
 <div class="card bg-light">
     <div class="card-body">
         <div class="row">
-            <div class="col col-lg-6">
+            <div class="col ">
                 <h4>İmzalanacak Belgeler</h4>
 
                 <table class="table table-bordered">
                     <tr>
                         <th>Belge Sahibi</th>
-                        <th>No/Mail</th>
+                        <th>Belge Sahibi No/Mail</th>
                         <th>Belge Türü</th>
-                        <th>Belge Durumu</th>
                         <th>Oluşturma Tarihi</th>
                         <th>Görüntüle</th>
-                        <th>PDF Oluştur</th>
+                        <th>İmzala</th>
 
                     </tr>
-                    @foreach (var signatureItem in ViewBag.DocumentSignatureList)
+                    @foreach (var signedDocument in Model.SignedDocumentList)
                     {
                         <tr>
-                            <td>@(signatureItem.DocumentName)</td>
-                            @*<td>@(documentItem.Student.StudentNo==null ? documentItem.Student.StudentMail : documentItem.Student.StudentNo  )</td>
-                            <td>@documentItem.DocumentType.DocumentTypeName</td>
-                            <td>@(documentItem.DocumentStatus ? "İmzalı" : "İmzasız")</td>
-                            <td>@documentItem.DocumentCreateDate.ToString("g")</td>
-                            <td style="text-align:center"><a href="/Document/VievHTMLDocument/@documentItem.DocumentID" class="btn btn-primary">Görüntüle</a></td>
-                            <td style="text-align:center"><a href="/Document/GeneratePDF/@documentItem.DocumentID" class="btn btn-primary">PDF Oluştur</a></td>*@
+                            <td>@signedDocument.StudentFullName</td>
+                            <td>@signedDocument.StudentNoMail</td>
+                            <td>@signedDocument.DocumentName</td>
+                            <td>@signedDocument.DocumentCreateDate.ToString("g")</td>
+                            <td style="text-align:center"><a target="_blank" href="/Document/VievHTMLDocument/@signedDocument.DocumentID" class="btn btn-primary">Görüntüle</a></td>
+                            @using (Html.BeginForm("DocumentSign", "Document", new { DocumentSignatureID = signedDocument.DocumentSignatureID }, FormMethod.Post  ))
+                            {
+                               <td><button class="btn btn-success">Belgeyi İmzala</button></td> 
+                            }
                         </tr>
                     }
                 </table>

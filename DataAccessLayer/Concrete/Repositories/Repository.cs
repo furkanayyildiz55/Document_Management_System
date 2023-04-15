@@ -10,7 +10,7 @@ namespace DataAccessLayer.Concrete.Repositories
 {
     public class Repository
     {
-        
+
         //public void DocumentSignaturesWithAdminID(int  AdminID )
         //{
         //    using (var context = new Context())
@@ -21,20 +21,22 @@ namespace DataAccessLayer.Concrete.Repositories
         //       // var customerIdParameter = new SqlParameter("@customerId", desiredCustomerId);
         //        var customers = context.Students.SqlQuery(query).ToList();
 
-                
+
 
         //        var custom=1;
         //    }
 
+        #region DocumentSignaturesWithAdminID
 
-        public object DocumentSignaturesWithAdminID(int AdminID)
+        public List<SignedDocument> DocumentSignaturesWithAdminID(int AdminID)
         {
             using (var context = new Context())
             {
                 var result = from ds in context.DocumentSignatures
                              join dts in context.DocumentTypeSignatures
                              on ds.DocumentTypeSignatureID equals dts.DocumentTypeSignatureID
-                             where dts.AdminID == AdminID
+                             where dts.AdminID == AdminID 
+                             && ds.DocumentSignatureStatus==false  
 
                              join dt in context.DocumentTypes
                              on dts.DocumentTypeID equals dt.DocumentTypeID
@@ -45,24 +47,33 @@ namespace DataAccessLayer.Concrete.Repositories
                              join s in context.Students
                              on d.StudentID equals s.StudentID
                              
-
-                             select new
+                             select new SignedDocument
                              {
                                  DocumentName = dt.DocumentTypeName,
                                  DocumentCreateDate = d.DocumentCreateDate,
-                                 StudentFullName = s.StudentName + s.StudentSurname,
-                                 StudentProgram = s.StudentProgram == null ? "Program Yok" : s.StudentProgram,
-                                 DocumentSignatureID = ds.DocumentSignatureID
+                                 StudentFullName = s.StudentName+ " " + s.StudentSurname,
+                                 StudentNoMail = s.StudentNo == null ? s.StudentMail : s.StudentNo,
+                                 DocumentSignatureID = ds.DocumentSignatureID.ToString(),
+                                 DocumentID = d.DocumentID.ToString(),
                              };
-
-
-                var list = result.ToList(); 
+                List<SignedDocument> list = result.ToList();
                 return list;
             }
+        }
+        //gelecek veriyi bir nesne kalıbına sokmak için gerekli sınıf
+        public class SignedDocument
+        {
+            public string DocumentName { get; set; }
+            public DateTime DocumentCreateDate { get; set; }
+            public string DocumentID { get; set; }
 
+            public string StudentFullName { get; set; }
+            public string StudentNoMail { get; set; }
+
+            public string DocumentSignatureID { get; set; }
         }
 
-
+        #endregion
 
 
     }
