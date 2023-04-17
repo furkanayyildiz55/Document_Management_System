@@ -142,6 +142,8 @@
                                 </p>
                             </a>
                         </li>
+                        @if (User.IsInRole("1"))
+                        {
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon far fa-calendar-alt"></i>
@@ -152,6 +154,7 @@
 
                             </a>
                         </li>
+                        }
 
                         <!--HIZLI İŞLEMLER-->
 
@@ -180,12 +183,15 @@
                                         <p>Belge Listele</p>
                                     </a>
                                 </li>
+                                @if (User.IsInRole("1"))
+                                {
                                 <li class="nav-item">
                                     <a href="#" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Belge Güncelle</p>
                                     </a>
                                 </li>
+                                }
                                 <li class="nav-item">
                                     <a href="@Url.Action("DocumentVerification", "Document")" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
@@ -228,6 +234,7 @@
                         </li>
                         <!--ÖĞRENCİ İŞLEMLER AÇILIR MENÜ -->
                         <!--ADMİN İŞLEMLER AÇILIR MENÜ -->
+                        @if (User.IsInRole("1")) { 
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-copy"></i>
@@ -258,8 +265,11 @@
 
                             </ul>
                         </li>
+                        }
                         <!--ADMİN İŞLEMLER AÇILIR MENÜ -->
                         <!--BELGE TÜRÜ İŞLEMLER AÇILIR MENÜ -->
+                        @if(User.IsInRole("1"))
+                        {
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-copy"></i>
@@ -290,8 +300,11 @@
 
                             </ul>
                         </li>
+                        }
                         <!--BELGE TÜRÜ İŞLEMLER AÇILIR MENÜ -->
                         <!--BAŞLIKLI BÖLÜM-->
+                        @if (User.IsInRole("1"))
+                        {
                         <li class="nav-header">Ekstra İşlemler</li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
@@ -302,6 +315,7 @@
                                 </p>
                             </a>
                         </li>
+                        }
 
 
 

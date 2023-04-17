@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace DocumentManagementSystem.Controllers
 {
+    [Authorize(Roles="1")]
     public class AdminController : Controller
     {
         AdminManager adminManager = new AdminManager(new EfAdminDal());

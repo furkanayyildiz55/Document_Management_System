@@ -14,6 +14,7 @@ using DataAccessLayer.Concrete.Repositories;
 
 namespace DocumentManagementSystem.Controllers
 {
+    [Authorize(Roles="1")]
     public class DocumentTypeController : Controller
     {
         DocumentTypeManager documentTypeManager = new DocumentTypeManager(new EfDocumentTypeDal());

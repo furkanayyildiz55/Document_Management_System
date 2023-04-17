@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace DocumentManagementSystem.Controllers
 {
+    [Authorize(Roles = "0,1")]
     public class StudentController : Controller
     {
         StudentManager studentManager = new StudentManager(new EfStudentDal());
@@ -63,11 +64,6 @@ namespace DocumentManagementSystem.Controllers
 
         #endregion
 
-
-        public ActionResult deneme()
-        {
-            return View();
-        }
 
     }
 }

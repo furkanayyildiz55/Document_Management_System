@@ -15,6 +15,7 @@ using System.Web.Mvc;
 
 namespace DocumentManagementSystem.Controllers
 {
+    [Authorize(Roles="0,1")]
     public class DocumentController : Controller
     {
 

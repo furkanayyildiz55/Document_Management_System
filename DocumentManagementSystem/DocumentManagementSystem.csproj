@@ -168,7 +168,6 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\DocumentController.cs" />
     <Compile Include="Controllers\DocumentTypeController.cs" />
-    <Compile Include="Controllers\DocumentVerifyController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Global.asax.cs">
@@ -182,6 +181,7 @@
     <Compile Include="Models\DocumentVerificationModel.cs" />
     <Compile Include="Models\SignInModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Roles\AdminRoleProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="AdminLTE-3.0.4\.gitignore" />
@@ -2448,7 +2448,6 @@
     <Content Include="Views\Student\StudentList.cshtml" />
     <Content Include="Views\DocumentType\DocumentTypeList.cshtml" />
     <Content Include="Views\DocumentType\UpdateDocumentType.cshtml" />
-    <Content Include="Views\Student\deneme.cshtml" />
     <Content Include="Views\Document\AddDocument.cshtml" />
     <Content Include="Views\Document\VievHTMLDocument.cshtml" />
     <Content Include="Views\Document\GeneratePDF.cshtml" />

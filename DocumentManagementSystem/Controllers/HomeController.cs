@@ -21,6 +21,25 @@ namespace DocumentManagementSystem.Controllers
 
         public ActionResult SignIn()
         {
+            //varolan session varmı kontrol et
+            if (Session["UserID"] != null)
+            {
+                int userID = (int)Session["UserID"];
+                Admin admin = adminManager.GetAdmin(userID);
+                if(admin != null)
+                {
+                    return RedirectToAction("AddDocument", "Document");
+
+                }
+                // Kullanıcı oturumu zaten açılmışsa, istenen sayfaya yönlendir
+            }
+            else
+            {
+                // Kullanıcı oturumu açılmamışsa, giriş sayfasını göster
+                return View();
+            }
+
+
             return View();
         }
 
@@ -44,11 +63,11 @@ namespace DocumentManagementSystem.Controllers
                     if (isPasswordValid)
                     {
                         //giriş yapılabilir
-                        FormsAuthentication.SetAuthCookie(admin.AdminName,false);
+                        FormsAuthentication.SetAuthCookie(admin.AdminID.ToString(),false);
                         Session["UserName"] = admin.AdminName + admin.AdminSurmane;
                         Session["UserID"] = admin.AdminID;
-                        Session["USerIsAdmin"] = true;
-                        return RedirectToAction("AddAdmin", "Admin");
+                        Session["UserIsAdmin"] = true;
+                        return RedirectToAction("AddDocument", "Document");
                     }
                     else
                     {
@@ -73,7 +92,7 @@ namespace DocumentManagementSystem.Controllers
                     if (isPasswordValid)
                     {
                         //giriş yapılabilir
-                        FormsAuthentication.SetAuthCookie(student.StudentName, false);
+                        FormsAuthentication.SetAuthCookie(student.StudentID.ToString(), false);
                         Session["UserName"] = student.StudentName + student.StudentSurname;
                         Session["UserID"] = student.StudentID;
                         Session["UserIsAdmin"] = false;

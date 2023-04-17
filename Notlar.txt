@@ -1,0 +1,10 @@
+Rol tanımlamaları :
+
+1-Üst düzey yetkili
+
+2-Yetkili
+
+
+Kullanıcı Bilg: 
+
+admin -> test@test.com  test123
