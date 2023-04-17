@@ -8,8 +8,6 @@ using System.IO;
 using System.Web;
 using System.Web.Mvc;
 
-using BCrypt;
-
 namespace DocumentManagementSystem.Controllers
 {
     public class AdminController : Controller
