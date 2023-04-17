@@ -67,6 +67,14 @@
     <Compile Include="EntityFramework\EfDocumentTypeDal.cs" />
     <Compile Include="EntityFramework\EfDocumentTypeSignatureDal.cs" />
     <Compile Include="EntityFramework\EfStudentDal.cs" />
+    <Compile Include="Migrations\202304161437291_mig_password_Add.cs" />
+    <Compile Include="Migrations\202304161437291_mig_password_Add.designer.cs">
+      <DependentUpon>202304161437291_mig_password_Add.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202304161527249_mig_salt_Add.cs" />
+    <Compile Include="Migrations\202304161527249_mig_salt_Add.designer.cs">
+      <DependentUpon>202304161527249_mig_salt_Add.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -79,6 +87,14 @@
       <Project>{8fdad2a7-39e6-4428-b54e-495bb29ed8c8}</Project>
       <Name>EntityLayer</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202304161437291_mig_password_Add.resx">
+      <DependentUpon>202304161437291_mig_password_Add.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202304161527249_mig_salt_Add.resx">
+      <DependentUpon>202304161527249_mig_salt_Add.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

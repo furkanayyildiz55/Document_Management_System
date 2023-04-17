@@ -12,6 +12,10 @@ namespace EntityLayer.Concrete
 
         public string AdminSurmane { get; set; }
 
+        public string AdminPassword { get; set; }
+
+        public string AdminSalt { get; set; }
+
         public string AdminMail { get; set; }
 
         public string AdminJob { get; set; }

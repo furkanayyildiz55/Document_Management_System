@@ -41,10 +41,14 @@ namespace BusinessLayer.Concrete
             return _admin.Get(x => x.AdminID == AdminID);
         }
 
+        public Admin GetAdminWithMail(string AdminMail)
+        {
+            return _admin.Get(x => x.AdminMail == AdminMail);
+        }
+
         public List<Admin> GetListTopLevelAdmin()
         {
             return _admin.List(x => x.AdminAuthorization == true);
-
         }
     }
 }

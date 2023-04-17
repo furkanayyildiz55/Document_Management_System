@@ -26,6 +26,10 @@
                         @Html.TextBoxFor(x => x.AdminMail, new { @class = "form-control" })
                         @Html.ValidationMessageFor(x => x.AdminMail)
                         <br />
+                        @Html.Label("Admin Şifre *")
+                        @Html.TextBoxFor(x => x.AdminPassword, new { @class = "form-control", type = "password" })
+                        @Html.ValidationMessageFor(x => x.AdminPassword)
+                        <br />
                         @Html.Label("Admin İş *")
                         @Html.TextBoxFor(x => x.AdminJob, new { @class = "form-control" })
                         @Html.ValidationMessageFor(x => x.AdminJob)

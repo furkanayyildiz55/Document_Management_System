@@ -207,3 +207,11 @@ C:\Users\furka\Source\Repos\Document_Management_System\DocumentManagementSystem\
 C:\Users\furka\Source\Repos\Document_Management_System\DocumentManagementSystem\obj\Debug\DocumentManagementSystem.dll
 C:\Users\furka\Source\Repos\Document_Management_System\DocumentManagementSystem\obj\Debug\DocumentManagementSystem.pdb
 C:\Users\furka\source\repos\Document_Management_System\DocumentManagementSystem\bin\Rotativa.dll
+C:\Users\furka\source\repos\Document_Management_System\DocumentManagementSystem\bin\BCrypt.Net-Next.dll
+C:\Users\furka\source\repos\Document_Management_System\DocumentManagementSystem\bin\System.Buffers.dll
+C:\Users\furka\source\repos\Document_Management_System\DocumentManagementSystem\bin\System.Memory.dll
+C:\Users\furka\source\repos\Document_Management_System\DocumentManagementSystem\bin\System.Numerics.Vectors.dll
+C:\Users\furka\source\repos\Document_Management_System\DocumentManagementSystem\bin\BCrypt.Net-Next.xml
+C:\Users\furka\source\repos\Document_Management_System\DocumentManagementSystem\bin\System.Buffers.xml
+C:\Users\furka\source\repos\Document_Management_System\DocumentManagementSystem\bin\System.Memory.xml
+C:\Users\furka\source\repos\Document_Management_System\DocumentManagementSystem\bin\System.Numerics.Vectors.xml

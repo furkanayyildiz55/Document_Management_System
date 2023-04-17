@@ -8,6 +8,8 @@ using System.IO;
 using System.Web;
 using System.Web.Mvc;
 
+using BCrypt;
+
 namespace DocumentManagementSystem.Controllers
 {
     public class AdminController : Controller
@@ -17,31 +19,9 @@ namespace DocumentManagementSystem.Controllers
         // GET: Admin
         //[Authorize]  //kullanıcı girişi olmadan girilemeyeceği anlmını taşır
 
-        public ActionResult AdminList()
-        {
-            var adminList = adminManager.GetList();
-            return View(adminList);
-        }
-
-        public ActionResult ChangeAdminStatus(int id)
-        {
-            if(id < 0)
-            {
-                return RedirectToAction("AdminList");
-            }
-            else
-            {
-                Admin admin = adminManager.GetAdmin(id);
-                adminManager.AdminDelete(admin);
-                return RedirectToAction("AdminList");
-            }
-        }
-
-
-        
         #region AddAdmin
 
-        [HttpGet]
+        [HttpGet ]
         public ActionResult AddAdmin()
         {
             return View();
@@ -54,12 +34,19 @@ namespace DocumentManagementSystem.Controllers
             AdminValidator adminValidator = new AdminValidator();
             ValidationResult result = adminValidator.Validate(admin);
 
-            admin.AdminStatus = true;
-
+            //// Şifre doğrulama
+            //string userInput = "mypassword"; // Kullanıcının girdiği şifre
+            //bool isPasswordValid = BCrypt.Net.BCrypt.Verify(userInput, hashedPassword); // Hashlenmiş şifreyi doğrula
             try
             {
                 if (result.IsValid) //form validasyonu sağlanıyorsa
                 {
+                    admin.AdminStatus = true;
+                    // Şifre hashleme
+                    string salt = BCrypt.Net.BCrypt.GenerateSalt(); // Salt oluştur
+                    string hashedPassword = BCrypt.Net.BCrypt.HashPassword(admin.AdminPassword, salt); // Şifreyi hashle
+                    admin.AdminPassword = hashedPassword;
+
                     if (admin.AdminAuthorization)  //true ise kesinlikle görsel yüklemesi olacak
                     {
                         if (FileUploadControl())
@@ -147,7 +134,6 @@ namespace DocumentManagementSystem.Controllers
 
         }
         #endregion
-
 
         #region AdminUpdate
 
@@ -263,8 +249,33 @@ namespace DocumentManagementSystem.Controllers
 
         #endregion
 
+        #region AdminList
 
+        public ActionResult AdminList()
+        {
+            var adminList = adminManager.GetList();
+            return View(adminList);
+        }
 
+        #endregion
+
+        #region Methods
+
+        public ActionResult ChangeAdminStatus(int id)
+        {
+            if (id < 0)
+            {
+                return RedirectToAction("AdminList");
+            }
+            else
+            {
+                Admin admin = adminManager.GetAdmin(id);
+                adminManager.AdminDelete(admin);
+                return RedirectToAction("AdminList");
+            }
+        }
+
+        #endregion
 
     }
 }

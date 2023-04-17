@@ -25,7 +25,8 @@ namespace BusinessLayer.ValidationRules
                                     .Length(5, 30).WithMessage("İş en az 5 en fazla 30 karakter olmalıdır");
 
 
-            
+            RuleFor(x => x.AdminPassword).NotEmpty().WithMessage("Şifre boş geçilemez")
+                                         .Length(6, 50).WithMessage("Şifre en az 6 en fazla 50 karakter olmalıdır");
 
 
 

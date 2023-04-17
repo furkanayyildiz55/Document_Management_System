@@ -11,6 +11,8 @@ namespace BusinessLayer.Abstract
         void StudentUpdate(Student student);
         Student GetStudent(int student);
         Student GetStudentWihtNumber(string studentNo);
+        Student GetStudentWithMail(string studentMail);
+
 
     }
 }
