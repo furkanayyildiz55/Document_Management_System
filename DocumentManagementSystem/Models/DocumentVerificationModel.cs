@@ -11,5 +11,6 @@ namespace DocumentManagementSystem.Models
         public string VerificationCode { get; set; }
         public Document document { get; set; }
         public bool isPostMethod { get; set; }
+        public bool captchaStatus { get; set; }
     }
 }

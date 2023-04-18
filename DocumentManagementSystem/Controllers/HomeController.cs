@@ -4,6 +4,8 @@ using DataAccessLayer.EntityFramework;
 using DocumentManagementSystem.Models;
 using EntityLayer.Concrete;
 using FluentValidation.Results;
+using Newtonsoft.Json;
+using System.Net;
 using System.Web.Mvc;
 using System.Web.Security;
 
@@ -64,7 +66,7 @@ namespace DocumentManagementSystem.Controllers
                     {
                         //giriş yapılabilir
                         FormsAuthentication.SetAuthCookie(admin.AdminID.ToString(),false);
-                        Session["UserName"] = admin.AdminName + admin.AdminSurmane;
+                        Session["UserName"] = admin.AdminName+" " + admin.AdminSurmane;
                         Session["UserID"] = admin.AdminID;
                         Session["UserIsAdmin"] = true;
                         return RedirectToAction("AddDocument", "Document");
@@ -128,25 +130,49 @@ namespace DocumentManagementSystem.Controllers
         [HttpPost]
         public ActionResult Home(DocumentVerificationModel documentVerificationModel)
         {
-            DocumentVerificationValidator documentVerificationValidator = new DocumentVerificationValidator();
-            Document ValidationDocument = new Document();
-            ValidationDocument.DocumentVerificationCode = documentVerificationModel.VerificationCode;
-            ValidationResult result = documentVerificationValidator.Validate(ValidationDocument);
+            documentVerificationModel.isPostMethod = true;
 
-            if (result.IsValid)
+
+            var response = Request["g-recaptcha-response"];
+            const string secret = "6LeTsZslAAAAAJc8ieouPqL-FfDiy5WtrUwBbkQH";
+
+            var client = new WebClient();
+            var reply =
+                client.DownloadString(
+                    string.Format("https://www.google.com/recaptcha/api/siteverify?secret={0}&response={1}", secret, response));
+
+            var captchaResponse = JsonConvert.DeserializeObject<CaptchaResponse>(reply);
+            documentVerificationModel.captchaStatus = captchaResponse.Success;
+
+
+            if (captchaResponse.Success)
             {
-                documentVerificationModel.document = documentManager.GetDocumentWithVerificationCode(documentVerificationModel.VerificationCode);
-                documentVerificationModel.isPostMethod = true;
+                DocumentVerificationValidator documentVerificationValidator = new DocumentVerificationValidator();
+                Document ValidationDocument = new Document();
+                ValidationDocument.DocumentVerificationCode = documentVerificationModel.VerificationCode;
+                ValidationResult result = documentVerificationValidator.Validate(ValidationDocument);
+
+                if (result.IsValid)
+                {
+                    documentVerificationModel.document = documentManager.GetDocumentWithVerificationCode(documentVerificationModel.VerificationCode);
+                    documentVerificationModel.isPostMethod = true;
+                }
+                else
+                {
+                    //eğer js doğrulaması kötü niyetle atlanırsa null dönecektir null dönme durumu viev de işlenmiştir
+                    //foreach (var item in result.Errors)
+                    //{
+                    //    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                    //}
+                }
+                return View(documentVerificationModel);
             }
             else
             {
-                //foreach (var item in result.Errors)
-                //{
-                //    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
-                //}
+                return View(documentVerificationModel);
             }
-            documentVerificationModel.isPostMethod = true;
-            return View(documentVerificationModel);
+
+
         }
 
 

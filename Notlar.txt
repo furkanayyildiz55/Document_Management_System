@@ -8,3 +8,17 @@ Rol tanýmlamalarý :
 Kullanýcý Bilg: 
 
 admin -> test@test.com  test123
+
+
+YAPILACAKLAR 
+
+student için kontrol paneli
+student için bilgileri düzenleme sayfasý
+
+admin için bilgilerini düzenleme sayfasý
+kontrol panelinde öðrenci ekleme iþleminde þifre nasýl belirlenecek ?
+
+
+admin bilgisi eklerken ayný admin varmý kontrolü
+student bilgisi eklerken ayný student varmý kontrolü 
+log kodlarýný yaz ve sisteme entegre et 

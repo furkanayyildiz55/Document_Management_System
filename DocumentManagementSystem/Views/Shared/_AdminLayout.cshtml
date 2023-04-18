@@ -3,6 +3,10 @@
     Layout = null;
 }
 
+@{
+    var userName = HttpContext.Current.Session["UserName"] as string;
+}
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -114,7 +118,7 @@
                         <img src="~/image/site/user.png" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">Alexander Pierce</a>
+                        <a href="#" class="d-block">@userName</a>
                     </div>
                 </div>
 
@@ -144,16 +148,16 @@
                         </li>
                         @if (User.IsInRole("1"))
                         {
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon far fa-calendar-alt"></i>
-                                <p>
-                                    Belge İmzalama
-                                </p>
-                                <span class="right badge badge-info">4</span>
+                            <li class="nav-item">
+                                <a href="@Url.Action("DocumentSign", "Document")" class="nav-link">
+                                    <i class="nav-icon far fa-calendar-alt"></i>
+                                    <p>
+                                        Belge İmzalama
+                                    </p>
+                                    <span class="right badge badge-info">4</span>
 
-                            </a>
-                        </li>
+                                </a>
+                            </li>
                         }
 
                         <!--HIZLI İŞLEMLER-->
@@ -185,12 +189,12 @@
                                 </li>
                                 @if (User.IsInRole("1"))
                                 {
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Belge Güncelle</p>
-                                    </a>
-                                </li>
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Belge Güncelle</p>
+                                        </a>
+                                    </li>
                                 }
                                 <li class="nav-item">
                                     <a href="@Url.Action("DocumentVerification", "Document")" class="nav-link">
@@ -234,87 +238,87 @@
                         </li>
                         <!--ÖĞRENCİ İŞLEMLER AÇILIR MENÜ -->
                         <!--ADMİN İŞLEMLER AÇILIR MENÜ -->
-                        @if (User.IsInRole("1")) { 
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-copy"></i>
-                                <p>
-                                    Admin İşlemleri
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="@Url.Action("AddAdmin", "Admin")" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Admin Oluştur</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="@Url.Action("AdminList", "Admin")" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Admin Listele</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="@Url.Action("AdminUpdate", "Admin")" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Admin Güncelle</p>
-                                    </a>
-                                </li>
+                        @if (User.IsInRole("1"))
+                        {
+                            <li class="nav-item has-treeview">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-copy"></i>
+                                    <p>
+                                        Admin İşlemleri
+                                        <i class="fas fa-angle-left right"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("AddAdmin", "Admin")" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Admin Oluştur</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("AdminList", "Admin")" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Admin Listele</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("AdminUpdate", "Admin")" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Admin Güncelle</p>
+                                        </a>
+                                    </li>
 
-                            </ul>
-                        </li>
+                                </ul>
+                            </li>
                         }
                         <!--ADMİN İŞLEMLER AÇILIR MENÜ -->
                         <!--BELGE TÜRÜ İŞLEMLER AÇILIR MENÜ -->
-                        @if(User.IsInRole("1"))
+                        @if (User.IsInRole("1"))
                         {
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-copy"></i>
-                                <p>
-                                    Belge Türü İşlemleri
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="@Url.Action("AddDocumentType", "DocumentType")" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Belge Türü Oluştur</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="@Url.Action("DocumentTypeList", "DocumentType")" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Belge Türü Listele</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="@Url.Action("UpdateDocumentType", "DocumentType")" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Belge Türü Güncelle</p>
-                                    </a>
-                                </li>
+                            <li class="nav-item has-treeview">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-copy"></i>
+                                    <p>
+                                        Belge Türü İşlemleri
+                                        <i class="fas fa-angle-left right"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("AddDocumentType", "DocumentType")" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Belge Türü Oluştur</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("DocumentTypeList", "DocumentType")" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Belge Türü Listele</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("UpdateDocumentType", "DocumentType")" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Belge Türü Güncelle</p>
+                                        </a>
+                                    </li>
 
-                            </ul>
-                        </li>
+                                </ul>
+                            </li>
                         }
                         <!--BELGE TÜRÜ İŞLEMLER AÇILIR MENÜ -->
                         <!--BAŞLIKLI BÖLÜM-->
                         @if (User.IsInRole("1"))
                         {
-                        <li class="nav-header">Ekstra İşlemler</li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon far fa-calendar-alt"></i>
-                                <p>
-                                    Log Kayıtları
-                                    <span class="badge badge-info right">2</span>
-                                </p>
-                            </a>
-                        </li>
+                            <li class="nav-header">Ekstra İşlemler</li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon far fa-calendar-alt"></i>
+                                    <p>
+                                        Log Kayıtları
+                                    </p>
+                                </a>
+                            </li>
                         }
 
 

@@ -76,9 +76,11 @@ namespace DataAccessLayer.Concrete.Repositories
         public T Get(Expression<Func<T, bool>> filter)  //TODO:  bu  performan kaybı yaşatıyormuş  <Func<T, bool>> filter bu tarz bişey varmış dene !
         {
             return _object.SingleOrDefault(filter); //Dizde veya listede sadece bir değer döndürek için kullanılan EF linq methodu
+        }
 
-
-
+        public T GetFirstOrDefault(Expression<Func<T, bool>> filter)
+        {
+            return _object.FirstOrDefault(filter);
         }
 
         

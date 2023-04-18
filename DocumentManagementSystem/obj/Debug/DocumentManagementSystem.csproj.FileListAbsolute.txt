@@ -195,7 +195,6 @@ C:\Users\furka\Source\Repos\Document_Management_System\DocumentManagementSystem\
 C:\Users\furka\Source\Repos\Document_Management_System\DocumentManagementSystem\bin\System.Web.WebPages.xml
 C:\Users\furka\Source\Repos\Document_Management_System\DocumentManagementSystem\bin\System.Web.WebPages.Deployment.xml
 C:\Users\furka\Source\Repos\Document_Management_System\DocumentManagementSystem\bin\System.Web.WebPages.Razor.xml
-C:\Users\furka\Source\Repos\Document_Management_System\DocumentManagementSystem\bin\Newtonsoft.Json.xml
 C:\Users\furka\Source\Repos\Document_Management_System\DocumentManagementSystem\bin\Antlr3.Runtime.pdb
 C:\Users\furka\Source\Repos\Document_Management_System\DocumentManagementSystem\bin\System.Net.Http.Formatting.xml
 C:\Users\furka\Source\Repos\Document_Management_System\DocumentManagementSystem\bin\System.Web.Http.xml

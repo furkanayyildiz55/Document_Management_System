@@ -26,31 +26,37 @@ namespace DocumentManagementSystem.Controllers
         StudentManager StudentManager = new StudentManager(new EfStudentDal());
         AdminManager AdminManager = new AdminManager(new EfAdminDal());
 
+
         #region DocumentSign
 
         [HttpGet]
         public ActionResult DocumentSign()
         {
-            //TODO : Admin bilgisi oturum açıldıktan sonra gelecek sistem üzerinden çekilecek oturum açan admin bilgisi çekilecek 
-
+            string AdminID = (string)Session["UserID"];
             Repository repo = new Repository();
             DocumentSignModel documentSignModel = new DocumentSignModel();
-            documentSignModel.SignedDocumentList = repo.DocumentSignaturesWithAdminID(1);
+            documentSignModel.SignedDocumentList = repo.DocumentSignaturesWithAdminID(int.Parse(AdminID));
             return View( documentSignModel);
         }
 
         [HttpPost]
         public ActionResult DocumentSign(DocumentSignModel documentSignModel)
         {
-            string ID = documentSignModel.DocumentSignatureID;
+            int AdminID = (int)Session["UserID"];
 
             DocumentSignature documentSignature = DocumentSignatureManager.GetDocumentSignature(int.Parse(documentSignModel.DocumentSignatureID));
             documentSignature.DocumentSignatureStatus = true;
             DocumentSignatureManager.DocumentSignatureUpdate(documentSignature);
 
-            Repository repo = new Repository();
-            documentSignModel.SignedDocumentList = repo.DocumentSignaturesWithAdminID(1);
-            documentSignModel.DocumentSignatureID = null;
+            //TODO: Belgenin bütün imzaları onaylandı ise Doğrulanmış belge yap !
+
+            //viev tarafından veya nasıl olur bilgmiyorum ilgili document id alarak onaylanmamış imza varmı sorgula
+            //DocumentSignatureManager.GetDocumentSignatureStatus(documentSignModel)
+
+
+            //Repository repo = new Repository();
+            //documentSignModel.SignedDocumentList = repo.DocumentSignaturesWithAdminID(AdminID);
+            //documentSignModel.DocumentSignatureID = null;
 
             return RedirectToAction("DocumentSign", "Document");
         }
@@ -322,7 +328,6 @@ namespace DocumentManagementSystem.Controllers
             {
                documentVerificationModel.document  = documentManager.GetDocumentWithVerificationCode(documentVerificationModel.VerificationCode);
                documentVerificationModel.isPostMethod = true;
-
             }
             else
             {
