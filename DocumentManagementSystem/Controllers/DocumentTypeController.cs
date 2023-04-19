@@ -32,6 +32,7 @@ namespace DocumentManagementSystem.Controllers
 
         #endregion
 
+        //TODO : Aynı documenttype varmı kontrolü
         #region AddDocumentType
  
         private List<SelectListItem> selectListItems()

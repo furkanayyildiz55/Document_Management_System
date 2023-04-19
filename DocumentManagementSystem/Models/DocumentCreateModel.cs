@@ -8,8 +8,7 @@ namespace DocumentManagementSystem.Models
 {
     public class DocumentCreateModel
     {
-        //TODO: jS işlemleri için kullanlacak model
-        //TODO: Raporlama arayüzleri denenecek
+        //TODO: Raporlama arayüzleri denenecek imza sayısına göre imzalar algin edilecek
         public string StudentFullName { get; set; }
         public string StudentNoMail { get; set; }
         public string StudentProgram { get; set; }

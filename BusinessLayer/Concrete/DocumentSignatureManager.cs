@@ -49,7 +49,7 @@ namespace BusinessLayer.Concrete
             return _documentSignature.List(x => x.DocumentTypeSignatureID == DocumentTypeSignatureID);
         }
 
-        public bool GetDocumentSignatureStatus(int DocumentID)
+        public bool GetAllDocumentSignatureStatus(int DocumentID)
         {
            DocumentSignature Data = _documentSignature.GetFirstOrDefault(x => x.DocumentID == DocumentID && x.DocumentSignatureStatus == false);
             return Data == null ? true : false;

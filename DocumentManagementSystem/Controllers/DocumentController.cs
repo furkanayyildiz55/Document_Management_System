@@ -32,10 +32,10 @@ namespace DocumentManagementSystem.Controllers
         [HttpGet]
         public ActionResult DocumentSign()
         {
-            string AdminID = (string)Session["UserID"];
+            int AdminID = (int)Session["UserID"];
             Repository repo = new Repository();
             DocumentSignModel documentSignModel = new DocumentSignModel();
-            documentSignModel.SignedDocumentList = repo.DocumentSignaturesWithAdminID(int.Parse(AdminID));
+            documentSignModel.SignedDocumentList = repo.DocumentSignaturesWithAdminID(AdminID);
             return View( documentSignModel);
         }
 
@@ -44,19 +44,24 @@ namespace DocumentManagementSystem.Controllers
         {
             int AdminID = (int)Session["UserID"];
 
+            //Belge admin tarafından imzalanıyor
             DocumentSignature documentSignature = DocumentSignatureManager.GetDocumentSignature(int.Parse(documentSignModel.DocumentSignatureID));
             documentSignature.DocumentSignatureStatus = true;
             DocumentSignatureManager.DocumentSignatureUpdate(documentSignature);
 
-            //TODO: Belgenin bütün imzaları onaylandı ise Doğrulanmış belge yap !
+            //imzalanmamış belge varmı kontrolü yapılıyor
+            //imzalanmamış belge kalmadı ise belge durumunu True yapacak
 
-            //viev tarafından veya nasıl olur bilgmiyorum ilgili document id alarak onaylanmamış imza varmı sorgula
-            //DocumentSignatureManager.GetDocumentSignatureStatus(documentSignModel)
+            bool AllDocumentSignatureStatus = DocumentSignatureManager.GetAllDocumentSignatureStatus(int.Parse(documentSignModel.DocumentID));
 
+            //True ise belgedeki tüm imzalar onaylanmış 
+            if (AllDocumentSignatureStatus)
+            {
+                Document document = documentManager.GetDocument(int.Parse(documentSignModel.DocumentID));
+                document.DocumentStatus = true;
+                documentManager.DocumentUpdate(document);
+            }
 
-            //Repository repo = new Repository();
-            //documentSignModel.SignedDocumentList = repo.DocumentSignaturesWithAdminID(AdminID);
-            //documentSignModel.DocumentSignatureID = null;
 
             return RedirectToAction("DocumentSign", "Document");
         }
@@ -114,7 +119,7 @@ namespace DocumentManagementSystem.Controllers
             return View(documentModel);
         }
 
-
+        //TODO : Öğenci üniversiteye kayıtlı değil ise ona nasıl belge oluşturulacak. bunun için belge oluşturma kısmına no veya mail giriniz alanı yap
         [HttpPost]
         public ActionResult AddDocument(DocumentModel documentModel)
         {
@@ -122,8 +127,7 @@ namespace DocumentManagementSystem.Controllers
             ValidationResult result = documentValidator.Validate(documentModel.document);
             documentModel.selectDocumentTypeItems = getDocumentTypeValue();
 
-            //TODO : Authorization sisteminde geçince id sistem tarafından atansın!
-            documentModel.document.AdminID = 1;
+            documentModel.document.AdminID = (int)Session["UserID"];
             documentModel.document.DocumentCreateDate = DateTime.Parse(DateTime.Now.ToString());
             documentModel.document.DocumentStatus = false;
             documentModel.document.DocumentPdfUrl = "";
@@ -244,6 +248,7 @@ namespace DocumentManagementSystem.Controllers
             string fullPath =  Server.MapPath("~/DocumentsPDF/" + fileName);
 
 
+            // TODO : Sistem dosyayı bulamıyor hatası var. İlgilen
             var byteArray = report.BuildPdf(ControllerContext);
             var fileStream = new FileStream(fullPath, FileMode.Create, FileAccess.Write);
             fileStream.Write(byteArray, 0, byteArray.Length);

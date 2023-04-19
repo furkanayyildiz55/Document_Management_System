@@ -6,9 +6,10 @@ namespace DocumentManagementSystem.Models
 {
     public class DocumentSignModel
     {
-        //Class Repositoryden alındı
+        //SignedDocument Classı Repositoryden alındı
         public List<SignedDocument> SignedDocumentList { get; set; }
         public string DocumentSignatureID { get; set; }
+        public string DocumentID { get; set; }
     }
 
 

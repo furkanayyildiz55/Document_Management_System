@@ -30,7 +30,7 @@
                             <td>@signedDocument.DocumentName</td>
                             <td>@signedDocument.DocumentCreateDate.ToString("g")</td>
                             <td style="text-align:center"><a target="_blank" href="/Document/VievHTMLDocument/@signedDocument.DocumentID" class="btn btn-primary">Görüntüle</a></td>
-                            @using (Html.BeginForm("DocumentSign", "Document", new { DocumentSignatureID = signedDocument.DocumentSignatureID }, FormMethod.Post  ))
+                            @using (Html.BeginForm("DocumentSign", "Document", new { DocumentSignatureID = signedDocument.DocumentSignatureID , DocumentID = signedDocument.DocumentID }, FormMethod.Post  ))
                             {
                                <td><button class="btn btn-success">Belgeyi İmzala</button></td> 
                             }

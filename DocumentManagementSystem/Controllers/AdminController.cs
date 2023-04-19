@@ -26,7 +26,7 @@ namespace DocumentManagementSystem.Controllers
             return View();
         }
 
-
+        //TODO : Aynı admin varmı kontrolü
         [HttpPost]
         public ActionResult AddAdmin(Admin admin, HttpPostedFileBase file)
         {

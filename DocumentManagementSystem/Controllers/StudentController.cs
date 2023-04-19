@@ -23,7 +23,7 @@ namespace DocumentManagementSystem.Controllers
         }
         #endregion
 
-
+        //aynı student varmı kontrolü
         #region StudentAdd
 
         [HttpGet]
