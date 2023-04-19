@@ -166,6 +166,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\ApiController.cs" />
     <Compile Include="Controllers\DocumentController.cs" />
     <Compile Include="Controllers\DocumentTypeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -2459,6 +2460,7 @@
     <Content Include="Views\Shared\_SidebarsLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="ApiModels\" />
     <Folder Include="App_Data\" />
     <Folder Include="DocumentsPDF\" />
     <Folder Include="image\documentTypeImage\" />

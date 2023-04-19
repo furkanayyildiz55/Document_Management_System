@@ -63,7 +63,7 @@ namespace DocumentManagementSystem.Controllers
 
         #endregion
 
-        #region DocumentTypeList
+        #region DocumentList
 
         [HttpGet]
         public ActionResult DocumentList()

@@ -9,6 +9,8 @@ namespace DocumentManagementSystem
     {
         public static void Register(HttpConfiguration config)
         {
+            //JSON dönüş almak için. XML datası clear ediliyor.
+            GlobalConfiguration.Configuration.Formatters.XmlFormatter.SupportedMediaTypes.Clear();
             // Web API configuration and services
 
             // Web API routes
