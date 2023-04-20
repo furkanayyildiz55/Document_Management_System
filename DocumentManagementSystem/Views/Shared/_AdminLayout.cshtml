@@ -16,7 +16,7 @@
     <title>@ViewBag.Title</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Font Awesome -->
+    <!-- Font Awesome  SÜRÜM : 5.13  --> 
     <link rel="stylesheet" href="~/AdminLTE-3.0.4/plugins/fontawesome-free/css/all.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
@@ -118,7 +118,8 @@
                         <img src="~/image/site/user.png" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">@userName</a>
+                        <a href="#" class="d-block">@userName USer</a>
+                        
                     </div>
                 </div>
 
@@ -126,12 +127,12 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
-                        with font-awesome or any other icon font library -->
+    with font-awesome or any other icon font library -->
                         <!--HIZLI İŞLEMLER-->
                         <li class="nav-header">Hızlı İşlemler</li>
                         <li class="nav-item">
                             <a href="@Url.Action("DocumentVerification", "Document")" class="nav-link">
-                                <i class="nav-icon far fa-file"></i>
+                                <i class="nav-icon fas fa-file-medical"></i>
                                 <p>
                                     Belge Doğrulama
                                 </p>
@@ -140,7 +141,7 @@
 
                         <li class="nav-item">
                             <a href="@Url.Action("AddDocument", "Document")" class="nav-link">
-                                <i class="nav-icon far fa-calendar-alt"></i>
+                                <i class="nav-icon fas fa-copy"></i>
                                 <p>
                                     Belge Oluşturma
                                 </p>
@@ -150,7 +151,7 @@
                         {
                             <li class="nav-item">
                                 <a href="@Url.Action("DocumentSign", "Document")" class="nav-link">
-                                    <i class="nav-icon far fa-calendar-alt"></i>
+                                    <i class="nav-icon fas fa-file-signature"></i>
                                     <p>
                                         Belge İmzalama
                                     </p>
@@ -208,7 +209,7 @@
                         <!--ÖĞRENCİ İŞLEMLER AÇILIR MENÜ -->
                         <li class="nav-item has-treeview ">
                             <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-copy"></i>
+                                <i class="nav-icon fas fa-user-graduate"></i>
                                 <p>
                                     Öğrenci İşlemleri
                                     <i class="fas fa-angle-left right"></i>
@@ -242,7 +243,7 @@
                         {
                             <li class="nav-item has-treeview">
                                 <a href="#" class="nav-link">
-                                    <i class="nav-icon fas fa-copy"></i>
+                                    <i class="nav-icon fas fa-user-shield"></i>
                                     <p>
                                         Admin İşlemleri
                                         <i class="fas fa-angle-left right"></i>
@@ -313,7 +314,7 @@
                             <li class="nav-header">Ekstra İşlemler</li>
                             <li class="nav-item">
                                 <a href="#" class="nav-link">
-                                    <i class="nav-icon far fa-calendar-alt"></i>
+                                    <i class="nav-icon fas fa-clipboard-list"></i>
                                     <p>
                                         Log Kayıtları
                                     </p>
@@ -322,7 +323,23 @@
                         }
 
 
-
+                        <li class="nav-header">Kullanıcı İşlemleri</li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-user"></i>
+                                <p>
+                                    Profil Sayfası
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="@Url.Action("SignOut","Home")" class="nav-link">
+                                <i class="nav-icon fas fa-sign-out-alt"></i>
+                                <p>
+                                    Çıkış Yap
+                                </p>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->

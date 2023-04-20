@@ -10,35 +10,41 @@
     <div class="card-body">
         <div class="row">
             <div class="col ">
-                <h4>İmzalanacak Belgeler</h4>
 
-                <table class="table table-bordered">
-                    <tr>
-                        <th>Belge Sahibi</th>
-                        <th>Belge Sahibi No/Mail</th>
-                        <th>Belge Türü</th>
-                        <th>Oluşturma Tarihi</th>
-                        <th>Görüntüle</th>
-                        <th>İmzala</th>
 
-                    </tr>
-                    @foreach (var signedDocument in Model.SignedDocumentList)
-                    {
+                @if (Model.SignedDocumentList != null && Model.SignedDocumentList.Count > 0)
+                {
+                    <table class="table table-bordered">
                         <tr>
-                            <td>@signedDocument.StudentFullName</td>
-                            <td>@signedDocument.StudentNoMail</td>
-                            <td>@signedDocument.DocumentName</td>
-                            <td>@signedDocument.DocumentCreateDate.ToString("g")</td>
-                            <td style="text-align:center"><a target="_blank" href="/Document/VievHTMLDocument/@signedDocument.DocumentID" class="btn btn-primary">Görüntüle</a></td>
-                            @using (Html.BeginForm("DocumentSign", "Document", new { DocumentSignatureID = signedDocument.DocumentSignatureID , DocumentID = signedDocument.DocumentID }, FormMethod.Post  ))
-                            {
-                               <td><button class="btn btn-success">Belgeyi İmzala</button></td> 
-                            }
+                            <th>Belge Sahibi</th>
+                            <th>Belge Sahibi No/Mail</th>
+                            <th>Belge Türü</th>
+                            <th>Oluşturma Tarihi</th>
+                            <th>Görüntüle</th>
+                            <th>İmzala</th>
+
                         </tr>
-                    }
-                </table>
 
-
+                        @foreach (var signedDocument in Model.SignedDocumentList)
+                        {
+                            <tr>
+                                <td>@signedDocument.StudentFullName</td>
+                                <td>@signedDocument.StudentNoMail</td>
+                                <td>@signedDocument.DocumentName</td>
+                                <td>@signedDocument.DocumentCreateDate.ToString("g")</td>
+                                <td style="text-align:center"><a target="_blank" href="/Document/VievHTMLDocument/@signedDocument.DocumentID" class="btn btn-primary">Görüntüle</a></td>
+                                @using (Html.BeginForm("DocumentSign", "Document", new { DocumentSignatureID = signedDocument.DocumentSignatureID, DocumentID = signedDocument.DocumentID }, FormMethod.Post))
+                                {
+                                    <td><button class="btn btn-success">Belgeyi İmzala</button></td>
+                                }
+                            </tr>
+                        }
+                    </table>
+                }
+            else
+            {
+                <h5 >İmzalanacak belge bulunamadı !</h5>
+            }
             </div>
         </div>
     </div>

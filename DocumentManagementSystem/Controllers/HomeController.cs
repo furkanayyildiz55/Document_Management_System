@@ -20,6 +20,7 @@ namespace DocumentManagementSystem.Controllers
         AdminManager adminManager = new AdminManager(new EfAdminDal());
         StudentManager studentManager = new StudentManager(new EfStudentDal());
 
+        #region SignIn
 
         public ActionResult SignIn()
         {
@@ -44,6 +45,7 @@ namespace DocumentManagementSystem.Controllers
 
             return View();
         }
+
 
         [HttpPost]
         public ActionResult SignIn(SignInModel signInModel)
@@ -119,6 +121,28 @@ namespace DocumentManagementSystem.Controllers
 
         }
 
+        #endregion
+
+        #region SignOut
+
+        public ActionResult SignOut()
+        {
+            try
+            {
+                FormsAuthentication.SignOut();
+                Session.Abandon();
+            }
+            catch (System.Exception)
+            {
+            }
+            return RedirectToAction("SignIn", "Home");
+
+
+        }
+
+        #endregion
+
+        #region Home
 
         public ActionResult Home()
         {
@@ -174,6 +198,8 @@ namespace DocumentManagementSystem.Controllers
 
 
         }
+
+        #endregion
 
 
 
