@@ -23,7 +23,7 @@ namespace DocumentManagementSystem.Controllers
         }
         #endregion
 
-        //aynı student varmı kontrolü
+        //TODO :  aynı student varmı kontrolü
         #region StudentAdd
 
         [HttpGet]
@@ -43,6 +43,10 @@ namespace DocumentManagementSystem.Controllers
             {
                 if (result.IsValid)
                 {
+                    string salt = BCrypt.Net.BCrypt.GenerateSalt(); // Salt oluştur
+                    string hashedPassword = BCrypt.Net.BCrypt.HashPassword(student.StudentPassword, salt); // Şifreyi hashle
+                    student.StudentPassword= hashedPassword;
+
                     studentManager.StudentAdd(student);
                     ViewBag.RecordStatus = true;
                 }
@@ -63,7 +67,6 @@ namespace DocumentManagementSystem.Controllers
         }
 
         #endregion
-
 
     }
 }

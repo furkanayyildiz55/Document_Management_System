@@ -1,0 +1,117 @@
+﻿@model DocumentManagementSystem.Models.SignInModel
+
+
+@{
+    Layout = null;
+}
+
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>BYS Giriş</title>
+    <link rel="icon" href="~/image/site/BozokIcon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
+
+</head>
+
+<body>
+
+    <!--Navbar-->
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow sticky-top ">
+
+        <h5 class="my-0 mr-md-auto font-weight-normal">
+            <img class="my-0 mr-md-auto font-weight-normal" src="~/image/site/BozokIcon.png" width="45" height="45" />
+            BOZOK BYS
+        </h5>
+
+        <nav class="my-2 my-md-0 mr-md-3 ">
+            <a class="p-2 text-dark  " href="@Url.Action("Home" , "Home")">Belge Doğrulama</a>
+        </nav>
+        <a class="btn btn-outline-primary" href="@Url.Action("SignIn" , "Home")">Giriş Yap</a>
+    </div>
+    <!--Navbar-->
+    <!--Body-->
+
+
+    <div class="form-signin text-center  d-flex align-items-center justify-content-center">
+        @using (Html.BeginForm("SignIn", "Home", FormMethod.Post))
+        {
+            <img class="mb-4" src="~/image/site/BozokIcon.png" alt="" width="120" height="120">
+            <h1 class="h3 mb-3 font-weight-normal">Giriş Yap</h1>
+
+            <label for="inputEmail" class="sr-only">Email Adresi</label>
+            @Html.TextBoxFor(x => x.UserMail, new { @type = "email", @id = "inputEmail", @class = "form-control", @placeholder = "Email Adresi", @required = "required", autofocus = "autofocus" })
+            @*<input type="email" id="inputEmail" class="form-control" placeholder="Email Adresi" required autofocus>*@
+            <br />
+            <label for="inputPassword" class="sr-only">Şifre</label>
+            @Html.TextBoxFor(x => x.UserPassword, new { @type = "password", @id = "inputPassword", @class = "form-control", @placeholder = "Şifre", @required = "required" })
+            @*<input type="password" id="inputPassword" class="form-control" placeholder="Şifre" required>*@
+
+            <div class="checkbox mt-3 mb-3">
+                <div class="form-check form-check-inline">
+                    @Html.RadioButtonFor(x => x.UserIsAdmin, true, new { @class = " form-check-input", @checked = "checked" })
+                    @*<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">*@
+                    <label class="form-check-label" for="inlineRadio1">Yetkili Girişi</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    @Html.RadioButtonFor(x => x.UserIsAdmin, false, new { @class = " form-check-input" })
+                    @*<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">*@
+                    <label class="form-check-label" for="inlineRadio2">Öğrenci Girişi</label>
+                </div>
+            </div>
+
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Giriş Yap</button>
+            @Html.ValidationMessage("SignInError", new { @class = "text-danger mt-0 mb-2" })
+
+            <p class="mt-5 mb-3 text-muted">&copy; 2022-2023</p>
+        }
+
+    </div>
+
+
+    <!--Body-->
+    <!--Footer-->
+    <div class="container ">
+        <footer class="pt-4 my-md-5 pt-md-5 border-top">
+            <div class="row">
+                <div class="col-12 col-md">
+                    <img class="mb-2" src="~/image/site/BozokIcon.png" alt="" width="24" height="24">
+                    <small class="d-block mb-3 text-muted">&copy; 2022-2023</small>
+                </div>
+                <div class="col-6 col-md">
+                    <h5>Hızlı Linkler</h5>
+                    <ul class="list-unstyled text-small">
+                        <li><a class="text-muted" href="@Url.Action("Home", "Home")">Belge Doğrulama</a></li>
+                        <li><a class="text-muted" href="@Url.Action("SignIn" , "Home")">Giriş Yap</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md">
+                    <h5>Yardımcı Linkler</h5>
+                    <ul class="list-unstyled text-small">
+                        <li><a class="text-muted" href="https://bozok.edu.tr/">Bozok Ana Site</a></li>
+                        <li><a class="text-muted" href="https://boysis.bozok.edu.tr/kullanici/giris-yap">Boysis</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md">
+                    <h5>Destek</h5>
+                    <ul class="list-unstyled text-small">
+                        <li><a class="text-muted" href="http://yenibilgi.bozok.edu.tr/">Bilgi İşlem</a></li>
+
+                    </ul>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <!--Footer-->
+
+
+</body>
+</html>

@@ -1,0 +1,12 @@
+C:\Users\furka\source\repos\Document_Management_System\EntityLayer\bin\Release\EntityLayer.dll.config
+C:\Users\furka\source\repos\Document_Management_System\EntityLayer\bin\Release\EntityLayer.dll
+C:\Users\furka\source\repos\Document_Management_System\EntityLayer\bin\Release\EntityLayer.pdb
+C:\Users\furka\source\repos\Document_Management_System\EntityLayer\bin\Release\EntityFramework.dll
+C:\Users\furka\source\repos\Document_Management_System\EntityLayer\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\furka\source\repos\Document_Management_System\EntityLayer\bin\Release\EntityFramework.xml
+C:\Users\furka\source\repos\Document_Management_System\EntityLayer\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\furka\source\repos\Document_Management_System\EntityLayer\obj\Release\EntityLayer.csproj.AssemblyReference.cache
+C:\Users\furka\source\repos\Document_Management_System\EntityLayer\obj\Release\EntityLayer.csproj.CoreCompileInputs.cache
+C:\Users\furka\source\repos\Document_Management_System\EntityLayer\obj\Release\EntityLayer.csproj.CopyComplete
+C:\Users\furka\source\repos\Document_Management_System\EntityLayer\obj\Release\EntityLayer.dll
+C:\Users\furka\source\repos\Document_Management_System\EntityLayer\obj\Release\EntityLayer.pdb

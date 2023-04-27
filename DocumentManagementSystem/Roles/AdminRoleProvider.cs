@@ -18,9 +18,26 @@ namespace DocumentManagementSystem.Roles
         //Authentication tarafında cookie oluşuturulurken tanımlanan adminID buraya geliyor
         public override string[] GetRolesForUser(string adminID)
         {
-            //Giriş yapan adminin role bilgisi sorgulanıyor
-            Admin admin = adminManager.GetAdmin(int.Parse(adminID));
-            return new string[] { admin.AdminAuthorization==true ? "1" : "0" };
+            try
+            {
+                if (adminID.Contains("student"))
+                {
+                    return new string[] { };
+                }
+                else
+                {
+                    //Giriş yapan adminin role bilgisi sorgulanıyor
+                    Admin admin = adminManager.GetAdmin(int.Parse(adminID));
+                    return new string[] { admin.AdminAuthorization == true ? "1" : "0" };
+                }
+            }
+            catch (Exception )
+            {
+                throw;
+            }
+
+
+
         }
 
         public override void AddUsersToRoles(string[] usernames, string[] roleNames)

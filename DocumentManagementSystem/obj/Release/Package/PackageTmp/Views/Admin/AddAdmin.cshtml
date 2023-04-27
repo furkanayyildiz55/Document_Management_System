@@ -1,0 +1,151 @@
+﻿@model EntityLayer.Concrete.Admin
+
+@{
+    ViewBag.Title = "Admin Oluşturma";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card bg-light">
+    <div class="card-body">
+
+        @using (Html.BeginForm("AddAdmin", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div class="row">
+                <!--SOL TARAF-->
+                <div class="col col-lg-6">
+                    <div class="form-group">
+                        @Html.Label("Admin Adı *")
+                        @Html.TextBoxFor(x => x.AdminName, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.AdminName)
+                        <br />
+                        @Html.Label("Admin Soyadı *")
+                        @Html.TextBoxFor(x => x.AdminSurmane, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.AdminSurmane)
+                        <br />
+                        @Html.Label("Admin Mail *")
+                        @Html.TextBoxFor(x => x.AdminMail, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.AdminMail)
+                        <br />
+                        @Html.Label("Admin Şifre *")
+                        @Html.TextBoxFor(x => x.AdminPassword, new { @class = "form-control", type = "password" })
+                        @Html.ValidationMessageFor(x => x.AdminPassword)
+                        <br />
+                        @Html.Label("Admin İş *")
+                        @Html.TextBoxFor(x => x.AdminJob, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.AdminJob)
+                        <br />
+                    </div>
+                </div>
+
+                <!--SAĞ TARAF-->
+                <div class="col col-lg-6">
+                    <label>Admin Yetki Türü *</label>
+                    <div class="form-check">
+                        @Html.RadioButtonFor(x => x.AdminAuthorization, true, new { @class = " form-check-input" })
+                        <label class="form-check-label" for="gridRadios2">
+                            Üst Düzey Yetkili
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        @Html.RadioButtonFor(x => x.AdminAuthorization, false, new { @class = "form-check-input" , @checked = "checked" })
+                        <label class="form-check-label" for="gridRadios2">
+                            Normal Yetkili
+                        </label>
+                    </div>
+
+                    <br />
+                    @Html.Label("Admin İmza (PNG)*")
+                    <div class="input-group">
+                        <input type="file" name="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                    </div>
+
+                    @{ if (ViewBag.RecordStatus != null)
+                        {
+                            if (ViewBag.RecordStatus)
+                            {
+                                //<p></p>
+                            }
+                            else
+                            {
+                                <p>@ViewBag.UploadError</p>
+                            }
+                        }
+                        else
+                        {
+                            <p>@ViewBag.UploadError</p>
+                        }
+                    }
+                    <br />
+                    <button id="AdminAddButton" class="btn btn-primary">Yeni Admin Oluştur</button>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<br />
+
+@{
+    if (ViewBag.RecordStatus != null)
+    {
+        if (ViewBag.RecordStatus)
+        {
+            <script>
+                const swalWithBootstrapButtons = Swal.mixin({
+                    customClass: {
+                        confirmButton: 'btn btn-success',
+                        cancelButton: 'btn btn-primary'
+                    },
+                    buttonsStyling: false
+                })
+
+                swalWithBootstrapButtons.fire({
+                    title: 'Başarılı',
+                    text: "Yeni Admin Oluşturuldu!",
+                    icon: 'success',
+                    showCancelButton: true,
+                    confirmButtonText: 'Tamam',
+                    cancelButtonText: 'Admin Listeleme Sayfasına Git',
+                    reverseButtons: true
+                }).then((result) => {
+                    if (result.isConfirmed) {
+
+                    } else if (result.dismiss === Swal.DismissReason.cancel) {
+                        window.location.href = "@Url.Action("AdminList", "Admin")";
+                    }
+                })
+            </script>
+        }
+        else
+        {
+            /*
+            <script>
+                const swalWithBootstrapButtons = Swal.mixin({
+                    customClass: {
+                        confirmButton: 'btn btn-success',
+                        cancelButton: 'btn btn-primary'
+                    },
+                    buttonsStyling: false
+                })
+
+                swalWithBootstrapButtons.fire({
+                    title: 'Başarısız!',
+                    text: "Yeni Admin Oluşturulamadı!",
+                    icon: 'eroor',
+                    showCancelButton: true,
+                    confirmButtonText: 'Tamam',
+                    cancelButtonText: 'Admin Listeleme Sayfasına Git',
+                    reverseButtons: true
+                }).then((result) => {
+                    if (result.isConfirmed) {
+
+                    } else if (result.dismiss === Swal.DismissReason.cancel) {
+                        window.location.href = "@Url.Action("AdminList", "Admin")";
+                    }
+                })
+            </script>
+            */
+        }
+    }
+
+}

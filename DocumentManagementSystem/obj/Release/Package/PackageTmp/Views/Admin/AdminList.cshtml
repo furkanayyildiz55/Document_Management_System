@@ -1,0 +1,41 @@
+﻿@using EntityLayer.Concrete
+@model List<Admin>
+
+@{
+    ViewBag.Title = "Admin Listeleme";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card bg-light">
+    <div class="card-body">
+
+        <table class="table table-bordered">
+            <tr>
+                <th>#</th>
+                <th>Ad Soyad</th>
+                <th>Mail</th>
+                <th>Yetki</th>
+                <th>İmza</th>
+                <th>Durum</th>
+                <th>Güncelle</th>
+
+            </tr>
+            @foreach (var admin in Model)
+            {
+                <tr>
+                    <th>@admin.AdminID</th>
+                    <td>@admin.AdminName @admin.AdminSurmane</td>
+                    <td>@admin.AdminMail</td>
+                    <td>@(admin.AdminAuthorization ? "Üst Düzey" : "Normal")</td>
+                    <td><img src="@(admin.AdminSignatureImage != null ? admin.AdminSignatureImage  : "/image/site/none.png" )" height="50" width="50" alt="Admin İmza"></td>
+                    <td>@(admin.AdminStatus ? "Aktif" : "Pasif" )</td>
+
+                    <td style="text-align:center"><a href="/Admin/AdminUpdate/@admin.AdminID" class="btn btn-warning">Güncelle</a></td>
+                </tr>
+            }
+        </table>
+
+
+    </div>
+</div>
+

@@ -20,19 +20,19 @@
                         <br />
                         @Html.Label("Admin Adı *")
                         @Html.TextBoxFor(x => x.AdminName, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(x => x.AdminName)
+                        @Html.ValidationMessageFor(x => x.AdminName, "", new { @class = "text-danger" })
                         <br />
                         @Html.Label("Admin Soyadı *")
                         @Html.TextBoxFor(x => x.AdminSurmane, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(x => x.AdminSurmane)
+                        @Html.ValidationMessageFor(x => x.AdminSurmane, "", new { @class = "text-danger" })
                         <br />
                         @Html.Label("Admin Mail *")
                         @Html.TextBoxFor(x => x.AdminMail, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(x => x.AdminMail)
+                        @Html.ValidationMessageFor(x => x.AdminMail, "", new { @class = "text-danger" })
                         <br />
                         @Html.Label("Admin İş *")
                         @Html.TextBoxFor(x => x.AdminJob, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(x => x.AdminJob)
+                        @Html.ValidationMessageFor(x => x.AdminJob, "", new { @class = "text-danger" })
                         <br />
                     </div>
                 </div>
@@ -95,12 +95,12 @@
                             }
                             else
                             {
-                                <p>@ViewBag.UploadError</p>
+                                <p class="text-danger">@ViewBag.UploadError</p>
                             }
                         }
                         else
                         {
-                            <p>@ViewBag.UploadError</p>
+                            <p class="text-danger">@ViewBag.UploadError</p="text-danger">
                         }
 
 

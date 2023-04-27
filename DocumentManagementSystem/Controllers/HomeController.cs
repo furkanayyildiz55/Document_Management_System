@@ -27,13 +27,23 @@ namespace DocumentManagementSystem.Controllers
             //varolan session varmı kontrol et
             if (Session["UserID"] != null)
             {
-                int userID = (int)Session["UserID"];
-                Admin admin = adminManager.GetAdmin(userID);
-                if(admin != null)
+                bool UserIsAdmin = (bool)Session["UserIsAdmin"];
+                if (UserIsAdmin)
                 {
-                    return RedirectToAction("AddDocument", "Document");
+                    int userID = (int)Session["UserID"];
+                    Admin admin = adminManager.GetAdmin(userID);
+                    if (admin != null)
+                    {
+                        return RedirectToAction("AddDocument", "Document");
 
+                    }
                 }
+                else
+                {
+                    return RedirectToAction("Documents", "StudentPanel");
+                }
+
+
                 // Kullanıcı oturumu zaten açılmışsa, istenen sayfaya yönlendir
             }
             else
@@ -96,11 +106,11 @@ namespace DocumentManagementSystem.Controllers
                     if (isPasswordValid)
                     {
                         //giriş yapılabilir
-                        FormsAuthentication.SetAuthCookie(student.StudentID.ToString(), false);
-                        Session["UserName"] = student.StudentName + student.StudentSurname;
+                        FormsAuthentication.SetAuthCookie("student"+student.StudentID.ToString(), false);
+                        Session["UserName"] = student.StudentName + " "+ student.StudentSurname;
                         Session["UserID"] = student.StudentID;
                         Session["UserIsAdmin"] = false;
-                        return RedirectToAction("AddAdmin", "Admin");
+                        return RedirectToAction("Documents", "StudentPanel");
                     }
                     else
                     {

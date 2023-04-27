@@ -201,8 +201,6 @@ namespace DocumentManagementSystem.Controllers
         [HttpGet]
         public ActionResult VievHTMLDocument (int? id)
         {
-            //TODO :  ID gözükmeyecek şekilde sayfa çalıştırılacak  
-
             if (id != null && id >= 0)
             {
                 DocumentCreateModel documentCreateModel = DocumentCreateModelGetData((int)id);

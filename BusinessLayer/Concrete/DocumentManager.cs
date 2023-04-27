@@ -57,6 +57,12 @@ namespace BusinessLayer.Concrete
             return _document.Get(x => x.DocumentVerificationCode == VerificationCode);
         }
 
+        public List<Document> GetListWithStudentID(int studentID)
+        {
+            //sadece bütüm imzaları atılmış belgeleri getirir
+            return _document.List(x => x.StudentID  ==  studentID && x.DocumentStatus==true );
+        }
+
         public List<Document> GetList(string StudentNo)
         {
             return _document.List(x => x.Student.StudentNo == StudentNo);

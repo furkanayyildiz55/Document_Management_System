@@ -61,6 +61,8 @@ namespace BusinessLayer.ValidationRules
 
 
 
+            RuleFor(x => x.StudentPassword).NotEmpty().WithMessage("Şifre boş geçilemez")
+                .Length(6, 50).WithMessage("Şifre en az 2 en fazla 50 karakter olmalıdır");
 
         }
 

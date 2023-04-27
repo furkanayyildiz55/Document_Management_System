@@ -16,15 +16,19 @@
                     <div class="form-group">
                         @Html.Label("Öğrenci Adı *")
                         @Html.TextBoxFor(x => x.StudentName, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(x => x.StudentName)
+                        @Html.ValidationMessageFor(x => x.StudentName, "", new { @class = "text-danger" })
                         <br />
                         @Html.Label("Öğrenci Soyadı *")
                         @Html.TextBoxFor(x => x.StudentSurname, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(x => x.StudentSurname)
+                        @Html.ValidationMessageFor(x => x.StudentSurname, "", new { @class = "text-danger" })
                         <br />
                         @Html.Label("Öğrenci Mail *")
                         @Html.TextBoxFor(x => x.StudentMail, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(x => x.StudentMail)
+                        @Html.ValidationMessageFor(x => x.StudentMail, "", new { @class = "text-danger" })
+                        <br />
+                        @Html.Label("Öğrenci Şifre *")
+                        @Html.TextBoxFor(x => x.StudentPassword, new { @class = "form-control", type = "password" })
+                        @Html.ValidationMessageFor(x => x.StudentPassword, "", new { @class = "text-danger" })
 
                     </div>
                 </div>
@@ -46,17 +50,17 @@
                             Kayıt Yok
                         </label>
                     </div>
-                    @Html.ValidationMessageFor(x => x.StudentUniversityRegistered)
+                    @Html.ValidationMessageFor(x => x.StudentUniversityRegistered, "", new { @class = "text-danger" })
 
 
                     <br />
                     @Html.Label("Öğrenci No *")
                     @Html.TextBoxFor(x => x.StudentNo, new { @class = "form-control", type = "number" })
-                    @Html.ValidationMessageFor(x => x.StudentNo)
+                    @Html.ValidationMessageFor(x => x.StudentNo, "", new { @class = "text-danger" })
                     <br />
                     @Html.Label("Öğrenci Bölümü *")
                     @Html.TextBoxFor(x => x.StudentProgram, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(x => x.StudentProgram)
+                    @Html.ValidationMessageFor(x => x.StudentProgram, "", new { @class = "text-danger" })
                     <br />
 
 

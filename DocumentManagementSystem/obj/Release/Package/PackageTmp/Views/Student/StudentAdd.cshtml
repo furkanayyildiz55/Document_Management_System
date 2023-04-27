@@ -1,0 +1,151 @@
+﻿@model EntityLayer.Concrete.Student
+
+@{
+    ViewBag.Title = "Öğrenci Ekleme";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card bg-light">
+    <div class="card-body">
+
+        @using (Html.BeginForm("StudentAdd", "Student", FormMethod.Post))
+        {
+            <div class="row">
+                <!--SOL TARAF-->
+                <div class="col col-lg-6">
+                    <div class="form-group">
+                        @Html.Label("Öğrenci Adı *")
+                        @Html.TextBoxFor(x => x.StudentName, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.StudentName)
+                        <br />
+                        @Html.Label("Öğrenci Soyadı *")
+                        @Html.TextBoxFor(x => x.StudentSurname, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.StudentSurname)
+                        <br />
+                        @Html.Label("Öğrenci Mail *")
+                        @Html.TextBoxFor(x => x.StudentMail, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.StudentMail)
+                        <br />
+                        @Html.Label("Öğrenci Şifre *")
+                        @Html.TextBoxFor(x => x.StudentPassword, new { @class = "form-control", type = "password" })
+                        @Html.ValidationMessageFor(x => x.StudentPassword)
+
+                    </div>
+                </div>
+
+                <div class="col col-lg-6">
+
+                    <label>Üniversite Kayıt Durumu *</label>
+                    <span title="Üniversiteye kayıtlı olan öğrencilerin öğrenci numarası, okuduğu bölümü ve ogr.bozok.edu.tr uzantılı mail adreslerini girmeleri gerekmektedir"><i class="fa fa-info-circle text-primary"></i></span>
+
+                    <div class="form-check">
+                        @Html.RadioButtonFor(x => x.StudentUniversityRegistered, true, new { @class = " form-check-input", @checked = "checked" })
+                        <label class="form-check-label" for="gridRadios2">
+                            Kayıt Var
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        @Html.RadioButtonFor(x => x.StudentUniversityRegistered, false, new { @class = "form-check-input" })
+                        <label class="form-check-label" for="gridRadios2">
+                            Kayıt Yok
+                        </label>
+                    </div>
+                    @Html.ValidationMessageFor(x => x.StudentUniversityRegistered)
+
+
+                    <br />
+                    @Html.Label("Öğrenci No *")
+                    @Html.TextBoxFor(x => x.StudentNo, new { @class = "form-control", type = "number" })
+                    @Html.ValidationMessageFor(x => x.StudentNo)
+                    <br />
+                    @Html.Label("Öğrenci Bölümü *")
+                    @Html.TextBoxFor(x => x.StudentProgram, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.StudentProgram)
+                    <br />
+
+
+                    @{ if (ViewBag.RecordStatus != null && ViewBag.RecordStatus == false)
+                        {
+                            if (ViewBag.RecordStatus)
+                            {
+                                //<p></p>
+                            }
+                            else
+                            {
+                                <p>@ViewBag.ErrorMessage</p>
+                            }
+                        }
+                    }
+                </div>
+                <br />
+                <button id="AdminAddButton" class="btn btn-primary">Yeni Öğrenci Oluştur</button>
+            </div>
+        }
+    </div>
+</div>
+
+
+@{
+    if (ViewBag.RecordStatus != null)
+    {
+        if (ViewBag.RecordStatus)
+        {
+            <script>
+                const swalWithBootstrapButtons = Swal.mixin({
+                    customClass: {
+                        confirmButton: 'btn btn-success',
+                        cancelButton: 'btn btn-primary'
+                    },
+                    buttonsStyling: false
+                })
+
+                swalWithBootstrapButtons.fire({
+                    title: 'Başarılı',
+                    text: "Yeni Öğrenci Oluşturuldu!",
+                    icon: 'success',
+                    showCancelButton: true,
+                    confirmButtonText: 'Tamam',
+                    cancelButtonText: 'Öğrenci Listeleme Sayfasına Git',
+                    reverseButtons: true
+                }).then((result) => {
+                    if (result.isConfirmed) {
+
+                    } else if (result.dismiss === Swal.DismissReason.cancel) {
+                        window.location.href = "@Url.Action("StudentList", "Student")";
+                    }
+                })
+            </script>
+        }
+        else
+        {
+            /*
+            <script>
+                const swalWithBootstrapButtons = Swal.mixin({
+                    customClass: {
+                        confirmButton: 'btn btn-success',
+                        cancelButton: 'btn btn-primary'
+                    },
+                    buttonsStyling: false
+                })
+
+                swalWithBootstrapButtons.fire({
+                    title: 'Başarısız!',
+                    text: "Yeni Admin Oluşturulamadı!",
+                    icon: 'eroor',
+                    showCancelButton: true,
+                    confirmButtonText: 'Tamam',
+                    cancelButtonText: 'Admin Listeleme Sayfasına Git',
+                    reverseButtons: true
+                }).then((result) => {
+                    if (result.isConfirmed) {
+
+                    } else if (result.dismiss === Swal.DismissReason.cancel) {
+                        window.location.href = "@Url.Action("AdminList", "Admin")";
+                    }
+                })
+            </script>
+            */
+        }
+    }
+
+}

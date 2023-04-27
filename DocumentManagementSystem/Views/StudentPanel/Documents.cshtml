@@ -1,0 +1,46 @@
+﻿@using EntityLayer.Concrete
+@model List<Document>
+
+
+@{
+    ViewBag.Title = "Belgelerim";
+    Layout = "~/Views/Shared/_StudentLayout.cshtml";
+}
+
+
+@if (Model == null)
+{
+    <p>Listelenecek Veri Yok!</p>
+}
+else
+{
+    <div class="card bg-light">
+        <div class="card-body">
+
+            <table class="table table-bordered">
+                <tr>
+                    <th>Belge Sahibi</th>
+                    <th>Belge Türü</th>
+                    <th>Belge Durumu</th>
+                    <th>Oluşturma Tarihi</th>
+                    <th>Görüntüle</th>
+                    <th>PDF Al</th>
+
+                </tr>
+                @foreach (var documentItem in Model)
+                {
+                    <tr>
+                        <td>@documentItem.Student.StudentName @documentItem.Student.StudentSurname</td>
+                        <td>@documentItem.DocumentType.DocumentTypeName</td>
+                        <td>@(documentItem.DocumentStatus ? "İmzalı" : "İmzasız")</td>
+                        <td>@documentItem.DocumentCreateDate.ToString("g")</td>
+                        <td style="text-align:center"><a href="/Document/VievHTMLDocument/@documentItem.DocumentID" class="btn btn-primary">Görüntüle</a></td>
+                        <td style="text-align:center"><a href="/Document/GeneratePDF/@documentItem.DocumentID" class="btn btn-primary">PDF İndir</a></td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+
+}
+

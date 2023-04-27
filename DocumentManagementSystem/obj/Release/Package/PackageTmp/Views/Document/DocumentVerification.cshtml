@@ -1,0 +1,78 @@
+﻿@model DocumentManagementSystem.Models.DocumentVerificationModel
+
+
+@{
+    ViewBag.Title = "Belge Doğrulama";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card bg-light">
+    <div class="card-body">
+        @using (Html.BeginForm("DocumentVerification", "Document", FormMethod.Post))
+        {
+            <div class="row">
+                <!--SOL TARAF-->
+                <div class="col col-lg-6">
+                    <div class="form-group">
+                        <span title="Sorgulamak istediğiniz belgede bulunan belge kodunu boşluksuz şekilde giriniz !"><i class="fa fa-info-circle text-primary"></i></span>
+                        @Html.Label("Belge Kodu")
+                        @Html.TextBoxFor(x=> x.VerificationCode, new { @class = "form-control" })
+                        @Html.ValidationMessage("DocumentVerificationCode", new { @class = "text-danger" })
+                    </div>
+                    <button id="AdminAddButton" class="btn btn-primary">Belge Sorgula</button>
+                    <br />
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<br />
+<div class="card bg-light">
+    <div class="card-body">
+
+        @if (Model.document == null)
+        {
+           if (Model.isPostMethod == true)
+            {
+                <h4 class="text-danger">Böyle bir belge yok!</h4>
+            }
+        }
+        else
+        {
+            <div class="row">
+                <!--SOL TARAF-->
+                <div class="col col-lg-6">
+                    <h4 class="text-primary">Öğrenci Bilgileri</h4>
+                    <p>@Model.document.Student.StudentName @Model.document.Student.StudentSurname </p>
+                    <p>@(Model.document.Student.StudentNo==null ? "Üniversite kaydı yok" : Model.document.Student.StudentNo )   </p>
+                    <p>@Model.document.Student.StudentMail</p>
+                    <p>@Model.document.Student.StudentProgram</p>
+                </div>
+                <div class="col col-lg-6">
+                    <h4 class="text-primary">Belge Bilgileri</h4>
+                    <p>@Model.document.DocumentType.DocumentTypeName</p>
+                    <p>@Model.document.DocumentType.DocumentTypeText</p>
+                    @if (Model.document.DocumentStatus == true)
+                    {
+                        <p class="text-success">İmzalanmış</p>
+                    }
+                    else
+                    {
+                        <p class="text-danger">İmzalanmamış</p>
+                    }
+                    <a target="_blank" href="/Document/VievHTMLDocument/@Model.document.DocumentID" class="btn btn-outline-secondary">Görüntüle</a>
+
+                    @if (Model.document.DocumentStatus == false)
+                    {
+                        <a target="_blank" href="/Document/GeneratePDF/@Model.document.DocumentID" class="btn btn-outline-secondary">PDF Al</a>
+                    }
+                </div>
+            </div>
+        }
+
+
+
+
+    </div>
+        
+    </div>

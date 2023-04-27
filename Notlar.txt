@@ -22,3 +22,18 @@ kontrol panelinde öðrenci ekleme iþleminde þifre nasýl belirlenecek ?
 admin bilgisi eklerken ayný admin varmý kontrolü
 student bilgisi eklerken ayný student varmý kontrolü 
 log kodlarýný yaz ve sisteme entegre et 
+
+belge türü listeleme sayfasý görüntüle iþlemi dinamikleþtir
+belge türü tablosuna birim alaný da eklenmeli mi ?
+
+
+belge güncelleme sayfasý olacak mý ?
+öðrenci güncelleme sayfasý olacak mý ?
+admin güncelleme sayfasý olacak mý ?
+
+
+OPSÝYON 
+
+belge listelemede son oluþturulan 20 listeli göster sonra filtlere
+
+
