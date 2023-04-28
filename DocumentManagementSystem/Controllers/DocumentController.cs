@@ -15,7 +15,7 @@ using System.Web.Mvc;
 
 namespace DocumentManagementSystem.Controllers
 {
-    [Authorize(Roles="0,1")]
+    //[Authorize(Roles="0,1")]
     public class DocumentController : Controller
     {
 
@@ -119,7 +119,6 @@ namespace DocumentManagementSystem.Controllers
             return View(documentModel);
         }
 
-        //TODO : Öğenci üniversiteye kayıtlı değil ise ona nasıl belge oluşturulacak. bunun için belge oluşturma kısmına no veya mail giriniz alanı yap
         [HttpPost]
         public ActionResult AddDocument(DocumentModel documentModel)
         {
@@ -133,7 +132,6 @@ namespace DocumentManagementSystem.Controllers
             documentModel.document.DocumentPdfUrl = "";
             documentModel.document.DocumentVerificationCode = GenerateVerificationCode();
 
-
             bool StudentNoisNotNull = (documentModel.studentNo == null ? false: true);  //null değil ise true olacak
             try
             {
@@ -142,10 +140,13 @@ namespace DocumentManagementSystem.Controllers
                 {
                     //öğrenci verileri çekiliyor
                     var student = StudentManager.GetStudentWihtNumber(documentModel.studentNo);
+
+                    if (student == null) student = StudentManager.GetStudentWithMail(documentModel.studentNo);
+
                     if (student == null)
                     {
                         ViewBag.RecordStatus = false;
-                        ModelState.AddModelError("StudentNo", "Öğrenci bulunamadı, geçerli bir numara giriniz !");
+                        ModelState.AddModelError("StudentNo", "Öğrenci bulunamadı, geçerli bir numara veya mail giriniz !");
                         ViewBag.RecordStatus = false;
                         return View(documentModel);
                     }
@@ -176,7 +177,7 @@ namespace DocumentManagementSystem.Controllers
                     ViewBag.RecordStatus = false;
                     if (!StudentNoisNotNull)
                     {
-                        ModelState.AddModelError("StudentNo", "Lütfen Öğrenci Numarası Giriniz !");
+                        ModelState.AddModelError("StudentNo", "Lütfen Öğrenci Numarası veya Maili Giriniz !");
                     }
                     foreach (var item in result.Errors)
                     {
@@ -211,7 +212,27 @@ namespace DocumentManagementSystem.Controllers
                 return View();
             }
         }
-   
+
+
+        [HttpGet]
+        public ActionResult VievPDFDocument(int? DocumentID)
+        {
+            try
+            {
+                Document document = documentManager.GetDocument(24);
+                ViewBag.PDFUrl = document.DocumentPdfUrl;
+                return View();
+            }
+            catch (Exception e)
+            {
+                ViewBag.Error = e.Message;
+                return View();
+            }
+
+        }
+
+
+
         public ActionResult GeneratePDF()
         {
             int DocumentID = 24;
@@ -221,7 +242,7 @@ namespace DocumentManagementSystem.Controllers
             {
                 foreach (var item in documentCreateModel.documentCreateSignatures)
                 {
-                    if (item.SignatureStatus == false)
+                    if (item.SignatureStatus == false) //onaylanmamış imza kontrolü
                     {
                        // return RedirectToAction("AddDocument", "Document");
                     }
@@ -236,19 +257,21 @@ namespace DocumentManagementSystem.Controllers
 
             var report =  new ViewAsPdf("VievHTMLDocument", documentCreateModel )
             {
-                //FileName = Server.MapPath("~/Content/DENEME.pdf" ),
                 PageOrientation = Rotativa.Options.Orientation.Landscape,
                 PageSize = Rotativa.Options.Size.A4,
                 PageMargins = new Margins(0, 0, 0, 0),
             };
 
             string fileName =  $"{documentCreateModel.StudentFullName} {documentCreateModel.DocumentName} {documentCreateModel.DocumentVerificationCode}.pdf";
-            string fullPath =  Server.MapPath("~/DocumentsPDF/" + fileName);
+            string fullPath =  "/DocumentsPDF/" + fileName;
+            string serverPath = Server.MapPath("~" + fullPath);
 
+            Document document = documentManager.GetDocument(int.Parse(documentCreateModel.DocumentID));
+            document.DocumentPdfUrl=fullPath;
+            documentManager.DocumentUpdate(document);
 
-            // TODO : Sistem dosyayı bulamıyor hatası var. İlgilen
-            var byteArray = report.BuildPdf(ControllerContext);
-            var fileStream = new FileStream(fullPath, FileMode.Create, FileAccess.Write);
+            var byteArray = report.BuildPdf(this.ControllerContext);
+            var fileStream = new FileStream(serverPath, FileMode.Create, FileAccess.Write);
             fileStream.Write(byteArray, 0, byteArray.Length);
             fileStream.Close();
 
@@ -256,8 +279,10 @@ namespace DocumentManagementSystem.Controllers
             //{
             //}
 
-            ViewBag.PDF = "/DocumentsPDF/" + fileName ;
-            return View();
+            //ViewBag.PDFUrl = "/DocumentsPDF/" + fileName ;
+            return RedirectToAction("VievPDFDocument","Document", documentCreateModel.DocumentID);
+
+            
         }
 
         private DocumentCreateModel DocumentCreateModelGetData(int DocumentID)
@@ -282,6 +307,7 @@ namespace DocumentManagementSystem.Controllers
             documentCreateModel.StudentNoMail = student.StudentNo != null ? student.StudentNo.ToString() : student.StudentMail;
             documentCreateModel.StudentProgram = student.StudentProgram;
 
+            documentCreateModel.DocumentID = document.DocumentID.ToString();
             documentCreateModel.DocumentName = documentType.DocumentTypeName;
             documentCreateModel.DocumentText = document.DocumentAlternativeText != null ? document.DocumentAlternativeText : documentType.DocumentTypeText;
             documentCreateModel.DocumentVerificationCode = document.DocumentVerificationCode;

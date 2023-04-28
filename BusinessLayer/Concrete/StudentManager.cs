@@ -35,6 +35,8 @@ namespace BusinessLayer.Concrete
             return _student.Get(x => x.StudentMail == studentMail);
         }
 
+        
+
         public void StudentAdd(Student student)
         {
             _student.Add(student);

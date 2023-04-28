@@ -6,9 +6,8 @@ Rol tanýmlamalarý :
 
 
 Kullanýcý Bilg: 
-
 admin -> test@test.com  test123
-
+--------------------------------------------------------------------------------------
 
 YAPILACAKLAR 
 
@@ -18,14 +17,14 @@ student için bilgileri düzenleme sayfasý
 admin için bilgilerini düzenleme sayfasý
 kontrol panelinde öðrenci ekleme iþleminde þifre nasýl belirlenecek ?
 
+*log kodlarýný yaz ve sisteme entegre et 
 
-admin bilgisi eklerken ayný admin varmý kontrolü
-student bilgisi eklerken ayný student varmý kontrolü 
-log kodlarýný yaz ve sisteme entegre et 
+*belge türü listeleme sayfasý görüntüle iþlemi dinamikleþtir
 
-belge türü listeleme sayfasý görüntüle iþlemi dinamikleþtir
-belge türü tablosuna birim alaný da eklenmeli mi ?
+*belge pdf kaydetme iþlemini düzenle hata veriyor
+*belge arayüzü oluþturma sayfasý js dinamliklerini ekle (imza dinamikleri)
 
+*stuent panel sayfasý iþlemleri
 
 belge güncelleme sayfasý olacak mý ?
 öðrenci güncelleme sayfasý olacak mý ?
@@ -34,6 +33,7 @@ admin güncelleme sayfasý olacak mý ?
 
 OPSÝYON 
 
+öðrenci listeleme sayfasý tanýmlanmýþ belgeler kýsmý hallet
 belge listelemede son oluþturulan 20 listeli göster sonra filtlere
-
+belge türü tablosuna birim alaný da eklenmeli mi ?
 

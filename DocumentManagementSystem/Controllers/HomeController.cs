@@ -51,8 +51,6 @@ namespace DocumentManagementSystem.Controllers
                 // Kullanıcı oturumu açılmamışsa, giriş sayfasını göster
                 return View();
             }
-
-
             return View();
         }
 

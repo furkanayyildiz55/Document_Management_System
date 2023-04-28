@@ -43,12 +43,34 @@ namespace DocumentManagementSystem.Controllers
             {
                 if (result.IsValid)
                 {
-                    string salt = BCrypt.Net.BCrypt.GenerateSalt(); // Salt oluştur
-                    string hashedPassword = BCrypt.Net.BCrypt.HashPassword(student.StudentPassword, salt); // Şifreyi hashle
-                    student.StudentPassword= hashedPassword;
+                    Student DbStudentNo = null;
+                    if (student.StudentUniversityRegistered)
+                    {
+                        DbStudentNo = studentManager.GetStudentWihtNumber(student.StudentNo);
+                    }
+                   
+                    Student DbStudentMail = studentManager.GetStudentWithMail(student.StudentMail);
 
-                    studentManager.StudentAdd(student);
-                    ViewBag.RecordStatus = true;
+                    if(DbStudentNo == null && DbStudentMail == null)
+                    {
+                        string salt = BCrypt.Net.BCrypt.GenerateSalt(); // Salt oluştur
+                        string hashedPassword = BCrypt.Net.BCrypt.HashPassword(student.StudentPassword, salt); // Şifreyi hashle
+                        student.StudentPassword= hashedPassword;
+
+                        studentManager.StudentAdd(student);
+                        ViewBag.RecordStatus = true;
+                    }
+                    else
+                    {
+                        if (student.StudentUniversityRegistered)
+                        {
+                            if (DbStudentNo != null) ModelState.AddModelError("StudentNo", "Bu numara ile kayıtlı öğrenci bulunmaktadır");
+                        }
+
+                        if (DbStudentMail != null) ModelState.AddModelError("StudentMail", "Bu mail ile kayıtlı öğrenci bulunmaktadır");
+                    }
+
+
                 }
                 else
                 {
@@ -67,6 +89,8 @@ namespace DocumentManagementSystem.Controllers
         }
 
         #endregion
+
+
 
     }
 }

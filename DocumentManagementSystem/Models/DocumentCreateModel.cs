@@ -13,6 +13,7 @@ namespace DocumentManagementSystem.Models
         public string StudentNoMail { get; set; }
         public string StudentProgram { get; set; }
 
+        public string DocumentID { get; set; }
         public string DocumentName { get; set; }
         public string DocumentText { get; set; }
         public string DocumentVerificationCode { get; set; }

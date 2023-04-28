@@ -2048,6 +2048,10 @@
     <Content Include="image\site\signature.png" />
     <Content Include="image\site\user.png" />
     <Content Include="Notlar.txt" />
+    <Content Include="Rotativa\help-wkhtmltoimage.txt" />
+    <Content Include="Rotativa\help-wkhtmltopdf.txt" />
+    <Content Include="Rotativa\wkhtmltoimage.exe" />
+    <Content Include="Rotativa\wkhtmltopdf.exe" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="AdminLTE-3.0.4\.babelrc" />
@@ -2349,6 +2353,7 @@
     <Content Include="Views\Shared\_StudentLayout.cshtml" />
     <Content Include="Views\StudentPanel\Documents.cshtml" />
     <Content Include="Views\StudentPanel\Index.cshtml" />
+    <Content Include="Views\Document\VievPDFDocument.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ApiModels\" />

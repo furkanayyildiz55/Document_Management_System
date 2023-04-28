@@ -50,5 +50,11 @@ namespace BusinessLayer.Concrete
         {
             return _admin.List(x => x.AdminAuthorization == true);
         }
+
+        //public List<Admin> AdminCheckRecord( )
+        //{
+        //    return _admin.List(x => x.AdminAuthorization == true);
+        //}
+
     }
 }

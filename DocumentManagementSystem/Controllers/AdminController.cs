@@ -33,35 +33,44 @@ namespace DocumentManagementSystem.Controllers
             AdminValidator adminValidator = new AdminValidator();
             ValidationResult result = adminValidator.Validate(admin);
 
-            //// Şifre doğrulama
-            //string userInput = "mypassword"; // Kullanıcının girdiği şifre
-            //bool isPasswordValid = BCrypt.Net.BCrypt.Verify(userInput, hashedPassword); // Hashlenmiş şifreyi doğrula
+
+
             try
             {
                 if (result.IsValid) //form validasyonu sağlanıyorsa
                 {
-                    admin.AdminStatus = true;
-                    // Şifre hashleme
-                    string salt = BCrypt.Net.BCrypt.GenerateSalt(); // Salt oluştur
-                    string hashedPassword = BCrypt.Net.BCrypt.HashPassword(admin.AdminPassword, salt); // Şifreyi hashle
-                    admin.AdminPassword = hashedPassword;
-
-                    if (admin.AdminAuthorization)  //true ise kesinlikle görsel yüklemesi olacak
+                    Admin DbAdmin = adminManager.GetAdminWithMail(admin.AdminMail);
+                    if(DbAdmin == null) //aynı admin yok ise
                     {
-                        if (FileUploadControl())
+                        admin.AdminStatus = true;
+                        // Şifre hashleme
+                        string salt = BCrypt.Net.BCrypt.GenerateSalt(); // Salt oluştur
+                        string hashedPassword = BCrypt.Net.BCrypt.HashPassword(admin.AdminPassword, salt); // Şifreyi hashle
+                        admin.AdminPassword = hashedPassword;
+
+                        if (admin.AdminAuthorization)  //true ise kesinlikle görsel yüklemesi olacak
+                        {
+                            if (FileUploadControl())
+                            {
+                                adminManager.AdminAdd(admin);
+                                ViewBag.RecordStatus = true;
+                            }
+                            else  // görsel yüklemesi olmadan kayıt yapılabilecek
+                            {
+                                ViewBag.RecordStatus = false;
+                            }
+                        }
+                        else  //false durumunda görsel yüklemesi olmasada kayıt edilebilecek
                         {
                             adminManager.AdminAdd(admin);
                             ViewBag.RecordStatus = true;
                         }
-                        else  // görsel yüklemesi olmadan kayıt yapılabilecek
-                        {
-                            ViewBag.RecordStatus = false;
-                        }
                     }
-                    else  //false durumunda görsel yüklemesi olmasada kayıt edilebilecek
+                    else 
                     {
-                        adminManager.AdminAdd(admin);
-                        ViewBag.RecordStatus = true;
+                        ViewBag.RecordStatus = false;
+                        ViewBag.UploadError = "Mail daha önceden kayıt edilmiş !";
+                        return View();
                     }
 
                 }
