@@ -31,7 +31,7 @@ namespace BusinessLayer.Concrete
             _document.Update(document);
         }
 
-        public Document GetDocument(int documentID)
+        public Document GetDocument(int? documentID)
         {
             return _document.Get(x => x.DocumentID == documentID);
         }

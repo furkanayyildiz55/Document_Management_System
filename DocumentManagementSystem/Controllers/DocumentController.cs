@@ -60,9 +60,8 @@ namespace DocumentManagementSystem.Controllers
                 Document document = documentManager.GetDocument(int.Parse(documentSignModel.DocumentID));
                 document.DocumentStatus = true;
                 documentManager.DocumentUpdate(document);
+                GeneratePDFFunc(int.Parse(documentSignModel.DocumentID));
             }
-
-
             return RedirectToAction("DocumentSign", "Document");
         }
 
@@ -75,6 +74,7 @@ namespace DocumentManagementSystem.Controllers
         {
             DocumentListModel documentListModel = new DocumentListModel();
             documentListModel.DocumentList= documentManager.GetList();
+            documentListModel.DocumentList.Reverse();
             return View(documentListModel);
 
         }
@@ -215,87 +215,128 @@ namespace DocumentManagementSystem.Controllers
 
 
         [HttpGet]
-        public ActionResult VievPDFDocument(int? DocumentID)
+        public ActionResult VievPDFDocument(int? id)
         {
+            int? DocumentID = id;
             try
             {
-                Document document = documentManager.GetDocument(24);
-                ViewBag.PDFUrl = document.DocumentPdfUrl;
-                return View();
+                if(DocumentID != null && DocumentID > 0) 
+                {
+                    Document document = documentManager.GetDocument(DocumentID);
+                    if (document.DocumentStatus)
+                    {
+                        if(document.DocumentPdfUrl != "")
+                        {
+                            ViewBag.PDFUrl = document.DocumentPdfUrl;
+                            return View();
+                        }
+                        else
+                        {
+                            ViewBag.PDFUrl = null;
+                            ViewBag.Error = "Hatalı belge. Oluşturulan belge imzalanmış fakat PDF oluşturulmamış.";
+                            return View();
+                        }
+
+                    }
+                    else 
+                    {
+                        ViewBag.PDFUrl = null;
+                        ViewBag.Error = "Bu belge imzalanmamış ve PDF dosyası oluşturulmamış !";
+                        return View();                    
+                    }
+
+                }
+                else
+                {
+                    ViewBag.PDFUrl = null;
+                    ViewBag.Error = "Bir hata oluştu, bu link geçerli değil !";
+                    return View();
+                }
+
             }
-            catch (Exception e)
+            catch (Exception )
             {
-                ViewBag.Error = e.Message;
+                ViewBag.Error = "Bir hata oluştu. Lütfen yetkililere bildiriniz !";
                 return View();
             }
 
         }
 
-
-
-        public ActionResult GeneratePDF()
+        [HttpGet]
+        public ActionResult GeneratePDF(int? id)
         {
-            int DocumentID = 24;
+
+            bool isGeneratePDF = GeneratePDFFunc(id);
+            
+            if(isGeneratePDF)
+                return RedirectToAction("AddDocument", "Document");
+            else
+            {
+                return View();
+            }
+        }
+
+        private bool GeneratePDFFunc(int? DocumentID)
+        {
+            if (DocumentID != null && DocumentID < 0) return false;
+
             DocumentCreateModel documentCreateModel = DocumentCreateModelGetData(DocumentID);
 
             if (documentCreateModel != null)
             {
-                foreach (var item in documentCreateModel.documentCreateSignatures)
-                {
-                    if (item.SignatureStatus == false) //onaylanmamış imza kontrolü
-                    {
-                       // return RedirectToAction("AddDocument", "Document");
-                    }
-                }
+                //foreach (var item in documentCreateModel.documentCreateSignatures)
+                //{
+                //    if (item.SignatureStatus == false) //onaylanmamış imza kontrolü
+                //    {
+                //       // return RedirectToAction("AddDocument", "Document");
+                //    }
+                //}
             }
             else
             {
-                return RedirectToAction("AddDocument", "Document");
-
+                return false;
             }
 
-
-            var report =  new ViewAsPdf("VievHTMLDocument", documentCreateModel )
+            try
             {
-                PageOrientation = Rotativa.Options.Orientation.Landscape,
-                PageSize = Rotativa.Options.Size.A4,
-                PageMargins = new Margins(0, 0, 0, 0),
-            };
+                var report = new ViewAsPdf("VievHTMLDocument", documentCreateModel)
+                {
+                    PageOrientation = Rotativa.Options.Orientation.Landscape,
+                    PageSize = Rotativa.Options.Size.A4,
+                    PageMargins = new Margins(0, 0, 0, 0),
+                };
 
-            string fileName =  $"{documentCreateModel.StudentFullName} {documentCreateModel.DocumentName} {documentCreateModel.DocumentVerificationCode}.pdf";
-            string fullPath =  "/DocumentsPDF/" + fileName;
-            string serverPath = Server.MapPath("~" + fullPath);
+                string fileName = $"{documentCreateModel.StudentFullName} {documentCreateModel.DocumentName} {documentCreateModel.DocumentVerificationCode}.pdf";
+                string fullPath = "/DocumentsPDF/" + fileName;
+                string serverPath = Server.MapPath("~" + fullPath);
 
-            Document document = documentManager.GetDocument(int.Parse(documentCreateModel.DocumentID));
-            document.DocumentPdfUrl=fullPath;
-            documentManager.DocumentUpdate(document);
+                Document document = documentManager.GetDocument(int.Parse(documentCreateModel.DocumentID));
+                document.DocumentPdfUrl = fullPath;
+                documentManager.DocumentUpdate(document);
 
-            var byteArray = report.BuildPdf(this.ControllerContext);
-            var fileStream = new FileStream(serverPath, FileMode.Create, FileAccess.Write);
-            fileStream.Write(byteArray, 0, byteArray.Length);
-            fileStream.Close();
+                var byteArray = report.BuildPdf(this.ControllerContext);
+                var fileStream = new FileStream(serverPath, FileMode.Create, FileAccess.Write);
+                fileStream.Write(byteArray, 0, byteArray.Length);
+                fileStream.Close();
 
-            //if (!System.IO.File.Exists(fullPath))
-            //{
-            //}
-
-            //ViewBag.PDFUrl = "/DocumentsPDF/" + fileName ;
-            return RedirectToAction("VievPDFDocument","Document", documentCreateModel.DocumentID);
-
+                return true;
+            }
+            catch (Exception)
+            {
+                //TODO : hata sayfasına hata kodu ile yönlendir
+                throw;
+            }
             
         }
 
-        private DocumentCreateModel DocumentCreateModelGetData(int DocumentID)
+        private DocumentCreateModel DocumentCreateModelGetData(int? DocumentID)
         {
-            
             Document document = documentManager.GetDocument(DocumentID);
 
             if(document == null)
             {
                 return null;
             }
-
-           // var item = document.Student;
 
             Student student = StudentManager.GetStudent(document.StudentID);
             DocumentType documentType = documentTypeManager.GetDocumentType(document.DocumentTypeID);

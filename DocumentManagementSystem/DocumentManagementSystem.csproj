@@ -2342,7 +2342,6 @@
     <Content Include="Views\DocumentType\UpdateDocumentType.cshtml" />
     <Content Include="Views\Document\AddDocument.cshtml" />
     <Content Include="Views\Document\VievHTMLDocument.cshtml" />
-    <Content Include="Views\Document\GeneratePDF.cshtml" />
     <Content Include="Views\Document\DocumentList.cshtml" />
     <Content Include="Views\Document\DocumentVerification.cshtml" />
     <Content Include="Views\Document\DocumentSign.cshtml" />

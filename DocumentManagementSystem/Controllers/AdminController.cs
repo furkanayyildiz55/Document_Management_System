@@ -18,6 +18,10 @@ namespace DocumentManagementSystem.Controllers
         // GET: Admin
         //[Authorize]  //kullanıcı girişi olmadan girilemeyeceği anlmını taşır
 
+        #region AdminProfile
+
+#endregion 
+
         #region AddAdmin
 
         [HttpGet ]

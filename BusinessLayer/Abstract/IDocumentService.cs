@@ -14,6 +14,6 @@ namespace BusinessLayer.Abstract
         int DocumentAdd(Document document);
         void DocumentDelete(Document document);
         void DocumentUpdate(Document document);
-        Document GetDocument(int document);
+        Document GetDocument(int? document);
     }
 }
