@@ -20,7 +20,71 @@ namespace DocumentManagementSystem.Controllers
 
         #region AdminProfile
 
-#endregion 
+        [HttpGet, Authorize(Roles ="0,1")]
+        public ActionResult AdminProfile()
+        {
+            int AdminID = (int)Session["UserID"];
+            Admin admin = adminManager.GetAdmin(AdminID);
+            admin.AdminPassword = null;
+            return View(admin);
+        }
+
+        [HttpPost]
+        public ActionResult AdminProfile(Admin newAdmin)
+        {
+            Admin admin = adminManager.GetAdmin(newAdmin.AdminID);
+
+            admin.AdminName = newAdmin.AdminName;
+            admin.AdminJob = newAdmin.AdminJob;
+
+            if(newAdmin.AdminPassword != null)
+            {
+                admin.AdminPassword = newAdmin.AdminPassword;
+            }
+
+            AdminValidator adminValidator = new AdminValidator();
+            ValidationResult result = adminValidator.Validate(admin);
+
+            try
+            {
+                if (result.IsValid) //form validasyonu sağlanıyorsa
+                {
+                        if(newAdmin.AdminPassword != null)
+                         {
+                         // Şifre hashleme
+                            string salt = BCrypt.Net.BCrypt.GenerateSalt(); // Salt oluştur
+                            string hashedPassword = BCrypt.Net.BCrypt.HashPassword(admin.AdminPassword, salt); // Şifreyi hashle
+                            admin.AdminPassword = hashedPassword;
+                         }
+
+                        adminManager.AdminUpdate(admin);
+                        ViewBag.RecordStatus = true;
+                        ViewBag.ErrorMessage = "Güncelleme gerçekleşti";
+
+
+
+                }
+                else //validasyon sağlanmıyor ise
+                {
+                    ViewBag.RecordStatus = false;
+                    ViewBag.ErrorMessage = "Güncelleme gerçekleşmedi";
+
+                    foreach (var item in result.Errors)
+                    {
+                        ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                    }
+                }
+                return View(admin);
+            }
+            catch (Exception e)
+            {
+                ViewBag.RecordStatus = false;
+                ViewBag.ErrorMessage = "Bilinmeyen hata, lütfen hatayı yetkililere bildiriniz ! : " + e.Message;
+                return View(admin);
+            }
+        }
+
+        #endregion
 
         #region AddAdmin
 
