@@ -28,6 +28,3 @@ C:\Users\furka\Source\Repos\Document_Management_System\DataAccessLayer\obj\Debug
 C:\Users\furka\Source\Repos\Document_Management_System\DataAccessLayer\obj\Debug\DataAccessLayer.csproj.CopyComplete
 C:\Users\furka\Source\Repos\Document_Management_System\DataAccessLayer\obj\Debug\DataAccessLayer.dll
 C:\Users\furka\Source\Repos\Document_Management_System\DataAccessLayer\obj\Debug\DataAccessLayer.pdb
-C:\Users\furka\source\repos\Document_Management_System\DataAccessLayer\obj\Debug\DataAccessLayer.Migrations.mig_password_Add.resources
-C:\Users\furka\source\repos\Document_Management_System\DataAccessLayer\obj\Debug\DataAccessLayer.csproj.GenerateResource.cache
-C:\Users\furka\source\repos\Document_Management_System\DataAccessLayer\obj\Debug\DataAccessLayer.Migrations.mig_salt_Add.resources

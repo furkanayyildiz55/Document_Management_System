@@ -11,8 +11,6 @@ admin -> test@test.com  test123
 
 YAPILACAKLAR 
 
-student için kontrol paneli
-student için bilgileri düzenleme sayfasý
 
 kontrol panelinde öðrenci ekleme iþleminde þifre nasýl belirlenecek ?
 
@@ -20,10 +18,8 @@ kontrol panelinde öðrenci ekleme iþleminde þifre nasýl belirlenecek ?
 
 *belge türü listeleme sayfasý görüntüle iþlemi dinamikleþtir
 
-*belge pdf kaydetme iþlemini düzenle hata veriyor
 *belge arayüzü oluþturma sayfasý js dinamliklerini ekle (imza dinamikleri)
 
-*stuent panel sayfasý iþlemleri
 
 belge güncelleme sayfasý olacak mý ?
 öðrenci güncelleme sayfasý olacak mý ?

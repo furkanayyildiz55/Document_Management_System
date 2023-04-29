@@ -20,8 +20,6 @@ namespace EntityLayer.Concrete
 
         public string StudentPassword { get; set; }
 
-        public string StudentSalt { get; set; }
-
         public string StudentMail { get; set; }
 
         public bool StudentUniversityRegistered { get; set; }

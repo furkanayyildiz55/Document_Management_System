@@ -28,6 +28,7 @@ namespace DocumentManagementSystem.Roles
                 {
                     //Giriş yapan adminin role bilgisi sorgulanıyor
                     Admin admin = adminManager.GetAdmin(int.Parse(adminID));
+                    //return new string[] {"1"};
                     return new string[] { admin.AdminAuthorization == true ? "1" : "0" };
                 }
             }

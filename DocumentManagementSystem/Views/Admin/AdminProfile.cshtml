@@ -32,9 +32,17 @@
                                 </li>
                                 <li class="list-group-item">
                                     <b>Kayıtlı İmza</b>
-                                    <img class="profile-user-img float-right "
-                                         src="@Model.AdminSignatureImage"
-                                         alt="User profile picture">
+                                    @if (Model.AdminAuthorization)
+                                    {
+                                        <img class="profile-user-img float-right "
+                                             src="@Model.AdminSignatureImage"
+                                             alt="User profile picture">
+                                    }
+                                    else
+                                    {
+                                <a class="float-right">Yok</a>
+                                    }
+
                                 </li>
                             </ul>
 

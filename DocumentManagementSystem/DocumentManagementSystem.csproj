@@ -2354,6 +2354,7 @@
     <Content Include="Views\StudentPanel\Index.cshtml" />
     <Content Include="Views\Document\VievPDFDocument.cshtml" />
     <Content Include="Views\Admin\AdminProfile.cshtml" />
+    <Content Include="Views\StudentPanel\StudentProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ApiModels\" />

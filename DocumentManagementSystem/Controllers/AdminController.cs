@@ -10,7 +10,6 @@ using System.Web.Mvc;
 
 namespace DocumentManagementSystem.Controllers
 {
-    [Authorize(Roles="1")]
     public class AdminController : Controller
     {
         AdminManager adminManager = new AdminManager(new EfAdminDal());
@@ -29,7 +28,7 @@ namespace DocumentManagementSystem.Controllers
             return View(admin);
         }
 
-        [HttpPost]
+        [HttpPost, Authorize(Roles = "0,1")]
         public ActionResult AdminProfile(Admin newAdmin)
         {
             Admin admin = adminManager.GetAdmin(newAdmin.AdminID);
@@ -88,14 +87,14 @@ namespace DocumentManagementSystem.Controllers
 
         #region AddAdmin
 
-        [HttpGet ]
+        [HttpGet,Authorize(Roles = "1")]
         public ActionResult AddAdmin()
         {
             return View();
         }
 
         //TODO : Aynı admin varmı kontrolü
-        [HttpPost]
+        [HttpPost, Authorize(Roles = "1")]
         public ActionResult AddAdmin(Admin admin, HttpPostedFileBase file)
         {
             AdminValidator adminValidator = new AdminValidator();
@@ -213,7 +212,7 @@ namespace DocumentManagementSystem.Controllers
 
         #region AdminUpdate
 
-        [HttpGet]
+        [HttpGet, Authorize(Roles = "1")]
         public ActionResult AdminUpdate(int? id)
         {
 
@@ -228,7 +227,7 @@ namespace DocumentManagementSystem.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpPost, Authorize(Roles = "1")]
         public ActionResult AdminUpdate(Admin admin, HttpPostedFileBase file)
         {
             AdminValidator adminValidator = new AdminValidator();
@@ -327,6 +326,7 @@ namespace DocumentManagementSystem.Controllers
 
         #region AdminList
 
+        [Authorize(Roles = "1")]
         public ActionResult AdminList()
         {
             var adminList = adminManager.GetList();
@@ -336,6 +336,7 @@ namespace DocumentManagementSystem.Controllers
         #endregion
 
         #region Methods
+
 
         public ActionResult ChangeAdminStatus(int id)
         {
