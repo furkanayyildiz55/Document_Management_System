@@ -172,7 +172,7 @@ namespace DocumentManagementSystem.Controllers
                     foreach (var document  in documentList)
                     {
                         DocumentModel documentModel = new DocumentModel(document);
-                        documentRespose.DocumentModel.Add(documentModel);
+                        documentRespose.DocumentList.Add(documentModel);
                     }
                 }
 
@@ -189,9 +189,14 @@ namespace DocumentManagementSystem.Controllers
 
         public class DocumentRespose
         {
+            public DocumentRespose()
+            {
+                DocumentList = new List<DocumentModel>();
+            }
+
             public bool Status { get; set; }
             public string Message { get; set; }
-            public List<DocumentModel> DocumentModel{ get; set; }
+            public List<DocumentModel> DocumentList{ get; set; }
         }
 
         public class DocumentModel
