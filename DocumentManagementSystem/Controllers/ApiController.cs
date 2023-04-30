@@ -10,40 +10,240 @@ using System.Web.Http;
 
 namespace DocumentManagementSystem.Controllers
 {
-    public class ApiDocumentVerificationController : ApiController
+
+
+    #region DocumentVerification
+
+    public class DocumentVerificationController : ApiController
     {
-        [HttpGet]
-        public IEnumerable<DocumentVerificationApiModel> DocumentVerification()
+        public HttpResponseMessage Get(string Code)
         {
             DocumentManager documentManager = new DocumentManager(new EfDocumentDal());
-            Document Document = documentManager.GetDocumentWithVerificationCode("BB48AB4E9743");
+            DocumentVerificationResponse documentVerificationResponse = new DocumentVerificationResponse();
 
-            DocumentVerificationApiModel apimodel = new DocumentVerificationApiModel(Document.DocumentType.DocumentTypeName, Document.DocumentCreateDate, Document.DocumentID.ToString(), Document.Student.StudentName);
-            List<DocumentVerificationApiModel> documentVerification = new List<DocumentVerificationApiModel>();
-            documentVerification.Add(apimodel);
+            try
+            {
+                Document Document = documentManager.GetDocumentWithVerificationCode(Code);
+                DocumentModel DocumentModel = new DocumentModel();
 
-            return documentVerification;
+                if(Document != null)
+                {
+                    DocumentModel.DocumentID = Document.StudentID.ToString();
+                    DocumentModel.DocumentName = Document.DocumentType.DocumentTypeName;
+                    DocumentModel.DocumentPdfUrl = Document.DocumentPdfUrl;
+                    DocumentModel.DocumentCreateDate = Document.DocumentCreateDate;
+                    DocumentModel.DocumentStatus = Document.DocumentStatus;
 
+                    documentVerificationResponse.Verification = true;
+                    documentVerificationResponse.VerificationMessage = "Doğrulanmış belge";
+                    documentVerificationResponse.Document = DocumentModel;
+                }
+                else
+                {
+                    documentVerificationResponse.Verification = false;
+                    documentVerificationResponse.VerificationMessage = "Böyle bir belge bulunmamaktadır !";
+                    documentVerificationResponse.Document = null;
+                }
+                return Request.CreateResponse(HttpStatusCode.OK, documentVerificationResponse);
+
+            }
+            catch (Exception)
+            {
+                documentVerificationResponse.Verification = false;
+                documentVerificationResponse.VerificationMessage = "Üzgünüz, bir hata oluştu.";
+                documentVerificationResponse.Document = null;
+                return Request.CreateResponse(HttpStatusCode.OK, documentVerificationResponse);
+
+            }
         }
-    }
 
-    public class  DocumentVerificationApiModel
-    {
-        public DocumentVerificationApiModel(string documentName, DateTime documentCreateDate, string documentID, string studentName)
+        public class DocumentVerificationResponse
         {
-            DocumentName = documentName;
-            DocumentCreateDate = documentCreateDate;
-            DocumentID = documentID;
-            StudentName = studentName;
+
+            public bool Verification { get; set; }
+            public string VerificationMessage { get; set; }
+            public DocumentModel Document { get; set; }
         }
 
-        public string DocumentName { get; set; }
-        public DateTime DocumentCreateDate{ get; set; }
-        public string DocumentID { get; set; }
-        public string StudentName { get; set; }
-
+        public class DocumentModel
+        {
+            public string DocumentID { get; set; }
+            public string DocumentName { get; set; }
+            public string DocumentPdfUrl { get; set; }
+            public DateTime DocumentCreateDate { get; set; }
+            public bool DocumentStatus { get; set; }
+        }
 
     }
+
+    #endregion
+
+    #region SignIn
+
+    public class SignInController : ApiController
+    {
+        StudentManager studentManager = new StudentManager(new EfStudentDal());
+
+        public HttpResponseMessage Post(SignInModel signInModel)
+        {
+            SignInRespose signInRespose = new SignInRespose();
+
+            try
+            {
+                Student student = studentManager.GetStudentWithMail(signInModel.Email);
+
+                if (student == null)
+                {
+                    signInRespose.SignIn = false;
+                    signInRespose.SignInError = "Kullanıcı bulunamadı !";
+                }
+                else
+                {
+                    // Şifre doğrulama
+                    bool isPasswordValid = BCrypt.Net.BCrypt.Verify(signInModel.Password, student.StudentPassword); // Hashlenmiş şifreyi doğrula
+                    if (isPasswordValid)
+                    {
+                        //giriş yapılabilir
+                        student.StudentPassword = "";
+                        signInRespose.SignIn = true;
+                        signInRespose.SignInError = "";
+                        signInRespose.Student = student;
+
+                    }
+                    else
+                    {
+                        //şifre yanlış
+                        signInRespose.SignIn = false;
+                        signInRespose.SignInError = "Şifre hatalı !";
+
+                    }
+                }
+
+                return Request.CreateResponse(HttpStatusCode.OK, signInRespose);
+            }
+            catch (Exception)
+            {
+                signInRespose.SignIn = false;
+                signInRespose.SignInError = "Üzgünüz, bir hata oluştu";
+                return Request.CreateResponse(HttpStatusCode.OK, signInRespose);
+            }
+
+        }
+        public class SignInModel
+        {
+            public string Email { get; set; }
+            public string Password { get; set; }
+        }
+
+        public class SignInRespose
+        {
+            public bool SignIn { get; set; }
+            public string SignInError { get; set; }
+            public Student Student { get; set; }
+
+        }
+    }
+
+    #endregion
+
+    #region DocumentList
+
+    public class DocumentApiController : ApiController
+    {
+        DocumentManager DocumentManager = new DocumentManager(new EfDocumentDal());
+
+        public HttpResponseMessage Get(string StudentID)
+        {
+            DocumentRespose documentRespose = new DocumentRespose();
+
+            try
+            {
+                List<Document> documentList = DocumentManager.GetListWithStudentID(int.Parse(StudentID));
+
+                if (documentList == null )
+                {
+                    documentRespose.Status= false;
+                    documentRespose.Message= "Tanımlanmış belge yok";
+                }
+                else
+                {
+                    documentRespose.Status = true;
+                    documentRespose.Message = "Tanımlanan belgeler listelendi";
+                    foreach (var document  in documentList)
+                    {
+                        DocumentModel documentModel = new DocumentModel(document);
+                        documentRespose.DocumentModel.Add(documentModel);
+                    }
+                }
+
+                return Request.CreateResponse(HttpStatusCode.OK, documentRespose);
+            }
+            catch (Exception)
+            {
+                documentRespose.Status = false;
+                documentRespose.Message = "Üzgünüz, bir hata oluştu";
+                return Request.CreateResponse(HttpStatusCode.OK, documentRespose);
+            }
+
+        }
+
+        public class DocumentRespose
+        {
+            public bool Status { get; set; }
+            public string Message { get; set; }
+            public List<DocumentModel> DocumentModel{ get; set; }
+        }
+
+        public class DocumentModel
+        {
+            public DocumentModel(Document document)
+            {
+                DocumentID = document.DocumentID.ToString();
+                DocumentName = document.DocumentType.DocumentTypeName;
+                DocumentPdfUrl = document.DocumentPdfUrl;
+                DocumentCreateDate = document.DocumentCreateDate;
+                DocumentVerificationCode = document.DocumentVerificationCode;
+                DocumentStatus = document.DocumentStatus;
+            }
+
+            public string DocumentID { get; set; }
+            public string DocumentName { get; set; }
+            public string DocumentPdfUrl { get; set; }
+            public DateTime DocumentCreateDate { get; set; }
+            public string DocumentVerificationCode { get; set; }
+            public bool DocumentStatus { get; set; }
+        }
+
+    }
+
+    #endregion
+
+
+
+
+
+
+    public class DemoController : ApiController
+    {
+        public string Get()
+        {
+            return "Welcome To Web API";
+        }
+        //https://localhost:44371/api/Demo?id=1&name=steve
+        public List<string> Get(int id , string name)
+        {
+            return new List<string> {
+                "Data1",
+                "Data2",
+                id.ToString(),
+                name.ToString()
+            };
+        }
+
+    }
+
+
+
 
 
 }
