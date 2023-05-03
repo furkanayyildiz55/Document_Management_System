@@ -19,7 +19,7 @@
                         @Html.DropDownListFor(x => x.document.DocumentTypeID, Model.selectDocumentTypeItems, new { @class = "form-control", id = "sec" })
                         @Html.ValidationMessage("DocumentTypeID" , new { @class = "text-danger" })
                         <br />
-                        @Html.Label("Öğrenci No *")
+                        @Html.Label("Öğrenci No/Mail *")
                         @Html.TextBoxFor(x => x.studentNo, new { @class = "form-control", })
                         @Html.ValidationMessage("StudentNo" , new { @class = "text-danger" })
                         <br />

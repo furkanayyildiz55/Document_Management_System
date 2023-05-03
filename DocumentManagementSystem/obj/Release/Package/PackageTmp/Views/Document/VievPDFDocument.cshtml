@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "PDF Olarak Gürüntüleme";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+@if (ViewBag.PDFUrl != null)
+{
+    <div class="col-md-12">
+        <object data="@ViewBag.PDFUrl" type="application/pdf" width="100%" height="900px" />
+    </div>
+}
+else
+{
+    <br />
+    <div class="card bg-light">
+        <div class="card-body">
+            <h5>@ViewBag.Error</h5>
+        </div>
+    </div>
+}
+
+
+
+
+
+
+
+

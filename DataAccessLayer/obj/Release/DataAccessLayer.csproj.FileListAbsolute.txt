@@ -9,9 +9,6 @@ C:\Users\furka\source\repos\Document_Management_System\DataAccessLayer\bin\Relea
 C:\Users\furka\source\repos\Document_Management_System\DataAccessLayer\bin\Release\EntityFramework.xml
 C:\Users\furka\source\repos\Document_Management_System\DataAccessLayer\bin\Release\EntityFramework.SqlServer.xml
 C:\Users\furka\source\repos\Document_Management_System\DataAccessLayer\obj\Release\DataAccessLayer.csproj.AssemblyReference.cache
-C:\Users\furka\source\repos\Document_Management_System\DataAccessLayer\obj\Release\DataAccessLayer.Migrations.mig_password_Add.resources
-C:\Users\furka\source\repos\Document_Management_System\DataAccessLayer\obj\Release\DataAccessLayer.Migrations.mig_salt_Add.resources
-C:\Users\furka\source\repos\Document_Management_System\DataAccessLayer\obj\Release\DataAccessLayer.csproj.GenerateResource.cache
 C:\Users\furka\source\repos\Document_Management_System\DataAccessLayer\obj\Release\DataAccessLayer.csproj.CoreCompileInputs.cache
 C:\Users\furka\source\repos\Document_Management_System\DataAccessLayer\obj\Release\DataAccessLayer.csproj.CopyComplete
 C:\Users\furka\source\repos\Document_Management_System\DataAccessLayer\obj\Release\DataAccessLayer.dll

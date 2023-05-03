@@ -5,7 +5,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project>
   <PropertyGroup>
     <_PublishTargetUrl>C:\Users\furka\Desktop\bysPublish</_PublishTargetUrl>
-    <History>False|2023-04-20T20:14:00.0200617Z;False|2023-04-20T23:13:32.8656181+03:00;False|2023-04-20T23:12:42.3679336+03:00;False|2023-04-20T23:12:09.9844402+03:00;False|2023-04-20T23:05:55.4677090+03:00;False|2023-04-20T22:59:51.9154512+03:00;</History>
+    <History>True|2023-05-02T22:06:18.4382767Z;False|2023-04-20T23:14:00.0200617+03:00;False|2023-04-20T23:13:32.8656181+03:00;False|2023-04-20T23:12:42.3679336+03:00;False|2023-04-20T23:12:09.9844402+03:00;False|2023-04-20T23:05:55.4677090+03:00;False|2023-04-20T22:59:51.9154512+03:00;</History>
   </PropertyGroup>
   <ItemGroup>
     <File Include="AdminLTE-3.0.4/.babelrc">
@@ -6303,7 +6303,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>03/15/2023 15:21:11</publishTime>
     </File>
     <File Include="App_Browsers/qt.browser">
-      <publishTime>03/24/2023 14:15:09</publishTime>
+      <publishTime>04/28/2023 17:57:23</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.dll">
       <publishTime>03/15/2023 15:21:11</publishTime>
@@ -6315,28 +6315,28 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>03/03/2022 19:10:20</publishTime>
     </File>
     <File Include="bin/BusinessLayer.dll">
-      <publishTime>04/20/2023 22:59:48</publishTime>
+      <publishTime>05/02/2023 11:01:25</publishTime>
     </File>
     <File Include="bin/BusinessLayer.dll.config">
       <publishTime>03/15/2023 15:21:09</publishTime>
     </File>
     <File Include="bin/BusinessLayer.pdb">
-      <publishTime>04/20/2023 22:59:48</publishTime>
+      <publishTime>05/02/2023 11:01:25</publishTime>
     </File>
     <File Include="bin/DataAccessLayer.dll">
-      <publishTime>04/20/2023 22:59:48</publishTime>
+      <publishTime>05/02/2023 11:01:25</publishTime>
     </File>
     <File Include="bin/DataAccessLayer.dll.config">
       <publishTime>03/15/2023 15:21:09</publishTime>
     </File>
     <File Include="bin/DataAccessLayer.pdb">
-      <publishTime>04/20/2023 22:59:48</publishTime>
+      <publishTime>05/02/2023 11:01:25</publishTime>
     </File>
     <File Include="bin/DocumentManagementSystem.dll">
-      <publishTime>04/20/2023 23:14:29</publishTime>
+      <publishTime>05/03/2023 01:06:14</publishTime>
     </File>
     <File Include="bin/DocumentManagementSystem.pdb">
-      <publishTime>04/20/2023 23:14:29</publishTime>
+      <publishTime>05/03/2023 01:06:14</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>03/15/2023 15:21:11</publishTime>
@@ -6345,13 +6345,13 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>03/15/2023 15:21:11</publishTime>
     </File>
     <File Include="bin/EntityLayer.dll">
-      <publishTime>04/20/2023 22:59:48</publishTime>
+      <publishTime>05/02/2023 11:01:24</publishTime>
     </File>
     <File Include="bin/EntityLayer.dll.config">
       <publishTime>03/15/2023 15:21:11</publishTime>
     </File>
     <File Include="bin/EntityLayer.pdb">
-      <publishTime>04/20/2023 22:59:48</publishTime>
+      <publishTime>05/02/2023 11:01:24</publishTime>
     </File>
     <File Include="bin/FluentValidation.dll">
       <publishTime>03/15/2023 15:21:11</publishTime>
@@ -6641,6 +6641,18 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="Notlar.txt">
       <publishTime>03/15/2023 15:21:11</publishTime>
     </File>
+    <File Include="Rotativa/help-wkhtmltoimage.txt">
+      <publishTime>04/28/2023 17:57:23</publishTime>
+    </File>
+    <File Include="Rotativa/help-wkhtmltopdf.txt">
+      <publishTime>04/28/2023 17:57:23</publishTime>
+    </File>
+    <File Include="Rotativa/wkhtmltoimage.exe">
+      <publishTime>04/28/2023 17:57:23</publishTime>
+    </File>
+    <File Include="Rotativa/wkhtmltopdf.exe">
+      <publishTime>04/28/2023 17:57:23</publishTime>
+    </File>
     <File Include="Scripts/bootstrap.js">
       <publishTime>03/15/2023 15:21:11</publishTime>
     </File>
@@ -6681,19 +6693,22 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>03/15/2023 15:21:11</publishTime>
     </File>
     <File Include="Views/Admin/AddAdmin.cshtml">
-      <publishTime>04/18/2023 00:53:17</publishTime>
+      <publishTime>04/28/2023 09:56:04</publishTime>
     </File>
     <File Include="Views/Admin/AdminList.cshtml">
       <publishTime>03/15/2023 15:21:11</publishTime>
     </File>
+    <File Include="Views/Admin/AdminProfile.cshtml">
+      <publishTime>04/29/2023 19:51:07</publishTime>
+    </File>
     <File Include="Views/Admin/AdminUpdate.cshtml">
-      <publishTime>03/15/2023 15:21:11</publishTime>
+      <publishTime>04/27/2023 21:53:32</publishTime>
     </File>
     <File Include="Views/Document/AddDocument.cshtml">
-      <publishTime>03/24/2023 10:09:15</publishTime>
+      <publishTime>04/28/2023 12:05:57</publishTime>
     </File>
     <File Include="Views/Document/DocumentList.cshtml">
-      <publishTime>04/04/2023 15:36:33</publishTime>
+      <publishTime>04/28/2023 22:06:08</publishTime>
     </File>
     <File Include="Views/Document/DocumentSign.cshtml">
       <publishTime>04/20/2023 16:15:34</publishTime>
@@ -6705,28 +6720,31 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>03/31/2023 22:55:19</publishTime>
     </File>
     <File Include="Views/Document/VievHTMLDocument.cshtml">
-      <publishTime>04/20/2023 17:37:39</publishTime>
+      <publishTime>04/29/2023 11:51:39</publishTime>
+    </File>
+    <File Include="Views/Document/VievPDFDocument.cshtml">
+      <publishTime>04/28/2023 22:32:43</publishTime>
     </File>
     <File Include="Views/DocumentType/AddDocumentType.cshtml">
-      <publishTime>03/17/2023 08:39:07</publishTime>
+      <publishTime>04/27/2023 21:56:27</publishTime>
     </File>
     <File Include="Views/DocumentType/DocumentTypeList.cshtml">
-      <publishTime>03/15/2023 15:21:11</publishTime>
+      <publishTime>04/27/2023 22:00:16</publishTime>
     </File>
     <File Include="Views/DocumentType/UpdateDocumentType.cshtml">
-      <publishTime>03/15/2023 15:21:11</publishTime>
+      <publishTime>04/27/2023 21:58:03</publishTime>
     </File>
     <File Include="Views/Home/Home.cshtml">
       <publishTime>04/19/2023 01:34:49</publishTime>
     </File>
     <File Include="Views/Home/SignIn.cshtml">
-      <publishTime>04/19/2023 23:54:09</publishTime>
+      <publishTime>05/02/2023 11:01:01</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>03/15/2023 15:21:11</publishTime>
     </File>
     <File Include="Views/Shared/_AdminLayout.cshtml">
-      <publishTime>04/20/2023 17:02:04</publishTime>
+      <publishTime>04/29/2023 19:19:25</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
       <publishTime>04/18/2023 02:49:00</publishTime>
@@ -6735,10 +6753,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>04/18/2023 02:49:00</publishTime>
     </File>
     <File Include="Views/Shared/_StudentLayout.cshtml">
-      <publishTime>04/20/2023 22:43:24</publishTime>
+      <publishTime>04/29/2023 20:59:44</publishTime>
     </File>
     <File Include="Views/Student/StudentAdd.cshtml">
-      <publishTime>04/20/2023 18:08:11</publishTime>
+      <publishTime>04/27/2023 21:47:23</publishTime>
     </File>
     <File Include="Views/Student/StudentList.cshtml">
       <publishTime>03/15/2023 15:21:11</publishTime>
@@ -6749,6 +6767,9 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="Views/StudentPanel/Index.cshtml">
       <publishTime>04/20/2023 17:03:43</publishTime>
     </File>
+    <File Include="Views/StudentPanel/StudentProfile.cshtml">
+      <publishTime>04/29/2023 20:57:05</publishTime>
+    </File>
     <File Include="Views/Web.config">
       <publishTime>03/15/2023 15:21:11</publishTime>
     </File>
@@ -6756,7 +6777,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>04/18/2023 02:23:56</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>04/20/2023 22:59:49</publishTime>
+      <publishTime>05/02/2023 11:01:26</publishTime>
     </File>
   </ItemGroup>
 </Project>

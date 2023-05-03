@@ -28,11 +28,13 @@ namespace DocumentManagementSystem.Controllers
 
                 if(Document != null)
                 {
-                    DocumentModel.DocumentID = Document.StudentID.ToString();
+                    DocumentModel.DocumentID = Document.DocumentID.ToString();
                     DocumentModel.DocumentName = Document.DocumentType.DocumentTypeName;
                     DocumentModel.DocumentPdfUrl = Document.DocumentPdfUrl;
                     DocumentModel.DocumentCreateDate = Document.DocumentCreateDate;
                     DocumentModel.DocumentStatus = Document.DocumentStatus;
+                    DocumentModel.StudentFullName = Document.Student.StudentName +" "+ Document.Student.StudentSurname;
+                    
 
                     documentVerificationResponse.Verification = true;
                     documentVerificationResponse.VerificationMessage = "Doğrulanmış belge";
@@ -68,6 +70,7 @@ namespace DocumentManagementSystem.Controllers
         public class DocumentModel
         {
             public string DocumentID { get; set; }
+            public string StudentFullName { get; set; }
             public string DocumentName { get; set; }
             public string DocumentPdfUrl { get; set; }
             public DateTime DocumentCreateDate { get; set; }

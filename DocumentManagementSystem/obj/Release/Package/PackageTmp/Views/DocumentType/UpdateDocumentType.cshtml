@@ -22,15 +22,15 @@
 
                         @Html.Label("Belge Türü Adı *")
                         @Html.TextBoxFor(x => x.DocumentTypeName, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(x => x.DocumentTypeName)
+                        @Html.ValidationMessageFor(x => x.DocumentTypeName, "", new { @class = "text-danger" })
                         <br />
                         @Html.Label("Belge Türü Yazısı *")
                         @Html.TextAreaFor(x => x.DocumentTypeText, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(x => x.DocumentTypeText)
+                        @Html.ValidationMessageFor(x => x.DocumentTypeText, "", new { @class = "text-danger" })
                         <br />
                         @Html.Label("Belge Türü İmza Adedi *")
                         @Html.TextBoxFor(x => x.DocumentTypeNumSignature, new { @class = "form-control", type = "number" })
-                        @Html.ValidationMessageFor(x => x.DocumentTypeNumSignature)
+                        @Html.ValidationMessageFor(x => x.DocumentTypeNumSignature, "", new { @class = "text-danger" })
                         <br />
                     </div>
                 </div>
@@ -65,16 +65,16 @@
                             }
                             else
                             {
-                                <p>@ViewBag.UploadError</p>
+                                <p class="text-danger">@ViewBag.UploadError</p>
                             }
                         }
                         else
                         {
-                            <p>@ViewBag.UploadError</p>
+                            <p class="text-danger">@ViewBag.UploadError</p>
                         }
                     }
                     <br />
-                    <button id="AdminAddButton" class="btn btn-primary">Yeni Belge Türü Oluştur</button>
+                    <button id="AdminAddButton" class="btn btn-primary">Belge Türü Güncelle</button>
                 </div>
             </div>
         }
@@ -97,7 +97,7 @@
 
                 swalWithBootstrapButtons.fire({
                     title: 'Başarılı',
-                    text: "Yeni Belge Türü Oluşturuldu!",
+                    text: "Belge Türü Güncellendi!",
                     icon: 'success',
                     showCancelButton: true,
                     confirmButtonText: 'Tamam',
