@@ -2043,6 +2043,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="image\site\BozokIcon.ico" />
     <Content Include="image\site\BozokIcon.png" />
+    <Content Include="image\site\bysqr.png" />
     <Content Include="image\site\imza3.png" />
     <Content Include="image\site\none.png" />
     <Content Include="image\site\signature.png" />

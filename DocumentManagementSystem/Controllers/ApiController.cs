@@ -231,26 +231,6 @@ namespace DocumentManagementSystem.Controllers
 
 
 
-    public class DemoController : ApiController
-    {
-        public string Get()
-        {
-            return "Welcome To Web API";
-        }
-        //https://localhost:44371/api/Demo?id=1&name=steve
-        public List<string> Get(int id , string name)
-        {
-            return new List<string> {
-                "Data1",
-                "Data2",
-                id.ToString(),
-                name.ToString()
-            };
-        }
-
-    }
-
-
 
 
 

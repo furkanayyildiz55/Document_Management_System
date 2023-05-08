@@ -34,7 +34,7 @@
     {
         <div class="container">
             <div id="certificate">
-                <div class="cert">
+                <div class="cert" style="background-image:url('@Model.DocumentBacgrounImage');">
                     <div class="cert-header">
 
                         <div class="cert-logo">
@@ -51,24 +51,33 @@
                         <div class="cert-user">
                             <div class="cert-user-name">@Model.StudentFullName</div>
                             <div class="cert-user-info">BELGE KODU @Model.DocumentVerificationCode</div>
+                            <div>@Model.DocumentCreateDate</div>
+
                         </div>
                         <div class="cert-achievement">@Model.DocumentText</div>
 
-                        <div class="cert-signature">
-                            <div>@Model.DocumentCreateDate</div>
-                            <div class="cert-signature-sign">
-                                <img src="~/image/site/imza3.png" />
 
+                        @foreach (var item in Model.documentCreateSignatures)
+                        {
+                            <div class="cert-signature " style="display:inline-block">
+                                <div class="cert-signature-sign">
+                                    <img src="~/image/site/imza3.png" />
+
+                                </div>
+                                <div style="font-weight: bold;">@item.AdminFullName </div>
+                                <div>@item.AdminJob</div>
                             </div>
-                            <div style="font-weight: bold;">@Model.documentCreateSignatures[0].AdminFullName </div>
-                            <div>@Model.documentCreateSignatures[0].AdminJob</div>
-                        </div>
+                        }
+
+
+
+
                     </div>
 
                     <div class="cert-footer">
                         <div class="cert-qr">
                             <div class="cert-qr-image">
-                                <img src="https://iili.io/HXsjUx9.md.png" />
+                                <img src="~/image/site/bysqr.png" />
                             </div>
                         </div>
                         <div class="cert-qr-label">Karekodu okutarak belge doğrulama ekranına gidebilirsiniz</div>

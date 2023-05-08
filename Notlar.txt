@@ -5,26 +5,24 @@ Rol tanýmlamalarý :
 2-Yetkili
 
 
-Kullanýcý Bilg: 
-admin -> test@test.com  test123
 --------------------------------------------------------------------------------------
 
 YAPILACAKLAR 
 
 
-kontrol panelinde öðrenci ekleme iþleminde þifre nasýl belirlenecek ?
 
-*log kodlarýný yaz ve sisteme entegre et 
 
 *belge türü listeleme sayfasý görüntüle iþlemi dinamikleþtir
 
-*belge arayüzü oluþturma sayfasý js dinamliklerini ekle (imza dinamikleri)
+****belge arayüzü oluþturma sayfasý js dinamliklerini ekle (imza dinamikleri)
 
+****log kodlarý bölümünde imza bekleyen belgeleri göster
 
-belge güncelleme sayfasý olacak mý ?
-öðrenci güncelleme sayfasý olacak mý ?
-admin güncelleme sayfasý olacak mý ?
+****triggerlarý yaz
 
+****Hata sayfasý yap 
+
+belge oluþtukran sonra son oluþturulan belgelere git hatalý
 
 OPSÝYON 
 
@@ -32,3 +30,6 @@ OPSÝYON
 belge listelemede son oluþturulan 20 listeli göster sonra filtlere
 belge türü tablosuna birim alaný da eklenmeli mi ?
 
+
+CANLIYA ÇIKMADAN ÖNCE UNUTMA 
+test için kapatýlan authorize attributlerini aktifleþtir
