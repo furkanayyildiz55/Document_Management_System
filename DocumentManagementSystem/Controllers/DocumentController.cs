@@ -303,7 +303,8 @@ namespace DocumentManagementSystem.Controllers
                 {
                     PageOrientation = Rotativa.Options.Orientation.Landscape,
                     PageSize = Rotativa.Options.Size.A4,
-                    PageMargins = new Margins(0, 0, 0, 0),
+                    PageMargins = new Margins(19, 0, 0, 12),
+                    
                 };
 
                 string fileName = $"{documentCreateModel.StudentFullName} {documentCreateModel.DocumentName} {documentCreateModel.DocumentVerificationCode}.pdf";

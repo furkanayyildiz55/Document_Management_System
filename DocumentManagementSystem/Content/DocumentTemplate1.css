@@ -1,117 +1,125 @@
 ﻿*,
 html,
 body {
-  margin: 0;
-  padding: 0;
-  font-family: "Source Sans Pro", sans-serif;
+    margin: 0;
+    padding: 0;
+    font-family: "Source Sans Pro", sans-serif;
 }
 
 .container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
 }
 
 #certificate {
     background-color: #f9fafa;
     background: url("https://iili.io/HXshqkN.png");
     border: 1px solid #dedede;
-    width: 1920px;
-    height: 1350px;
-    /*   width: 1920px;
-    height: 1350px; //A4 kağıdını tam kaplayan en boy oranı  */
+    width: 1280px;
+    height: 800px;
     position: relative;
 }
 
 .cert {
-  color: #3e0e0e;
-  background-color: #fff;
-  background-image: url("");
-  background-position: right bottom;
-  background-size: cover;
-  background-repeat: no-repeat;
-  border: 2px solid #ddd;
-  margin: 2em;
-  padding: 2em;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
+    color: #3e0e0e;
+    background-color: #fff;
+    background-image: url("https://iili.io/HXshBpI.jpg");
+    background-position: right bottom;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: 2px solid #ddd;
+    margin: 2em;
+    padding: 2em;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
 }
 
 .cert-logo {
-  display: flex;
-  justify-content: start;
-  align-items: center;
+    display: flex;
+    justify-content: start;
+    align-items: center;
 }
-.cert-logo img {
-  width: 40px;
-}
+
+    .cert-logo img {
+        width: 40px;
+    }
+
 .cert-logo-name {
-  font-weight: bold;
-  margin-left: 0.5em;
-  text-align: left;
-  text-transform: uppercase;
+    font-weight: bold;
+    margin-left: 0.5em;
+    text-align: left;
+    text-transform: uppercase;
 }
 
 .cert-header {
-  text-align: center;
+    text-align: center;
 }
-.cert-header .cert-title {
-  font-family: "Merriweather", serif;
-  font-size: 2em;
-  font-weight: normal;
-  text-transform: uppercase;
-  margin-top: 1em;
-}
-.cert-header .cert-no {
-  margin-top: 0.5em;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
+
+    .cert-header .cert-title {
+        font-family: "Merriweather", serif;
+        font-size: 2em;
+        font-weight: normal;
+        text-transform: uppercase;
+        margin-top: 1em;
+    }
+
+    .cert-header .cert-no {
+        margin-top: 0.5em;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+    }
 
 .cert-content {
-  text-align: center;
-  margin: 3em 0;
-}
-.cert-content .cert-label {
-  font-size: 0.9em;
-  text-transform: uppercase;
-}
-.cert-content .cert-user-name {
-  color: #125096;
-  font-family: "Marck Script", cursive;
-  font-size: 3em;
-  margin: 0.5em 0 0.05em;
-}
-.cert-content .cert-achievement {
-  font-size: 1.1em;
-  font-weight: semi-bold;
-  margin-top: 2em;
-}
-.cert-content .cert-signature {
-  margin-top: 4em;
-}
-.cert-content .cert-signature-sign {
-  height: 6em;
+    text-align: center;
+    margin: 3em 0;
 }
 
+    .cert-content .cert-label {
+        font-size: 0.9em;
+        text-transform: uppercase;
+    }
+
+    .cert-content .cert-user-name {
+        color: #125096;
+        font-family: "Marck Script", cursive;
+        font-size: 3em;
+        margin: 0.5em 0 0.05em;
+    }
+
+    .cert-content .cert-achievement {
+        font-size: 1.1em;
+        font-weight: semi-bold;
+        margin-top: 2em;
+    }
+
+    .cert-content .cert-signature {
+        margin-top: 4em;
+    }
+
+    .cert-content .cert-signature-sign {
+        height: 6em;
+    }
+
 .cert-footer {
-  left: 2em;
-  right: 2em;
-  bottom: 2em;
-  position: absolute;
-  text-align: left;
+    left: 2em;
+    right: 2em;
+    bottom: 2em;
+    position: absolute;
+    text-align: left;
 }
 
 .cert-qr-image img {
-  width: 78px;
-  height: 78px;
+    width: 78px;
+    height: 78px;
 }
+
 .cert-qr-label {
-  color: #999;
-  font-size: 0.8em;
+    color: #999;
+    font-size: 0.8em;
 }
