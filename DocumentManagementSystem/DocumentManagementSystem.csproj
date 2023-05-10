@@ -169,6 +169,7 @@
     <Compile Include="Controllers\ApiController.cs" />
     <Compile Include="Controllers\DocumentController.cs" />
     <Compile Include="Controllers\DocumentTypeController.cs" />
+    <Compile Include="Controllers\ErrorPageController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\StudentPanelController.cs" />
@@ -2035,6 +2036,13 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\DocumentTemplate1.css" />
+    <Content Include="Content\ErrorPage\css\font-awesome.min.css" />
+    <Content Include="Content\ErrorPage\css\style.css" />
+    <Content Include="Content\ErrorPage\Image\1.jpg" />
+    <Content Include="Content\ErrorPage\Image\2.jpg" />
+    <Content Include="Content\ErrorPage\Image\3.jpg" />
+    <Content Include="Content\ErrorPage\Image\4.jpg" />
+    <Content Include="Content\ErrorPage\Image\5.jpg" />
     <Content Include="Content\pricing.css" />
     <Content Include="Content\SignIn.css" />
     <Content Include="favicon.ico" />
@@ -2356,6 +2364,11 @@
     <Content Include="Views\Document\VievPDFDocument.cshtml" />
     <Content Include="Views\Admin\AdminProfile.cshtml" />
     <Content Include="Views\StudentPanel\StudentProfile.cshtml" />
+    <Content Include="Views\ErrorPage\Page404.cshtml" />
+    <Content Include="Views\ErrorPage\Page400.cshtml" />
+    <Content Include="Views\ErrorPage\Page401.cshtml" />
+    <Content Include="Views\ErrorPage\Page500.cshtml" />
+    <Content Include="Views\ErrorPage\Page503.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ApiModels\" />

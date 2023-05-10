@@ -9,20 +9,14 @@ Rol tanýmlamalarý :
 
 YAPILACAKLAR 
 
+****belge güncelleme sayfasý kimlerin imzalayabileceðini ayarla
 
 
-
-*belge türü listeleme sayfasý görüntüle iþlemi dinamikleþtir
-
-****belge arayüzü oluþturma sayfasý js dinamliklerini ekle (imza dinamikleri)
-
-****log kodlarý bölümünde imza bekleyen belgeleri göster
 
 ****triggerlarý yaz
 
 ****Hata sayfasý yap 
 
-belge oluþtukran sonra son oluþturulan belgelere git hatalý
 
 OPSÝYON 
 

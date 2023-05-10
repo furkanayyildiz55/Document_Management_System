@@ -67,13 +67,13 @@
             <ul class="navbar-nav ml-auto">
 
                 <!-- Notifications Dropdown Menu -->
-                <li class="nav-item dropdown">
+                <!--<li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
                         <i class="far fa-bell"></i>
                         <span class="badge badge-warning navbar-badge">15</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                        <span class="dropdown-item dropdown-header">15 Notifications</span>
+                        <span class="dropdown-item dropdown-header">2 Bildirim</span>
                         <div class="dropdown-divider"></div>
                         <a href="#" class="dropdown-item">
                             <i class="fas fa-envelope mr-2"></i> 4 new messages
@@ -92,7 +92,7 @@
                         <div class="dropdown-divider"></div>
                         <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
                     </div>
-                </li>
+                </li>-->
                 <li class="nav-item">
                     <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
                         <i class="fas fa-th-large"></i>
@@ -104,7 +104,7 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            <a href="index3.html" class="brand-link">
+            <a href="@Url.Action("Home", "Home")" class="brand-link">
                 <img src="~/image/site/BozokIcon.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
                      style="opacity: .8">
                 <span class="brand-text font-weight-light">BOZOK BYS</span>
@@ -118,7 +118,7 @@
                         <img src="~/image/site/user.png" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">@userName</a>
+                        <a href="@Url.Action("AdminProfile","Admin")" class="d-block">@userName</a>
                         
                     </div>
                 </div>
@@ -153,7 +153,7 @@
                                     <p>
                                         Belge İmzalama
                                     </p>
-                                    <span class="right badge badge-info">4</span>
+                                    @*<span class="right badge badge-info"> </span>*@
 
                                 </a>
                             </li>
@@ -307,7 +307,7 @@
                         }
                         <!--BELGE TÜRÜ İŞLEMLER AÇILIR MENÜ -->
                         <!--BAŞLIKLI BÖLÜM-->
-                        @if (User.IsInRole("1"))
+                        @*@if (User.IsInRole("1"))
                         {
                             <li class="nav-header">Ekstra İşlemler</li>
                             <li class="nav-item">
@@ -318,7 +318,7 @@
                                     </p>
                                 </a>
                             </li>
-                        }
+                        }*@
 
 
                         <li class="nav-header">Kullanıcı İşlemleri</li>

@@ -58,11 +58,19 @@
 
                         @foreach (var item in Model.documentCreateSignatures)
                         {
-                            <div class="cert-signature " style="display:inline-block">
-                                <div class="cert-signature-sign">
-                                    <img src="~/image/site/imza3.png" />
 
-                                </div>
+                            <div class="cert-signature " style="display:inline-block">
+                                @if (item.SignatureStatus)
+                                {
+                                    <div class="cert-signature-sign">
+                                        <img src="~/image/site/imza3.png" />
+
+                                    </div>
+                                }
+                    else
+                    {
+                        <p class="">İMZA ONAYI YOK!</p>
+                    }
                                 <div style="font-weight: bold;">@item.AdminFullName </div>
                                 <div>@item.AdminJob</div>
                             </div>
