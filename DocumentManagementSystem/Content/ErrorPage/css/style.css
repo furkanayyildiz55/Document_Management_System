@@ -131,6 +131,18 @@
   text-transform: uppercase;
   font-size: 14px;
   }
+
+.notfound p {
+    font-family: 'Muli', sans-serif;
+    display: inline-block;
+    font-weight: 400;
+    text-decoration: none;
+    background-color: transparent;
+    color: #222225;
+    font-size: 14px;
+}
+
+
   
   .notfound-social {
   margin-bottom: 15px;

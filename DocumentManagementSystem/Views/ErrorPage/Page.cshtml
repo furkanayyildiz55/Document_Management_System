@@ -1,0 +1,62 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Bozok Bys</title>
+
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css?family=Muli:400" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Passion+One" rel="stylesheet">
+
+    <!-- Font Awesome Icon -->
+    <link type="text/css" rel="stylesheet" href="~/Content/ErrorPage/css/font-awesome.min.css" />
+
+
+
+    <!-- Custom stlylesheet -->
+    <link type="text/css" rel="stylesheet" href="~/Content/ErrorPage/css/style.css" />
+
+
+    <style>
+        #notfound .notfound-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: url('../Content/ErrorPage/Image/@(ViewBag.RandomNumber).jpg');
+            background-size: cover;
+        }
+    </style>
+
+</head>
+
+
+<body>
+    <div id="notfound">
+
+
+        <div class="notfound-bg"></div>
+        <div class="notfound">
+            <div class="notfound-404">
+                <h1>@ViewBag.ErrorCode</h1>
+            </div>
+            <h2>@ViewBag.ErrorMessage</h2>
+
+            <div class="notfound-social">
+                <a href="@Url.Action("Home","Home")">Ana Sayfa</a>
+            </div>
+            <!-- <a href="#">Back To Homepage</a> -->
+        </div>
+    </div>
+
+</body>
+
+</html>

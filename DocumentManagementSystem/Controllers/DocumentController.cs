@@ -15,7 +15,7 @@ using System.Web.Mvc;
 
 namespace DocumentManagementSystem.Controllers
 {
-    //[Authorize(Roles="0,1")]
+    [Authorize(Roles="0,1")]
     public class DocumentController : Controller
     {
 
@@ -360,8 +360,13 @@ namespace DocumentManagementSystem.Controllers
             {
                 DocumentCreateSignature documentCreateSignature = new DocumentCreateSignature();
 
-                DocumentTypeSignature documentTypeSignature1 = DocumentTypeSignatureManager.GetDocumentTypeSignature(documentTypeSignature.DocumentTypeSignatureID);
-                Admin admin = AdminManager.GetAdmin((int)documentTypeSignature1.AdminID);
+
+                //DocumentTypeSignature documentTypeSignature1 = DocumentTypeSignatureManager.GetDocumentTypeSignature(documentTypeSignature.DocumentTypeSignatureID);
+                DocumentTypeSignature documentTypeSignature1 = DocumentTypeSignatureManager.GetDocumentTypeSignature(Convert.ToInt32(documentSignature.DocumentTypeSignature.AdminID));
+
+                //Admin admin = AdminManager.GetAdmin((int)documentTypeSignature1.AdminID);
+                Admin admin = documentSignature.DocumentTypeSignature.Admin;
+
 
                 documentCreateSignature.AdminFullName = $"{admin.AdminName} {admin.AdminSurmane}";
                 documentCreateSignature.AdminJob = admin.AdminJob;

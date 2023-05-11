@@ -11,12 +11,9 @@ YAPILACAKLAR
 
 ****belge güncelleme sayfasý kimlerin imzalayabileceðini ayarla
 
-
-
 ****triggerlarý yaz
 
-****Hata sayfasý yap 
-
+///ögrenci sayfasýnda belge listelerken pdf indir kýsmý hatalý
 
 OPSÝYON 
 
