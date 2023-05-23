@@ -178,6 +178,20 @@
     <script src="~/AdminLTE-3.0.4/dist/js/pages/dashboard.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="~/AdminLTE-3.0.4/dist/js/demo.js"></script>
+
+    <script>
+        function downloadPDF(url , fileName) {
+            alert(url);
+            console.log(fileName);
+            var link = document.createElement('a');
+            link.href = url;
+            link.download = fileName+".pdf" ;
+            link.dispatchEvent(new MouseEvent('click'));
+            //adres kısında sıkıntı var 
+        }
+    </script>
+        
+
 </body>
 </html>
 

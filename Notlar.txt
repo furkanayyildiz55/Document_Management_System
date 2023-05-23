@@ -15,6 +15,16 @@ YAPILACAKLAR
 
 ///ögrenci sayfasýnda belge listelerken pdf indir kýsmý hatalý
 
+//eldap sistemi sadece veritabanýna eklenecek  
+
+settings
+ldap aktif - ldap url - ldap kullanýcý adý  - ldap þifre - ldap port (389)
+
+
+//öðrenci belge görüntüleme hatalarý 
+
+//
+
 OPSÝYON 
 
 öðrenci listeleme sayfasý tanýmlanmýþ belgeler kýsmý hallet
