@@ -58,7 +58,7 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            <a href="index3.html" class="brand-link">
+            <a href="@Url.Action("Home", "Home")" class="brand-link">
                 <img src="~/image/site/BozokIcon.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
                      style="opacity: .8">
                 <span class="brand-text font-weight-light">BOZOK BYS</span>
@@ -181,13 +181,14 @@
 
     <script>
         function downloadPDF(url , fileName) {
-            alert(url);
-            console.log(fileName);
+            window.open(url, '_blank');
             var link = document.createElement('a');
             link.href = url;
             link.download = fileName+".pdf" ;
             link.dispatchEvent(new MouseEvent('click'));
-            //adres kısında sıkıntı var 
+        }
+        function viewPDF(url) {
+            window.open(url, '_blank');
         }
     </script>
         
