@@ -189,12 +189,25 @@
                                 @if (User.IsInRole("1"))
                                 {
                                     <li class="nav-item">
-                                        <a href="#" class="nav-link">
+                                        <a href="@Url.Action("DocumentSign", "Document")" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p>Belge Güncelle</p>
+                                            <p>
+                                                Belge İmzalama
+                                            </p>
+                                            @*<span class="right badge badge-info"> </span>*@
+
                                         </a>
                                     </li>
                                 }
+                                @*@if (User.IsInRole("1"))
+        {
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Belge Güncelle</p>
+                </a>
+            </li>
+        }*@
                                 <li class="nav-item">
                                     <a href="@Url.Action("DocumentVerification", "Document")" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
@@ -226,12 +239,7 @@
                                         <p>Öğrenci Listele</p>
                                     </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Öğrenci Güncelle</p>
-                                    </a>
-                                </li>
+
 
                             </ul>
                         </li>
@@ -260,12 +268,12 @@
                                             <p>Admin Listele</p>
                                         </a>
                                     </li>
-                                    <li class="nav-item">
+                                    @*<li class="nav-item">
                                         <a href="@Url.Action("AdminUpdate", "Admin")" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Admin Güncelle</p>
                                         </a>
-                                    </li>
+                                    </li>*@
 
                                 </ul>
                             </li>
@@ -295,12 +303,12 @@
                                             <p>Belge Türü Listele</p>
                                         </a>
                                     </li>
-                                    <li class="nav-item">
+                                    @*<li class="nav-item">
                                         <a href="@Url.Action("UpdateDocumentType", "DocumentType")" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Belge Türü Güncelle</p>
                                         </a>
-                                    </li>
+                                    </li>*@
 
                                 </ul>
                             </li>

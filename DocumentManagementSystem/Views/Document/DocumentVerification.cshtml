@@ -62,9 +62,9 @@
                     }
                     <a target="_blank" href="/Document/VievHTMLDocument/@Model.document.DocumentID" class="btn btn-outline-secondary">Görüntüle</a>
 
-                    @if (Model.document.DocumentStatus == false)
+                    @if (Model.document.DocumentStatus == true)
                     {
-                        <a target="_blank" href="/Document/GeneratePDF/@Model.document.DocumentID" class="btn btn-outline-secondary">PDF Al</a>
+                        <a target="_blank" href="/Document/VievPDFDocument/@Model.document.DocumentID" class="btn btn-outline-secondary">PDF Olarak Görüntüle</a>
                     }
                 </div>
             </div>

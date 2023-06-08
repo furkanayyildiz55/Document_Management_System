@@ -16,8 +16,9 @@
                 <th>#</th>
                 <th>Ad Soyad</th>
                 <th>Numara/Mail</th>
+                <th>Üniversite Kayıt</th>
+                <th>Program</th>
                 <th>Tanımlanmış Belgeler</th>
-                <th>Güncelle</th>
 
             </tr>
             @{
@@ -32,8 +33,10 @@
                             </td>
                             <td>@student.StudentName @student.StudentSurname</td>
                             <td>@(student.StudentUniversityRegistered ? student.StudentNo : student.StudentMail)</td>
-                            <td style="text-align:center "><a href="/Admin/StudentUpdate/@student.StudentID" class="btn btn-success">Tanımlanmış Belgeler</a></td>
-                            <td style="text-align:center"><a href="/Admin/StudentUpdate/@student.StudentID" class="btn btn-warning">Güncelle</a></td>
+                            <td>@(student.StudentUniversityRegistered ? "Kayıt Var" : "Kayıt Yok")</td>
+                            <td>@(student.StudentUniversityRegistered ? student.StudentProgram : "-" )</td>
+                            <td style="text-align:center "><a href="/Document/DocumentList" class="btn btn-success">Tanımlanmış Belgeler</a></td>
+                            @*<td style="text-align:center "><a href="/Admin/StudentUpdate/@student.StudentID" class="btn btn-success">Tanımlanmış Belgeler</a></td>*@
                         </tr>
                 }
 

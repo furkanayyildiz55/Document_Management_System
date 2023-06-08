@@ -191,8 +191,6 @@ namespace DocumentManagementSystem.Controllers
         [HttpPost]
         public ActionResult UpdateDocumentType(DocumentType documentType, HttpPostedFileBase file)
         {
-
-
             DocumentTypeValidator documentTypeValidator = new DocumentTypeValidator();
             ValidationResult result = documentTypeValidator.Validate(documentType);
 
@@ -200,7 +198,8 @@ namespace DocumentManagementSystem.Controllers
             {
                 if (result.IsValid)
                 {
-                    if (FileUploadControl())
+                    int fileUploadReturn = FileUploadControl();
+                    if (fileUploadReturn == 1 || fileUploadReturn == 0 )
                     {
                         documentTypeManager.DocumentTypeUpdate(documentType);
                         ViewBag.RecordStatus = true;
@@ -228,7 +227,7 @@ namespace DocumentManagementSystem.Controllers
 
 
 
-            bool FileUploadControl()
+            int FileUploadControl()
             {
                 // true => dosya yüklemesi tamamlandı
                 // false => dosya yüklemesi tamamlandmadı 
@@ -253,28 +252,26 @@ namespace DocumentManagementSystem.Controllers
                             file.SaveAs(Server.MapPath("~" + path));
                             //Veritabanı kaydetme
                             documentType.DocumentTypeBacgroundImage = path;
-                            return true;
+                            return 1;
 
                         }
                         else
                         {
                             ViewBag.UploadError = "Dosya Boyutu 5 Mb dan küçük olmalı !";
-                            return false;
+                            return -1;
                         }
 
                     }
                     else
                     {
                         ViewBag.UploadError = "Lütfen PNG veya JPG biçiminde resim yükleyin !";
-                        return false;
+                        return -1;
                     }
                 }
                 else
                 {
-                    //ViewBag.UploadError = "Dosya türü için arkaplan görüntüsü yükleyiniz !";
-                    ViewBag.UploadError = "dosya yok true dönüyoruzm ";
-                    return true;
-
+                    //arka plan yüklemeden devam etmek için
+                    return 0;
                 }
             }
         }

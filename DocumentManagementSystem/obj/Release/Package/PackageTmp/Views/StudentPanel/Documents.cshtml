@@ -24,7 +24,7 @@ else
                     <th>Belge Durumu</th>
                     <th>Oluşturma Tarihi</th>
                     <th>Görüntüle</th>
-                    <th>PDF Al</th>
+                    <th>PDF İndir</th>
 
                 </tr>
                 @foreach (var documentItem in Model)
@@ -34,8 +34,8 @@ else
                         <td>@documentItem.DocumentType.DocumentTypeName</td>
                         <td>@(documentItem.DocumentStatus ? "İmzalı" : "İmzasız")</td>
                         <td>@documentItem.DocumentCreateDate.ToString("g")</td>
-                        <td style="text-align:center"><a href="/Document/VievHTMLDocument/@documentItem.DocumentID" class="btn btn-primary">Görüntüle</a></td>
-                        <td style="text-align:center"><a href="/Document/GeneratePDF/@documentItem.DocumentID" class="btn btn-primary">PDF İndir</a></td>
+                        <td style="text-align:center"><button onclick="viewPDF('@(  "https://"+@Request.Url.Authority+documentItem.DocumentPdfUrl )')" class="btn btn-primary">Görüntüle</button></td>
+                        <td style="text-align:center"><button onclick="downloadPDF('@(  "https://"+@Request.Url.Authority+documentItem.DocumentPdfUrl )', '@documentItem.DocumentType.DocumentTypeName')" class="btn btn-primary">PDF İndir</button></td>
                     </tr>
                 }
             </table>
@@ -43,4 +43,5 @@ else
     </div>
 
 }
+
 

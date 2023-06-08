@@ -48,7 +48,7 @@ namespace DocumentManagementSystem.Controllers
             {
                 if (result.IsValid) //form validasyonu sağlanıyorsa
                 {
-                        if(newAdmin.AdminPassword != null)
+                        if(newAdmin.AdminPassword != null) //yeni imza girişi varsa
                          {
                          // Şifre hashleme
                             string salt = BCrypt.Net.BCrypt.GenerateSalt(); // Salt oluştur

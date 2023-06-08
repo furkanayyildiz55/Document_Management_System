@@ -11,25 +11,15 @@ YAPILACAKLAR
 
 ****belge güncelleme sayfasý kimlerin imzalayabileceðini ayarla
 
-****triggerlarý yaz
 
-///ögrenci sayfasýnda belge listelerken pdf indir kýsmý hatalý
+//admin güncelleme sayfasý sorunlu 
 
-//eldap sistemi sadece veritabanýna eklenecek  
+//öðrenciler güncellenemiyor
 
-settings
-ldap aktif - ldap url - ldap kullanýcý adý  - ldap þifre - ldap port (389)
+//wiew html ve pdf sayfalarýna girilebiliyor
 
+//ana panel üzerindeki iþ yapmayan güncelleme sekmelerini sil
 
-//öðrenci belge görüntüleme hatalarý 
-
-//
-
-OPSÝYON 
-
-öðrenci listeleme sayfasý tanýmlanmýþ belgeler kýsmý hallet
-belge listelemede son oluþturulan 20 listeli göster sonra filtlere
-belge türü tablosuna birim alaný da eklenmeli mi ?
 
 
 CANLIYA ÇIKMADAN ÖNCE UNUTMA 

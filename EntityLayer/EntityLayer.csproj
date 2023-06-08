@@ -56,6 +56,7 @@
     <Compile Include="Concrete\DocumentSignature.cs" />
     <Compile Include="Concrete\DocumentTypeSignature.cs" />
     <Compile Include="Concrete\Log.cs" />
+    <Compile Include="Concrete\Setting.cs" />
     <Compile Include="Concrete\Student.cs" />
     <Compile Include="Concrete\DocumentType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

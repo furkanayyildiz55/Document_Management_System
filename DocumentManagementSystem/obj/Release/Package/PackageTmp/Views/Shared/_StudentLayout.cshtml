@@ -7,7 +7,7 @@
 }
 
 <!DOCTYPE html>
-<html>
+<html lang="tr">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -58,7 +58,7 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            <a href="index3.html" class="brand-link">
+            <a href="@Url.Action("Home", "Home")" class="brand-link">
                 <img src="~/image/site/BozokIcon.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
                      style="opacity: .8">
                 <span class="brand-text font-weight-light">BOZOK BYS</span>
@@ -178,6 +178,21 @@
     <script src="~/AdminLTE-3.0.4/dist/js/pages/dashboard.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="~/AdminLTE-3.0.4/dist/js/demo.js"></script>
+
+    <script>
+        function downloadPDF(url , fileName) {
+            window.open(url, '_blank');
+            var link = document.createElement('a');
+            link.href = url;
+            link.download = fileName+".pdf" ;
+            link.dispatchEvent(new MouseEvent('click'));
+        }
+        function viewPDF(url) {
+            window.open(url, '_blank');
+        }
+    </script>
+        
+
 </body>
 </html>
 
