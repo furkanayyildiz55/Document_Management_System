@@ -239,7 +239,8 @@ namespace DocumentManagementSystem.Controllers
                 {
                     if (admin.AdminAuthorization)  //true ise kesinlikle görsel yüklemesi olacak
                     {
-                        if (FileUploadControl())
+                        int fileUploadReturn = FileUploadControl();
+                        if (fileUploadReturn == 1 || fileUploadReturn == 0)
                         {
                             adminManager.AdminUpdate(admin);
                             ViewBag.RecordStatus = true;
@@ -272,7 +273,7 @@ namespace DocumentManagementSystem.Controllers
                 return View();
             }
 
-            bool FileUploadControl()
+            int FileUploadControl()
             {
                 // true => dosya yüklemesi tamamlandı
                 // false => dosya yüklemesi tamamlandmadı 
@@ -297,26 +298,25 @@ namespace DocumentManagementSystem.Controllers
                             file.SaveAs(Server.MapPath("~" + path));
                             //Veritabanı kaydetme
                             admin.AdminSignatureImage = path;
-                            return true;
+                            return 1;
 
                         }
                         else
                         {
                             ViewBag.UploadError = "Dosya Boyutu 5 Mb dan küçük olmalı !";
-                            return false;
+                            return -1;
                         }
 
                     }
                     else
                     {
                         ViewBag.UploadError = "Lütfen PNG biçiminde resim yükleyin !";
-                        return false;
+                        return -1;
                     }
                 }
                 else
                 {
-                    ViewBag.UploadError = "Üst düzey yetkililer imza yüklemek zorundadır !";
-                    return false;
+                    return 0;
 
                 }
             }

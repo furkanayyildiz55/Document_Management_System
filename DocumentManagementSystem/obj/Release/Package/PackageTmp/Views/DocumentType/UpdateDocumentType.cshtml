@@ -17,8 +17,9 @@
                 <div class="col col-lg-6">
                     <div class="form-group">
                         @Html.HiddenFor(x => x.DocumentTypeID)   @*form içinde AdminID bilgisi olmadan güncelleme yapılamıyor, buraya gizli olarak ekledik*@
-                        @Html.HiddenFor(x => x.DocumentTypeCreateDate)   @*form içinde AdminID bilgisi olmadan güncelleme yapılamıyor, buraya gizli olarak ekledik*@
-
+                        @Html.HiddenFor(x => x.DocumentTypeCreateDate)   
+                        @Html.HiddenFor(x => x.DocumentTypeNumSignature) 
+                        @Html.HiddenFor(x => x.DocumentTypeBacgroundImage)
 
                         @Html.Label("Belge Türü Adı *")
                         @Html.TextBoxFor(x => x.DocumentTypeName, new { @class = "form-control" })
@@ -27,10 +28,7 @@
                         @Html.Label("Belge Türü Yazısı *")
                         @Html.TextAreaFor(x => x.DocumentTypeText, new { @class = "form-control" })
                         @Html.ValidationMessageFor(x => x.DocumentTypeText, "", new { @class = "text-danger" })
-                        <br />
-                        @Html.Label("Belge Türü İmza Adedi *")
-                        @Html.TextBoxFor(x => x.DocumentTypeNumSignature, new { @class = "form-control", type = "number" })
-                        @Html.ValidationMessageFor(x => x.DocumentTypeNumSignature, "", new { @class = "text-danger" })
+
                         <br />
                     </div>
                 </div>

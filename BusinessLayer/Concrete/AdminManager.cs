@@ -48,7 +48,7 @@ namespace BusinessLayer.Concrete
 
         public List<Admin> GetListTopLevelAdmin()
         {
-            return _admin.List(x => x.AdminAuthorization == true);
+            return _admin.List(x => x.AdminAuthorization == true && x.AdminStatus==true);
         }
 
         //public List<Admin> AdminCheckRecord( )

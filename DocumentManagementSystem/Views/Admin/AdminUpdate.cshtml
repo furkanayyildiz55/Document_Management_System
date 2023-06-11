@@ -16,6 +16,8 @@
                 <div class="col col-lg-6">
                     <div class="form-group">
                         @Html.HiddenFor(x => x.AdminID)   @*form içinde AdminID bilgisi olmadan güncelleme yapılamıyor, buraya gizli olarak ekledik*@
+                        @Html.HiddenFor(x => x.AdminPassword )
+
 
                         <br />
                         @Html.Label("Admin Adı *")
@@ -27,7 +29,7 @@
                         @Html.ValidationMessageFor(x => x.AdminSurmane, "", new { @class = "text-danger" })
                         <br />
                         @Html.Label("Admin Mail *")
-                        @Html.TextBoxFor(x => x.AdminMail, new { @class = "form-control" })
+                        @Html.TextBoxFor(x => x.AdminMail, new { @class = "form-control", @readonly = "readonly" })
                         @Html.ValidationMessageFor(x => x.AdminMail, "", new { @class = "text-danger" })
                         <br />
                         @Html.Label("Admin İş *")
