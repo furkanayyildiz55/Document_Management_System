@@ -23,16 +23,13 @@ Dijitalleşmenin yüksek oranda arttığı bir çağda bulunmaktayız bundan seb
 **Sunucu:** ASP .NET MVC , ASP .NET WEB API , MSSQL 
 
 ## Sistemin Genel Tasarımı
-![Uygulama Ekran Görüntüsü](https://github.com/furkanayyildiz55/Document_Management_System/blob/master/Readme/S%C4%B0STEM.png)
 <img src="https://github.com/furkanayyildiz55/Document_Management_System/blob/master/Readme/S%C4%B0STEM.png" width="350">
 
 ## Sistemin Genel Tasarımı
-![Uygulama Ekran Görüntüsü](https://github.com/furkanayyildiz55/Document_Management_System/blob/master/Readme/WEB%20TASARIM.png)
-<img src="https://github.com/furkanayyildiz55/Document_Management_System/blob/master/Readme/WEB%20TASARIM.png" width="350">
+<img src="https://github.com/furkanayyildiz55/Document_Management_System/blob/master/Readme/WEB%20TASARIM.png" width="450">
 
 ## API Sistemi Tasarımı
-![Uygulama Ekran Görüntüsü](https://github.com/furkanayyildiz55/Document_Management_System/blob/master/Readme/AP%C4%B0.png)
-<img src="https://github.com/furkanayyildiz55/Document_Management_System/blob/master/Readme/AP%C4%B0.png" width="350">
+<img src="https://github.com/furkanayyildiz55/Document_Management_System/blob/master/Readme/AP%C4%B0.png" width="400">
 
   
 ## Demo Web Sitesi
