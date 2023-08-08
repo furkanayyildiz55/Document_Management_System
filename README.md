@@ -31,10 +31,14 @@ Dijitalleşmenin yüksek oranda arttığı bir çağda bulunmaktayız bundan seb
 ## API Sistemi Tasarımı
 <img src="https://github.com/furkanayyildiz55/Document_Management_System/blob/master/Readme/AP%C4%B0.png" width="400">
 
-## Sistem Görselleri
-<img src="https://github.com/furkanayyildiz55/Document_Management_System/blob/master/Readme/WEB/BELGE%20DO%C4%9ERULAMA/chrome_4d61OTGOGV.png" width="200">
-<img src="https://github.com/furkanayyildiz55/Document_Management_System/blob/master/Readme/WEB/ADM%C4%B0N%20PANEL/BELGE%20%C4%B0%C5%9ELEMLER%C4%B0/chrome_8z4qYsNz60.png" width="200">
+## Bazı Sistem Görselleri
+<p >
+<img src="https://github.com/furkanayyildiz55/Document_Management_System/blob/master/Readme/WEB/BELGE%20DO%C4%9ERULAMA/chrome_4d61OTGOGV.png" width="250">
+<img src="https://github.com/furkanayyildiz55/Document_Management_System/blob/master/Readme/WEB/ADM%C4%B0N%20PANEL/BELGE%20%C4%B0%C5%9ELEMLER%C4%B0/chrome_8z4qYsNz60.png" width="250">
+<img src="https://github.com/furkanayyildiz55/Document_Management_System/blob/master/Readme/WEB/%C3%96%C4%9ERENC%C4%B0%20PANEL/chrome_cbOivaIrPz.png" width="250"> 
+</p>
 
+[Daha fazla görsel için ](https://github.com/furkanayyildiz55/Document_Management_System/tree/master/Readme/WEB)
 
 
 
