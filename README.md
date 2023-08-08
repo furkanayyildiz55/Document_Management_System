@@ -24,12 +24,15 @@ Dijitalleşmenin yüksek oranda arttığı bir çağda bulunmaktayız bundan seb
 
 ## Sistemin Genel Tasarımı
 ![Uygulama Ekran Görüntüsü](https://github.com/furkanayyildiz55/Document_Management_System/blob/master/Readme/S%C4%B0STEM.png)
+<img src="https://github.com/furkanayyildiz55/Document_Management_System/blob/master/Readme/S%C4%B0STEM.png" width="700">
 
 ## Sistemin Genel Tasarımı
 ![Uygulama Ekran Görüntüsü](https://github.com/furkanayyildiz55/Document_Management_System/blob/master/Readme/WEB%20TASARIM.png)
+<img src="https://github.com/furkanayyildiz55/Document_Management_System/blob/master/Readme/WEB%20TASARIM.png" width="700">
 
 ## API Sistemi Tasarımı
 ![Uygulama Ekran Görüntüsü](https://github.com/furkanayyildiz55/Document_Management_System/blob/master/Readme/AP%C4%B0.png)
+<img src="https://github.com/furkanayyildiz55/Document_Management_System/blob/master/Readme/AP%C4%B0.png" width="700">
 
   
 ## Demo Web Sitesi
