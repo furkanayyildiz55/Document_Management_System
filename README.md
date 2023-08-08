@@ -31,6 +31,11 @@ Dijitalleşmenin yüksek oranda arttığı bir çağda bulunmaktayız bundan seb
 ## API Sistemi Tasarımı
 <img src="https://github.com/furkanayyildiz55/Document_Management_System/blob/master/Readme/AP%C4%B0.png" width="400">
 
+## Sistem Görselleri
+- [Ana Sayfa]: https://github.com/furkanayyildiz55/Document_Management_System/blob/master/Readme/WEB/BELGE%20DO%C4%9ERULAMA/chrome_4d61OTGOGV.png "Ana Sayfa"
+
+
+
   
 ## Demo Web Sitesi
 
