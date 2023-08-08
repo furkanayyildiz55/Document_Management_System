@@ -1,7 +1,7 @@
 
 # Belge Yönetim Sistemi 
 
-Dijitalleşmenin yüksek oranda arttığı bir çağda bulunmaktayız bundan sebep ki Yozgat Bozok Üniversitesininde bir eksikliği olan Belge Yöneyim Sistemi ile dijital belgeler, sertifikalar oluşturabilir bunları kişilere tanımlayabilir, yetkililerin belgeleri uzaktan imzalaması için imza yönetim sistemini kullanabilirsiniz. Aynı zamanda web ve mobil desteği sayesinde her ortamda kolaylıkla erişebilirsiniz.
+Dijitalleşmenin yüksek oranda arttığı bir çağda bulunmaktayız bundan sebep ki Yozgat Bozok Üniversitesininde bir eksikliği olan Belge Yönetim Sistemi ile dijital belgeler, sertifikalar oluşturabilir bunları kişilere tanımlayabilir, yetkililerin belgeleri uzaktan imzalaması için imza yönetim sistemini kullanabilirsiniz. Aynı zamanda web ve mobil desteği sayesinde her ortamda kolaylıkla erişebilirsiniz.
 
 
 ## Özellikler
@@ -25,7 +25,7 @@ Dijitalleşmenin yüksek oranda arttığı bir çağda bulunmaktayız bundan seb
 ## Sistemin Genel Tasarımı
 <img src="https://github.com/furkanayyildiz55/Document_Management_System/blob/master/Readme/S%C4%B0STEM.png" width="350">
 
-## Sistemin Genel Tasarımı
+## Sistemin Web Tasarımı
 <img src="https://github.com/furkanayyildiz55/Document_Management_System/blob/master/Readme/WEB%20TASARIM.png" width="450">
 
 ## API Sistemi Tasarımı
